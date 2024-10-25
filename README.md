@@ -12,5 +12,5 @@ First, we will create a unified modular development environment that implements 
 
 Milestones:
 - First report (November 16th): review and implementation of existing models (Reynolds), outlined ideas for improved models/methods
-- Second report (December 7th): adding more realistic vision to the agents in the baseline model
+- Second report (December 7th): adding more realistic vision based flocking behaviour to the agents in the baseline model
 - Third report (January 11th): adding intelligent group behaviour to the baseline model (e.g. genetic algorithm, reinforced learning), evaluation of implemented models, final conclusions and presentation
