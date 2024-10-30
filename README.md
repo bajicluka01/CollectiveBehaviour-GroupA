@@ -19,13 +19,13 @@ Group members (collaborators):
 
 ### Abstract
 
-The purpose of our work is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model. 
+The purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model. 
 
-Furthermore, we will add obstacle avoidance and place it in a topological map of Ljubljana. Moreover, we will divide agents into [different groups](https://www.researchgate.net/publication/281938638_Agent-Based_modeling_of_protests_and_violent_confrontation_a_micro-situational_multi-player_contextual_rule-based_approach) (e.g. leader, regular protest member and bypasser) and create different behaviour patterns for each group based on [group psychology](https://repozitorij.uni-lj.si/IzpisGradiva.php?id=66052). 
+Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into [different groups](https://www.researchgate.net/publication/281938638_Agent-Based_modeling_of_protests_and_violent_confrontation_a_micro-situational_multi-player_contextual_rule-based_approach) (e.g. leader, regular protest member and bypasser) and create different behavioural patterns for each group based on [group psychology](https://repozitorij.uni-lj.si/IzpisGradiva.php?id=66052). 
 
-Finally, we will add agents for [crowd control](https://www.researchgate.net/publication/347869556_Testing_Various_Riot_Control_Police_Formations_through_Agent-Based_Modeling_and_Simulation) (e.g. police) and examine the effect they have on the crowd. 
+Finally, we will add agents for [crowd control](https://www.researchgate.net/publication/347869556_Testing_Various_Riot_Control_Police_Formations_through_Agent-Based_Modeling_and_Simulation) (e.g. police) and examine the effect they have on the behaviour of the crowd. 
 
-**Optional**: optimize police behaviour with genetic algorithms.
+**Optional**: we will attempt to optimize police behaviour with genetic algorithms (the purpose being crowd dispersal or redirection).
 
 
 
@@ -36,8 +36,8 @@ Finally, we will add agents for [crowd control](https://www.researchgate.net/pub
   - Creation of the Ljubljana topological map
 
 #### Second report (December 7th)
-- Implement obstacle avoidance
-- Creation of behavioral patterns to each group
+- Implementation of obstacle avoidance
+- Creation of behavioral patterns for each group
 
 #### Third report (January 11th)
 - Add agents for crowd control
