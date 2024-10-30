@@ -32,6 +32,17 @@ Finally, we will add agents for [crowd control](https://www.researchgate.net/pub
 
 
 ### Milestones:
-- First report (November 16th): review and implementation of existing models (Reynolds), create topological map
-- Second report (December 7th): implement obstacle avoidance, create different groups of behavioral patterns
-- Third report (January 11th): add agents for crowd control, evaluation of implemented models, final conclusions and presentation
+
+#### First report (November 16th)
+  - Review and implementation of existing models
+  - Creation of the Ljubljana topological map
+
+#### Second report (December 7th)
+- Implement obstacle avoidance
+- Creation of behavioral patterns to each group
+
+#### Third report (January 11th)
+- Add agents for crowd control
+- Evaluation of implemented models
+- Final conclusions
+- Final presentation
