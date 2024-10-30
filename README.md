@@ -17,7 +17,6 @@ Group members (collaborators):
 
 
 
-
 ### Abstract
 
 The purpose of our work is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model. 
@@ -27,7 +26,6 @@ Furthermore, we will add obstacle avoidance and place it in a topological map of
 Finally, we will add agents for [crowd control](https://www.researchgate.net/publication/347869556_Testing_Various_Riot_Control_Police_Formations_through_Agent-Based_Modeling_and_Simulation) (e.g. police) and examine the effect they have on the crowd. 
 
 **Optional**: optimize police behaviour with genetic algorithms.
-
 
 
 
