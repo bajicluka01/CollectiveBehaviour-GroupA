@@ -13,18 +13,34 @@ Group members (collaborators):
 
 
 
-## Topic: Collision/Obstacle Avoidance Based on Vision  
-
+## Topic: Simulation of group behaviour during a protest
 
 
 
 ### Abstract
-First, we will create a unified modular development environment that implements the basic [Reynolds model](https://en.wikipedia.org/wiki/Boids) for bird flocking. Next, we will enhance the flocking algorithms to make them more realistic. We will draw on findings from [Flock2: A Model for Orientation-Based Social Flocking](https://www.sciencedirect.com/science/article/pii/S0022519324001644?via%3Dihub#b58) and [A Model of Collective Behavior Based Purely on Vision](https://www.science.org/doi/10.1126/sciadv.aay0792) to develop a more authentic flocking behavior. Finally, we will compare the implemented models with the baseline model and examine the impact of different field of view parameters on the flock's behaviour. 
 
+The purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model. 
+
+Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into [different groups](https://www.researchgate.net/publication/281938638_Agent-Based_modeling_of_protests_and_violent_confrontation_a_micro-situational_multi-player_contextual_rule-based_approach) (e.g. leader, regular protest member and bypasser) and create different behavioural patterns for each group based on [group psychology](https://repozitorij.uni-lj.si/IzpisGradiva.php?id=66052). 
+
+Finally, we will add agents for [crowd control](https://www.researchgate.net/publication/347869556_Testing_Various_Riot_Control_Police_Formations_through_Agent-Based_Modeling_and_Simulation) (e.g. police) and examine the effect they have on the behaviour of the crowd. 
+
+**Optional**: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).
 
 
 
 ### Milestones:
-- First report (November 16th): review and implementation of existing models (Reynolds), outlined ideas for improved models/methods
-- Second report (December 7th): adding more realistic vision based flocking behaviour to the agents in the baseline model
-- Third report (January 11th): evaluation of implemented models and comparison with the baseline model, final conclusions and presentation (possibly 3D)
+
+#### First report (November 16th)
+  - Review and implementation of existing models
+  - Creation of the Ljubljana topological map
+
+#### Second report (December 7th)
+- Implementation of obstacle avoidance
+- Creation of behavioral patterns for each group
+
+#### Third report (January 11th)
+- Add agents for crowd control
+- Evaluation of implemented models
+- Final conclusions
+- Final presentation
