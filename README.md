@@ -13,13 +13,13 @@ Group members (collaborators):
 
 
 
-## Topic: Collision/Obstacle Avoidance Based on Vision  
+## Topic: Simulation of group behaviour during a protest
 
 
 
 
 ### Abstract
-First, we will create a unified modular development environment that implements the basic [Reynolds model](https://en.wikipedia.org/wiki/Boids) for bird flocking. Next, we will enhance the flocking algorithms to make them more realistic. We will draw on findings from [Flock2: A Model for Orientation-Based Social Flocking](https://www.sciencedirect.com/science/article/pii/S0022519324001644?via%3Dihub#b58) and [A Model of Collective Behavior Based Purely on Vision](https://www.science.org/doi/10.1126/sciadv.aay0792) to develop a more authentic flocking behavior. Finally, we will compare the implemented models with the baseline model and examine the impact of different field of view parameters on the flock's behaviour. 
+First, we will create a unified modular development environment that implements the basic flocking model [Reynolds model](https://en.wikipedia.org/wiki/Boids), to which we will add obstacle avoidance and place it in a topological map of Ljubljana (or any city in general). Afterwards we will divide agents into different groups (e.g. leader, regular protest member, bypasser) and create different behaviour patterns for each group. Finally we will add agents that mimic predatorial behaviour in nature (e.g. police) and examine the effect they have on the crowd. 
 
 
 
