@@ -1,0 +1,121 @@
+\documentclass[9pt]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+% Note that the use of elements such as single-column equations
+% may affect the guide line number alignment. 
+
+%\RequirePackage[english,slovene]{babel} % when writing in slovene
+\RequirePackage[slovene,english]{babel} % when writing in english
+
+\templatetype{pnasresearcharticle} % Choose template 
+% {pnasresearcharticle} = Template for a two-column research article
+% {pnasmathematics} = Template for a one-column mathematics article
+% {pnasinvited} = Template for a PNAS invited submission
+
+\selectlanguage{english}
+%\etal{in sod.} % comment out when writing in english
+%\renewcommand{\Authands}{ in } % comment out when writing in english
+%\renewcommand{\Authand}{ in } % comment out when writing in english
+
+\newcommand{\set}[1]{\ensuremath{\mathbf{#1}}}
+\renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\uvec}[1]{\ensuremath{\hat{\vec{#1}}}}
+\newcommand{\const}[1]{{\ensuremath{\kappa_\mathrm{#1}}}} 
+
+\newcommand{\num}[1]{#1}
+
+\graphicspath{{./fig/}}
+
+\title{Simulation of group behaviour during a protest}
+
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author{Nik Čadež}
+\author{Pedro Nuno Ferreira Moura de Macedo}
+\author{Primož Mihelak}
+\author{Luka Bajić}
+
+\affil{Collective behaviour course research seminar report} 
+
+% Please give the surname of the lead author for the running footer
+\leadauthor{Novak} 
+
+\selectlanguage{english}
+
+% Please add here a significance statement to explain the relevance of your work
+\significancestatement{The purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model.
+
+Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into different groups (e.g. leader, regular protest member and bypasser) and create different behavioural patterns for each group based on group psychology.
+
+Finally, we will add agents for crowd control (e.g. police) and examine the effect they have on the behaviour of the crowd.
+
+Optional: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).}{Simulation | group behaviour | crowd control}
+
+\selectlanguage{english}
+
+% Please include corresponding author, author contribution and author declaration information
+%\authorcontributions{Please provide details of author contributions here.}
+%\authordeclaration{Please declare any conflict of interest here.}
+%\equalauthors{\textsuperscript{1}A.O.(Author One) and A.T. (Author Two) contributed equally to this work (remove if not applicable).}
+%\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: author.two\@email.com}
+
+% Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
+\keywords{Simulation | group behaviour | crowd control} 
+
+\begin{abstract}
+The purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model.
+
+Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into different groups (e.g. leader, regular protest member and bypasser) and create different behavioural patterns for each group based on group psychology.
+
+Finally, we will add agents for crowd control (e.g. police) and examine the effect they have on the behaviour of the crowd.
+
+Optional: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).
+\end{abstract}
+
+\dates{\textbf{\today}}
+\program{BMA-RI}
+\vol{2024/25}
+\no{Group A} % group ID
+%\fraca{FRIteza/201516.130}
+
+\begin{document}
+
+% Optional adjustment to line up main text (after abstract) of first page with line numbers, when using both lineno and twocolumn options.
+% You should only change this length when you've finalised the article contents.
+\verticaladjustment{-2pt}
+
+\maketitle
+\thispagestyle{firststyle}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+
+% If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
+\dropcap{T}he purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model.
+
+
+
+\section*{Methods}
+
+\section*{Related work}
+
+\section*{Methodology}
+
+
+
+\section*{Results and discussion}
+
+
+\section*{Conclusion}
+
+\acknow{NČ created the map, PNM implemented the model, PM created the visualization, LB wrote the report.}
+\showacknow % Display the acknowledgments section
+
+% \pnasbreak splits and balances the columns before the references.
+% If you see unexpected formatting errors, try commenting out this line
+% as it can run into problems with floats and footnotes on the final page.
+%\pnasbreak
+
+\begin{multicols}{2}
+\section*{\bibname}
+ Bibliography
+\bibliography{./bib/bibliography}
+\end{multicols}
+
+\end{document}
