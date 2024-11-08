@@ -1,3 +1,20 @@
-\begin{thebibliography}{}
+\begin{thebibliography}{1}
+
+\bibitem{protests}
+Lemos C, Coelho H, Lopes RJ (2014) Agent-based modeling of protests and violent
+  confrontation: a micro-situational, multi-player, contextual rule-based
+  approach.
+
+\bibitem{crowdcontrol}
+Park A et~al. (2020) Testing various riot control police formations through
+  agent-based modeling and simulation.
+\newblock \href{http://dx.doi.org/10.1109/IEMCON51383.2020.9284852}{pp.
+  0765--0770}.
+
+\bibitem{psychology}
+Poler~Kovačič M (1994) Vid pečjak: Psihologija množice: Ljubljana:
+  samozaložba, 1994.
+\newblock {\em Teorija in praksa: revija za družbena vprašanja}
+  31(1/2):187--188.
 
 \end{thebibliography}

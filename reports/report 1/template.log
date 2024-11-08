@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  5 NOV 2024 13:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  8 NOV 2024 10:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1260,7 +1260,9 @@ Package babel Info: Importing font and identification data for english
 -slovene.tex
 Package babel Info: Importing font and identification data for slovene
 (babel)             from babel-sl.ini. Reported on input line 11.
-) (pnasresearcharticle.sty
+)
+   defining Unicode char U+202F (decimal 8239)
+ (pnasresearcharticle.sty
 Package: pnasresearcharticle 2016/02/28 v1.2 PNAS two column research article s
 tyle
 \@float@every@sigstatement=\toks55
@@ -1565,10 +1567,10 @@ LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.59998pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 5.69998pt on input line 1.
-
-
-Package natbib Warning: Empty `thebibliography' environment on input line 3.
-
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <6> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 17.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 5.69998pt on input line 17.
 )
 
 Package caption Warning: Unused \captionsetup[table] on input line 173.
@@ -1590,21 +1592,22 @@ Package rerunfilecheck Info: File `template.out' has not changed.
 (rerunfilecheck)             Checksum: 79D0649803C51E4678AD2F2B3EB78ECD;115.
  ) 
 Here is how much of TeX's memory you used:
- 29851 strings out of 474486
- 554925 string characters out of 5743755
- 1944542 words of memory out of 5000000
- 51394 multiletter control sequences out of 15000+600000
- 628172 words of font info for 165 fonts, out of 8000000 for 9000
+ 29891 strings out of 474486
+ 555423 string characters out of 5743755
+ 1947542 words of memory out of 5000000
+ 51412 multiletter control sequences out of 15000+600000
+ 633158 words of font info for 177 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,11n,121p,1007b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb>
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C
 :/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
-pfb>
-Output written on template.pdf (1 page, 844984 bytes).
+pfb><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr
+o8a.pfb>
+Output written on template.pdf (1 page, 857674 bytes).
 PDF statistics:
- 78 PDF objects out of 1000 (max. 8388607)
- 3 named destinations out of 1000 (max. 500000)
- 63514 words of extra memory for PDF output out of 74296 (max. 10000000)
+ 91 PDF objects out of 1000 (max. 8388607)
+ 6 named destinations out of 1000 (max. 500000)
+ 69658 words of extra memory for PDF output out of 74296 (max. 10000000)
 

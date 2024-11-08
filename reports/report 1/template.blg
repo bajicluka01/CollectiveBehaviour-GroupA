@@ -4,47 +4,48 @@ The top-level auxiliary file: template.aux
 Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: pnas2011.bst
 Reallocating 'name_of_file' (item size: 1) to 19 items.
-I found no \citation commands---while reading file template.aux
 Database file #1: ./bib/bibliography.bib
-You've used 0 entries,
+Warning--empty title in protests
+Warning--empty title in crowdcontrol
+You've used 3 entries,
             1830 wiz_defined-function locations,
-            473 strings with 3698 characters,
-and the built_in function-call counts, 18 in all, are:
-= -- 0
-> -- 0
-< -- 0
-+ -- 0
-- -- 0
-* -- 2
-:= -- 7
-add.period$ -- 0
-call.type$ -- 0
-change.case$ -- 0
+            493 strings with 4375 characters,
+and the built_in function-call counts, 824 in all, are:
+= -- 70
+> -- 24
+< -- 1
++ -- 8
+- -- 5
+* -- 57
+:= -- 108
+add.period$ -- 5
+call.type$ -- 3
+change.case$ -- 3
 chr.to.int$ -- 0
-cite$ -- 0
-duplicate$ -- 0
-empty$ -- 1
-format.name$ -- 0
-if$ -- 1
+cite$ -- 5
+duplicate$ -- 52
+empty$ -- 91
+format.name$ -- 5
+if$ -- 196
 int.to.chr$ -- 0
-int.to.str$ -- 0
-missing$ -- 0
-newline$ -- 3
-num.names$ -- 0
-pop$ -- 0
+int.to.str$ -- 3
+missing$ -- 3
+newline$ -- 14
+num.names$ -- 3
+pop$ -- 21
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 1
+skip$ -- 32
 stack$ -- 0
-substring$ -- 0
-swap$ -- 0
-text.length$ -- 0
+substring$ -- 57
+swap$ -- 16
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 0
-width$ -- 0
-write$ -- 2
-(There was 1 error message)
+warning$ -- 2
+while$ -- 6
+width$ -- 4
+write$ -- 28
+(There were 2 warnings)

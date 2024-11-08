@@ -5,7 +5,7 @@
 
 %\RequirePackage[english,slovene]{babel} % when writing in slovene
 \RequirePackage[slovene,english]{babel} % when writing in english
-
+\DeclareUnicodeCharacter{202F}{ }
 \templatetype{pnasresearcharticle} % Choose template 
 % {pnasresearcharticle} = Template for a two-column research article
 % {pnasmathematics} = Template for a one-column mathematics article
@@ -87,7 +87,7 @@ Optional: we will attempt to optimize police behaviour with methods such as gene
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
-\dropcap{T}he purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model.
+\dropcap{T}he purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model. \cite{protests} \cite{crowdcontrol} \cite{psychology}
 
 
 
@@ -114,7 +114,7 @@ Optional: we will attempt to optimize police behaviour with methods such as gene
 
 \begin{multicols}{2}
 \section*{\bibname}
- Bibliography
+ %Bibliography
 \bibliography{./bib/bibliography}
 \end{multicols}
 
