@@ -1,0 +1,3 @@
+[submodule "ProtestSimulation2D"]
+	path = ProtestSimulation2D
+	url = https://github.com/RootRooster/ProtestSimulation2D
