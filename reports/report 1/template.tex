@@ -41,13 +41,7 @@
 \selectlanguage{english}
 
 % Please add here a significance statement to explain the relevance of your work
-\significancestatement{The purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model.
-
-Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into different groups (e.g. leader, regular protest member and bypasser) and create different behavioural patterns for each group based on group psychology.
-
-Finally, we will add agents for crowd control (e.g. police) and examine the effect they have on the behaviour of the crowd.
-
-Optional: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).}{Simulation | group behaviour | crowd control}
+\significancestatement{By conducting simulations of protests using various models for different subgroups of people, we hope to gain some insight into group behaviour during such events, that might make them logistically easier to organize/control in the future.}{Simulation | group behaviour | crowd control}
 
 \selectlanguage{english}
 
@@ -61,13 +55,7 @@ Optional: we will attempt to optimize police behaviour with methods such as gene
 \keywords{Simulation | group behaviour | crowd control} 
 
 \begin{abstract}
-The purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model.
-
-Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into different groups (e.g. leader, regular protest member and bypasser) and create different behavioural patterns for each group based on group psychology.
-
-Finally, we will add agents for crowd control (e.g. police) and examine the effect they have on the behaviour of the crowd.
-
-Optional: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).
+The purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model. Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into different groups (e.g. leader, regular protest member and bystander) and create different behavioural patterns for each group based on human psychology. Finally, we will add agents for crowd control (e.g. police) and examine the effect they have on the behaviour of the crowd. Optional: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).
 \end{abstract}
 
 \dates{\textbf{\today}}
@@ -126,12 +114,22 @@ Finally, we will attempt to optimize police behaviour (i.e. find different forma
 
 \section*{Results}
 
-At this stage in the development of our project, we haven't obtained any meaningful results yet, however, we do have certain hypotheses/expected outcomes:
+At this stage in the development of our project, we haven't obtained any meaningful results yet (other than the basic visualization shown in \ref{fig1}), however, we do have certain hypotheses/expected outcomes:
 \begin{itemize}
-    \item we expect that by introducing the concept of a leader, the crowd will become more difficult to control, but at the same time, this might lead to a single point of failure type of situation
-    \item it should be possible to optimize the efficiency of crowd control agents using genetic algorithms or similar approaches. 
-    \item
+    \item we expect outcomes of simulations to differ considerably, depending only on group size, even if other parameters within each subgroup remain the same
+    \item we expect the behaviour of the agents (from all subgroups) to vary depending also on the shape of the surrounding environment (e.g. a wide square, versus a narrow street)
+    \item we expect that by introducing the concept of a leader, the crowd will become more cohesive and thus more difficult to control, but at the same time, this might lead to a situation with a single point of failure (i.e. the leader becomes an obvious target for the police)
+    \item it should be possible to optimize the efficiency of crowd control agents using genetic algorithms or similar approaches, instead of using pre-defined formations based on expert knowledge. 
 \end{itemize}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\columnwidth]{unity_visualization.png}
+\end{center}
+\caption{Example of a visualization of static, randomly positioned agents in Unity}
+\label{fig1}
+\end{figure}
+
 
 \section*{Discussion}
 
