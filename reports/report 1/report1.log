@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  14 NOV 2024 10:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  15 NOV 2024 09:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./template.tex
-(template.tex
+**./report1.tex
+(report1.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (pnas-new.cls
@@ -1267,8 +1267,8 @@ Package: pnasresearcharticle 2016/02/28 v1.2 PNAS two column research article s
 tyle
 \@float@every@sigstatement=\toks55
 \c@sigstatement=\count371
-) (template.aux)
-\openout1 = `template.aux'.
+) (report1.aux)
+\openout1 = `report1.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
 LaTeX Font Info:    ... okay on input line 67.
@@ -1315,9 +1315,9 @@ fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring ON on input line 67.
- (template.out) (template.out)
+ (report1.out) (report1.out)
 \@outlinefile=\write4
-\openout4 = `template.out'.
+\openout4 = `report1.out'.
 
 
 *geometry* driver: auto-detecting
@@ -1570,7 +1570,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 [2]
 LaTeX Font Info:    Font shape `T1/phv/b/sc' will be
 (Font)              scaled to size 8.54997pt on input line 140.
- (template.bbl
+ (report1.bbl
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.59998pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
@@ -1587,29 +1587,29 @@ See the caption package documentation for explanation.
 [3 <./unity_visualization.png>]
 
 enddocument/afterlastpage: lastpage setting LastPage.
-(template.aux)
+(report1.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-Package rerunfilecheck Info: File `template.out' has not changed.
+Package rerunfilecheck Info: File `report1.out' has not changed.
 (rerunfilecheck)             Checksum: 79D0649803C51E4678AD2F2B3EB78ECD;115.
  ) 
 Here is how much of TeX's memory you used:
  29974 strings out of 474486
- 557197 string characters out of 5743755
+ 557172 string characters out of 5743755
  1950542 words of memory out of 5000000
  51471 multiletter control sequences out of 15000+600000
  637754 words of font info for 186 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 117i,11n,121p,1007b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,11n,121p,1006b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb>
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C
 :/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
 pfb><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr
 o8a.pfb>
-Output written on template.pdf (3 pages, 876090 bytes).
+Output written on report1.pdf (3 pages, 876228 bytes).
 PDF statistics:
  112 PDF objects out of 1000 (max. 8388607)
  9 named destinations out of 1000 (max. 500000)

@@ -1,6 +1,6 @@
 This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
-The top-level auxiliary file: template.aux
+The top-level auxiliary file: report1.aux
 Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: pnas2011.bst
 Reallocating 'name_of_file' (item size: 1) to 19 items.
@@ -8,7 +8,7 @@ Database file #1: ./bib/bibliography.bib
 Warning--empty title in protests
 You've used 3 entries,
             1830 wiz_defined-function locations,
-            493 strings with 4415 characters,
+            493 strings with 4413 characters,
 and the built_in function-call counts, 761 in all, are:
 = -- 60
 > -- 29
