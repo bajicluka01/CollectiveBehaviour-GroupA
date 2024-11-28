@@ -1,0 +1,19 @@
+\begin{thebibliography}{1}
+
+\bibitem{protests}
+Lemos C, Coelho H, Lopes RJ (2014) Agent-based modeling of protests and violent
+  confrontation: a micro-situational, multi-player, contextual rule-based
+  approach.
+
+\bibitem{sportsriots}
+Clements AJ, Fadai NT (2022) Agent-based modelling of sports riots.
+\newblock {\em Physica A: Statistical Mechanics and its Applications}
+  \href{http://dx.doi.org/https://doi.org/10.1016/j.physa.2022.127279}{597:127279}.
+
+\bibitem{crowdcontrol2}
+Park AJ et~al. (2019) Devising and optimizing crowd control strategies using
+  agent-based modeling and simulation in {\em 2019 European Intelligence and
+  Security Informatics Conference (EISIC)}.
+\newblock \href{http://dx.doi.org/10.1109/EISIC49498.2019.9108875}{pp. 78--84}.
+
+\end{thebibliography}
