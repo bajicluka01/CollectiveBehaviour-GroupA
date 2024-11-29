@@ -1244,7 +1244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mapTexture: {fileID: 2800000, guid: b2bd02c76d6c44070812ff19cf5fbddd, type: 3}
-  buildingPrefab: {fileID: 2118903057336143710, guid: 2ee7c803df952a74ea8a340dc200cde7, type: 3}
+  buildingPrefab: {fileID: 2518260634106983981, guid: 82b887ccfd2898a4c847693c988ea946, type: 3}
   boxCollider: {fileID: 0}
 --- !u!156049354 &1203668230
 Grid:
