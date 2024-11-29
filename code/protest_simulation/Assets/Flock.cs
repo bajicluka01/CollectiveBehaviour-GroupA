@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,7 +29,6 @@ public class Flock : MonoBehaviour {
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-
         //to avoid square roots
         squareMaxSpeed = maxSpeed * maxSpeed;
         squareNeighborRadius = neighborRadius * neighborRadius;
@@ -37,8 +37,8 @@ public class Flock : MonoBehaviour {
         for (int i = 0; i < startingCount; i++) {
             FlockAgent newAgent = Instantiate(
                 agentPrefab,
-                Random.insideUnitCircle * startingCount * AgentDensity,
-                Quaternion.Euler(Vector3.forward * Random.Range(0f, 360f)),
+                UnityEngine.Random.insideUnitCircle * startingCount * AgentDensity,
+                Quaternion.Euler(Vector3.forward * UnityEngine.Random.Range(0f, 360f)),
                 transform
                 );
             newAgent.name = "Agent "+i;
