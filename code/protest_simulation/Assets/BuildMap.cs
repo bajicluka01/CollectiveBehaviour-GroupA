@@ -40,10 +40,10 @@ public class BuildMap : MonoBehaviour
         }
 
         //TODO check if this can be done elsewhere (I think it executes on every update!!! and also doesn't quite work yet)
-        buildingPrefab.layer = LayerMask.NameToLayer("Obstacle");
-        if (buildingPrefab.GetComponent<BoxCollider2D>() == null) {
-            boxCollider = buildingPrefab.AddComponent<BoxCollider2D>();
-        }
+        //buildingPrefab.layer = LayerMask.NameToLayer("Obstacle");
+        //if (buildingPrefab.GetComponent<BoxCollider2D>() == null) {
+        //    boxCollider = buildingPrefab.AddComponent<BoxCollider2D>();
+        //}
 
 
 
