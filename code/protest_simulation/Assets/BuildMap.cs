@@ -18,8 +18,15 @@ public class BuildMap : MonoBehaviour
 
     void CreateBuildingsFromMap()
     {
-        Color targetColor = new Color(0.92f, 0.92f, 0.92f); // Close to #EBEBEB
-        float tolerance = 0.05f; // Adjust tolerance for color detection
+        Color targetColor = new Color(1.0f, 1.0f, 1.0f); 
+
+        //TODO:
+        //this tolerance shouldn't have any impact on the map (because it's generated from a binary image), but for some reason it does. Look into it!!! 
+        float tolerance = 0.1f; 
+
+        //this controls the placement of the map (i.e. to ensure that the agents start in a central location)
+        float initialX = -100f;
+        float initialY = -100f;
 
         for (int x = 0; x < mapTexture.width; x++)
         {
@@ -28,25 +35,11 @@ public class BuildMap : MonoBehaviour
                 Color pixelColor = mapTexture.GetPixel(x, y);
                 if (IsColorMatch(pixelColor, targetColor, tolerance))
                 {
-                    Vector2 position = new Vector2(x, y);
-
-
-                    
-
+                    Vector2 position = new Vector2(initialX+x, initialY+y);
                     Instantiate(buildingPrefab, position, Quaternion.identity);
-                    
                 }
             }
         }
-
-        //TODO check if this can be done elsewhere (I think it executes on every update!!! and also doesn't quite work yet)
-        //buildingPrefab.layer = LayerMask.NameToLayer("Obstacle");
-        //if (buildingPrefab.GetComponent<BoxCollider2D>() == null) {
-        //    boxCollider = buildingPrefab.AddComponent<BoxCollider2D>();
-        //}
-
-
-
     }
 
     bool IsColorMatch(Color color, Color target, float tolerance)
