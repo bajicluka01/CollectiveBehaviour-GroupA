@@ -25,8 +25,8 @@ public class BuildMap : MonoBehaviour
         float tolerance = 0.1f; 
 
         //this controls the placement of the map (i.e. to ensure that the agents start in a central location)
-        float initialX = -100f;
-        float initialY = -100f;
+        float initialX = 10f;
+        float initialY = -500f;
 
         for (int x = 0; x < mapTexture.width; x++)
         {
