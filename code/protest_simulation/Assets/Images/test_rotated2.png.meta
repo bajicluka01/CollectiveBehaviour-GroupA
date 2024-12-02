@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 3029db0510b0cfb48af96bfd08885bf6
+guid: 71be694e34650ff40ab3133e7d19a0cf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5623194428626525839
-    second: test_0
+      213: -5794003116500275518
+    second: rotated_image_2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -24,7 +24,7 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
     flipGreenChannel: 0
-  isReadable: 0
+  isReadable: 1
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
@@ -72,10 +72,10 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 256
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: test_0
+      name: rotated_image_2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 516
-        height: 902
+        width: 760
+        height: 1016
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 171a2cac57666f1b0800000000000000
-      internalID: -5623194428626525839
+      spriteID: 2ceae7d0dd0979fa0800000000000000
+      internalID: -5794003116500275518
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      test_0: -5623194428626525839
+      rotated_image_2_0: -5794003116500275518
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

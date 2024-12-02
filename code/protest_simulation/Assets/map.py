@@ -21,7 +21,7 @@ def displayImage(im, windowSize = [800, 600]):
         return
 
 def writeImage(im, out):
-    cv.imwrite(out+"/test.png", im)
+    cv.imwrite(out+"/test2.png", im)
 
 
 def findPoints(im):

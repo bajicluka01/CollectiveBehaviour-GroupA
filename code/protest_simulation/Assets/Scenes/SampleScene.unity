@@ -1243,7 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d2aaf359bd464c72905771831679993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapTexture: {fileID: 2800000, guid: 893c923985e450d479814e702662956b, type: 3}
+  mapTexture: {fileID: 2800000, guid: afc1dc78a23aadc488b252bcdeb9afc9, type: 3}
   buildingPrefab: {fileID: 2518260634106983981, guid: 82b887ccfd2898a4c847693c988ea946, type: 3}
   boxCollider: {fileID: 0}
 --- !u!156049354 &1203668230
@@ -1267,7 +1267,7 @@ Transform:
   m_GameObject: {fileID: 1203668228}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -100, y: -100, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1576,10 +1576,10 @@ SceneRoots:
   - {fileID: 732231289}
   - {fileID: 993819946}
   - {fileID: 577845721}
+  - {fileID: 1903426422}
   - {fileID: 1955810592}
   - {fileID: 56065972}
   - {fileID: 698878315}
-  - {fileID: 1903426422}
   - {fileID: 552295338}
   - {fileID: 895739613}
   - {fileID: 897429453}

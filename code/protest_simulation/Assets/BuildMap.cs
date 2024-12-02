@@ -31,12 +31,14 @@ public class BuildMap : MonoBehaviour
         for (int x = 0; x < mapTexture.width; x++)
         {
             for (int y = 0; y < mapTexture.height; y++)
+
             {
                 Color pixelColor = mapTexture.GetPixel(x, y);
                 if (IsColorMatch(pixelColor, targetColor, tolerance))
                 {
                     Vector2 position = new Vector2(initialX+x, initialY+y);
-                    Instantiate(buildingPrefab, position, Quaternion.identity);
+                    GameObject obj = Instantiate(buildingPrefab, position, Quaternion.identity);
+                    obj.transform.SetParent(gameObject.transform, false);
                 }
             }
         }
