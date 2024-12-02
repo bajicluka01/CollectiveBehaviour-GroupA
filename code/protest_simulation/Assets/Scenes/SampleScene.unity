@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 367389699}
   - component: {fileID: 367389698}
   m_Layer: 0
-  m_Name: Flock_green
+  m_Name: Bystanders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -196,7 +196,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &519420030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -552,7 +552,7 @@ GameObject:
   - component: {fileID: 732231289}
   - component: {fileID: 732231288}
   m_Layer: 0
-  m_Name: Flock_orange
+  m_Name: Protesters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -603,7 +603,7 @@ GameObject:
   - component: {fileID: 993819946}
   - component: {fileID: 993819945}
   m_Layer: 0
-  m_Name: Flock_blue
+  m_Name: Cops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
