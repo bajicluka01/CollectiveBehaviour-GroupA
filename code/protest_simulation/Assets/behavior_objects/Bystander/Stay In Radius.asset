@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3476dae6dfec01b4281e9393daaf9cec, type: 3}
-  m_Name: Protester Obstacle Layer Filter
+  m_Script: {fileID: 11500000, guid: befc849d6b7dd614aa492e63c97a1ce5, type: 3}
+  m_Name: Stay In Radius
   m_EditorClassIdentifier: 
-  mask:
-    serializedVersion: 2
-    m_Bits: 256
+  center: {x: 0, y: 0}
+  radius: 100

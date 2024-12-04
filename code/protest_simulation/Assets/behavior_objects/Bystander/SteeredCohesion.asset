@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3476dae6dfec01b4281e9393daaf9cec, type: 3}
-  m_Name: Protester Obstacle Layer Filter
+  m_Script: {fileID: 11500000, guid: 0225b57a49387fd41ad73781b3e57352, type: 3}
+  m_Name: SteeredCohesion
   m_EditorClassIdentifier: 
-  mask:
-    serializedVersion: 2
-    m_Bits: 256
+  filter: {fileID: 11400000, guid: a31099b11aa564b4880602d67842d13a, type: 2}
+  agentSmoothTime: 0.5

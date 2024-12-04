@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3476dae6dfec01b4281e9393daaf9cec, type: 3}
-  m_Name: Protester Obstacle Layer Filter
+  m_Script: {fileID: 11500000, guid: 06b3f99f710d9484ca9ba82b10e996af, type: 3}
+  m_Name: Alignment
   m_EditorClassIdentifier: 
-  mask:
-    serializedVersion: 2
-    m_Bits: 256
+  filter: {fileID: 11400000, guid: a31099b11aa564b4880602d67842d13a, type: 2}

@@ -128,7 +128,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 367389699}
-  - component: {fileID: 367389698}
+  - component: {fileID: 367389700}
   m_Layer: 0
   m_Name: Bystanders
   m_TagString: Untagged
@@ -136,25 +136,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &367389698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 367389697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd093e1e0d5cce4aab55c9ef0de36cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentPrefab: {fileID: 6051224310981469197, guid: fdfbf038a8188a54fb775c014ade8e58, type: 3}
-  behavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
-  startingCount: 100
-  driveFactor: 10
-  maxSpeed: 5
-  neighborRadius: 1.5
-  avoidanceRadiusMultiplier: 0.5
 --- !u!4 &367389699
 Transform:
   m_ObjectHideFlags: 0
@@ -170,6 +151,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &367389700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 367389697}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14959d67bab0064690a6128e60e674c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentPrefab: {fileID: 2824728398304512853, guid: c4b2194c406e2cb47b43f7f63f08eba6, type: 3}
+  behavior: {fileID: 11400000, guid: 00ba4f325ec8c504186f32143fded541, type: 2}
+  startingCount: 100
+  driveFactor: 10
+  maxSpeed: 2.4
+  neighborRadius: 1.5
+  avoidanceRadiusMultiplier: 0.5
 --- !u!1 &577845716
 GameObject:
   m_ObjectHideFlags: 0
@@ -465,6 +465,7 @@ GameObject:
   m_Component:
   - component: {fileID: 993819946}
   - component: {fileID: 993819945}
+  - component: {fileID: 993819947}
   m_Layer: 0
   m_Name: Cops
   m_TagString: Untagged
@@ -506,6 +507,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &993819947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993819944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3edda3da2aa16524f87b392626652991, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentPrefab: {fileID: -253609843276057315, guid: 591ac86478b2a2749b8133f059ac8564, type: 3}
+  behavior: {fileID: 11400000, guid: 657cfab611bc6be44ab8a5b57f616837, type: 2}
+  startingCount: 50
+  driveFactor: 10
+  maxSpeed: 5
+  neighborRadius: 1.5
+  avoidanceRadiusMultiplier: 0.5
 --- !u!1 &1203668228
 GameObject:
   m_ObjectHideFlags: 0
