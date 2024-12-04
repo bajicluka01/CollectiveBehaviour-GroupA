@@ -4,14 +4,14 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-[CustomEditor(typeof(CompositeBehavior))]
+[CustomEditor(typeof(ProtesterCompositeBehavior))]
 
-public class CompositeBehaviorEditor : Editor {
+public class ProtesterCompositeBehaviorEditor : Editor {
     public override void OnInspectorGUI() {
 
-        Console.WriteLine("TESTING Composite!");
+        Console.WriteLine("TESTING!");
 
-        CompositeBehavior cb = (CompositeBehavior)target;        
+        ProtesterCompositeBehavior cb = (ProtesterCompositeBehavior)target;        
 
         if(cb.behaviors == null || cb.behaviors.Length == 0) {
             EditorGUILayout.BeginHorizontal();
@@ -28,7 +28,7 @@ public class CompositeBehaviorEditor : Editor {
             for(int i = 0; i < cb.behaviors.Length; i++) {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(i.ToString(), GUILayout.MinWidth(20f), GUILayout.MaxWidth(20f));
-                cb.behaviors[i] = (FlockBehavior)EditorGUILayout.ObjectField(cb.behaviors[i], typeof(FlockBehavior), false, GUILayout.MinWidth(20f));
+                cb.behaviors[i] = (ProtesterBehavior)EditorGUILayout.ObjectField(cb.behaviors[i], typeof(ProtesterBehavior), false, GUILayout.MinWidth(20f));
                 cb.weights[i] = EditorGUILayout.FloatField(cb.weights[i], GUILayout.MinWidth(60f), GUILayout.MaxWidth(60f));
                 EditorGUILayout.EndHorizontal();
             }
@@ -56,9 +56,9 @@ public class CompositeBehaviorEditor : Editor {
         EditorGUILayout.EndHorizontal();
     }
 
-    void AddBehavior(CompositeBehavior cb) {
+    void AddBehavior(ProtesterCompositeBehavior cb) {
         int oldCount = (cb.behaviors != null) ? cb.behaviors.Length : 0;
-        FlockBehavior[] newBehaviors = new FlockBehavior[oldCount + 1];
+        ProtesterBehavior[] newBehaviors = new ProtesterBehavior[oldCount + 1];
         float[] newWeights = new float[oldCount + 1];
 
         for(int i = 0; i < oldCount; i++) {
@@ -70,7 +70,7 @@ public class CompositeBehaviorEditor : Editor {
         cb.weights = newWeights;
     }
 
-    void RemoveBehavior(CompositeBehavior cb) {
+    void RemoveBehavior(ProtesterCompositeBehavior cb) {
         int oldCount = cb.behaviors.Length;
         if(oldCount == 1) {
             cb.behaviors = null;
@@ -78,7 +78,7 @@ public class CompositeBehaviorEditor : Editor {
             return;
         }
 
-        FlockBehavior[] newBehaviors = new FlockBehavior[oldCount - 1];
+        ProtesterBehavior[] newBehaviors = new ProtesterBehavior[oldCount - 1];
         float[] newWeights = new float[oldCount - 1];
 
         for(int i = 0; i < oldCount -1; i++) {
