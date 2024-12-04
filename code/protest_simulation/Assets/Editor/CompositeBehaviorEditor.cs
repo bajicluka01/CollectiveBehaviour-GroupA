@@ -9,8 +9,6 @@ using System;
 public class CompositeBehaviorEditor : Editor {
     public override void OnInspectorGUI() {
 
-        Console.WriteLine("TESTING Composite!");
-
         CompositeBehavior cb = (CompositeBehavior)target;        
 
         if(cb.behaviors == null || cb.behaviors.Length == 0) {

@@ -9,8 +9,6 @@ using System;
 public class ProtesterCompositeBehaviorEditor : Editor {
     public override void OnInspectorGUI() {
 
-        Console.WriteLine("TESTING!");
-
         ProtesterCompositeBehavior cb = (ProtesterCompositeBehavior)target;        
 
         if(cb.behaviors == null || cb.behaviors.Length == 0) {

@@ -464,7 +464,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 993819946}
-  - component: {fileID: 993819945}
   - component: {fileID: 993819947}
   m_Layer: 0
   m_Name: Cops
@@ -473,25 +472,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &993819945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993819944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6dd093e1e0d5cce4aab55c9ef0de36cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentPrefab: {fileID: 6051224310981469197, guid: 0d43b36c57b68234cbf56eee62841c68, type: 3}
-  behavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
-  startingCount: 100
-  driveFactor: 10
-  maxSpeed: 5
-  neighborRadius: 1.5
-  avoidanceRadiusMultiplier: 0.5
 --- !u!4 &993819946
 Transform:
   m_ObjectHideFlags: 0
@@ -633,12 +613,64 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!1 &1795092956
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1795092959}
+  - component: {fileID: 1795092957}
+  m_Layer: 0
+  m_Name: Leader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1795092957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795092956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cea66f587dafaa46a08990c407c6237, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentPrefab: {fileID: 6635233589494901293, guid: cde6ff551c304d84f892474577003c88, type: 3}
+  behavior: {fileID: 11400000, guid: 635d5fa1aa4b2444e8ca6cbd9f876cf9, type: 2}
+  startingCount: 1
+  driveFactor: 20
+  maxSpeed: 50
+  neighborRadius: 1
+  avoidanceRadiusMultiplier: 0.5
+--- !u!4 &1795092959
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795092956}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 619394802}
   - {fileID: 732231289}
+  - {fileID: 1795092959}
   - {fileID: 993819946}
   - {fileID: 367389699}
   - {fileID: 577845721}

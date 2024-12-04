@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-[CustomEditor(typeof(BystanderCompositeBehavior))]
+[CustomEditor(typeof(LeaderCompositeBehavior))]
 
-public class BystanderCompositeBehaviorEditor : Editor {
+public class LeaderCompositeBehaviorEditor : Editor {
     public override void OnInspectorGUI() {
 
-        BystanderCompositeBehavior cb = (BystanderCompositeBehavior)target;        
+        LeaderCompositeBehavior cb = (LeaderCompositeBehavior)target;        
 
         if(cb.behaviors == null || cb.behaviors.Length == 0) {
             EditorGUILayout.BeginHorizontal();
@@ -26,7 +26,7 @@ public class BystanderCompositeBehaviorEditor : Editor {
             for(int i = 0; i < cb.behaviors.Length; i++) {
                 EditorGUILayout.BeginHorizontal();
                 EditorGUILayout.LabelField(i.ToString(), GUILayout.MinWidth(20f), GUILayout.MaxWidth(20f));
-                cb.behaviors[i] = (BystanderBehavior)EditorGUILayout.ObjectField(cb.behaviors[i], typeof(BystanderBehavior), false, GUILayout.MinWidth(20f));
+                cb.behaviors[i] = (LeaderBehavior)EditorGUILayout.ObjectField(cb.behaviors[i], typeof(LeaderBehavior), false, GUILayout.MinWidth(20f));
                 cb.weights[i] = EditorGUILayout.FloatField(cb.weights[i], GUILayout.MinWidth(60f), GUILayout.MaxWidth(60f));
                 EditorGUILayout.EndHorizontal();
             }
@@ -54,9 +54,9 @@ public class BystanderCompositeBehaviorEditor : Editor {
         EditorGUILayout.EndHorizontal();
     }
 
-    void AddBehavior(BystanderCompositeBehavior cb) {
+    void AddBehavior(LeaderCompositeBehavior cb) {
         int oldCount = (cb.behaviors != null) ? cb.behaviors.Length : 0;
-        BystanderBehavior[] newBehaviors = new BystanderBehavior[oldCount + 1];
+        LeaderBehavior[] newBehaviors = new LeaderBehavior[oldCount + 1];
         float[] newWeights = new float[oldCount + 1];
 
         for(int i = 0; i < oldCount; i++) {
@@ -68,7 +68,7 @@ public class BystanderCompositeBehaviorEditor : Editor {
         cb.weights = newWeights;
     }
 
-    void RemoveBehavior(BystanderCompositeBehavior cb) {
+    void RemoveBehavior(LeaderCompositeBehavior cb) {
         int oldCount = cb.behaviors.Length;
         if(oldCount == 1) {
             cb.behaviors = null;
@@ -76,7 +76,7 @@ public class BystanderCompositeBehaviorEditor : Editor {
             return;
         }
 
-        BystanderBehavior[] newBehaviors = new BystanderBehavior[oldCount - 1];
+        LeaderBehavior[] newBehaviors = new LeaderBehavior[oldCount - 1];
         float[] newWeights = new float[oldCount - 1];
 
         for(int i = 0; i < oldCount -1; i++) {

@@ -9,8 +9,6 @@ using System;
 public class CopCompositeBehaviorEditor : Editor {
     public override void OnInspectorGUI() {
 
-        Console.WriteLine("TESTING!");
-
         CopCompositeBehavior cb = (CopCompositeBehavior)target;        
 
         if(cb.behaviors == null || cb.behaviors.Length == 0) {
