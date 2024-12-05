@@ -93,7 +93,7 @@ There are many existing attempts to model protest behaviour, but our project wil
 \end{itemize}
 
 \bigskip
-Note: if we are intending to model specifically the 2020 Ljubljana protests, we need to additionally implement the concept of a leader, who is to a large extent controlling the movement of all active protesters within a given range and as such also becomes a more significant target for crowd control agents. 
+Note: if we are intending to model specifically the 2020 Ljubljana protests, we need to additionally implement the concept of a leader, who is to a large extent controlling the movement of all active protesters within a given range, but as such also becomes a more significant target for crowd control agents. 
 
 \bigskip
 We will attempt to model behaviour of each of the aforementioned subgroups by assigning them a parameter vector based on human psychology. These parameters are intended to cover a wide range of human emotion, such as willingness to participate in a protest (to determine how likely it is that a bystander will join a protest if the majority of agents in their vicinity are active protesters), inclination towards violence, etc. In \cite{sportsriots} these parameters are referred to as levels of recruitment and defection (willingness) and "mild unrest", "moderate unrest" and "severe unrest" (levels of violence). 
@@ -104,39 +104,41 @@ For crowd control agents, we will primarily be using ideas presented in \cite{cr
 
 \section*{Methods}
 
-Implementation of the model will be done in Unity, in a 2-dimensional space observed from bird's-eye view. First step will be the creation of a topological map of Ljubljana, or rather a portion of it (for instance a square and several adjacent streets - enough to allow us to observe a crowd of several hundred agents). To ensure the correct scale and proportions, we will be using Google Maps for this step, as well as taking into account the estimated maximum numbers of people that can fit into spaces of particular dimensions. In other words, we will try to create an environment that's as realistic as possible, so that the obtained results will potentially be useful in various practical applications. 
+Implementation of the model will be done in Unity, in a 2-dimensional space observed from bird's-eye view. First step will be the creation of a topological map of Ljubljana. For the time being we have chosen an area of ......$m^2$, but we might expand if necessary. To ensure the correct scale and proportions, we used Google Maps for this step and we took into account the estimated maximum numbers of people that can fit into spaces of particular dimensions. In other words, we attempted to create an environment that's as realistic as possible, so that the obtained results will potentially be useful in various practical applications. 
 
 \bigskip
-Depending on the size of the map, we will then populate the space with 100-500 agents that will represent protesters and bystanders. Afterwards we will add a considerably smaller number of police agents (up to 50) with the goal of dispersing the crowd. One of the experiments will be to determine the smallest police to protester ratio for which the crowd control is still effective. 
+We plan to perform experiments on various initial group sizes (as mentioned, agents can at some point deflect to another group depending on "willingness" parameter), but for the time being we have chosen the following amounts of agents per group:
+\begin{itemize}
+    \item active protesters: 250
+    \item bystanders: 200
+    \item police: 50
+    \item leader: 1
+\end{itemize}
+
+One of the experiments will be to determine the smallest police to protester ratio for which the crowd control is still effective (i.e. a crowd is successfully dispersed). 
 
 \bigskip
 Finally, we will attempt to optimize police behaviour (i.e. find different formations) using approaches such as genetic algorithms to observe if we can further decrease the number of necessary crowd control agents, while maintaining the same effectiveness in terms of crowd dispersal. 
 
 \section*{Results}
 
-At this stage in the development of our project, we haven't obtained any meaningful results yet (other than the basic visualization shown in \ref{fig1}), however, we do have certain hypotheses/expected outcomes:
-\begin{itemize}
-    \item we expect outcomes of simulations to differ considerably, depending only on group size, even if other parameters within each subgroup remain the same
-    \item we expect the behaviour of the agents (from all subgroups) to vary depending also on the shape of the surrounding environment (e.g. a wide square, versus a narrow street)
-    \item we expect that by introducing the concept of a leader, the crowd will become more cohesive and thus more difficult to control, but at the same time, this might lead to a situation with a single point of failure (i.e. the leader becomes an obvious target for the police)
-    \item it should be possible to optimize the efficiency of crowd control agents using genetic algorithms or similar approaches, instead of using pre-defined formations based on expert knowledge. 
-\end{itemize}
+So far we have implemented a simulation that incorporates four groups of agents in the same scene and we have defined different movement and interaction parameters for each of them. 
 
 \begin{figure}[H]
 \begin{center}
-\includegraphics[width=0.8\columnwidth]{unity_visualization.png}
+\includegraphics[width=0.8\columnwidth]{simulation.png}
 \end{center}
-\caption{Example of a visualization of static, randomly positioned agents in Unity}
+\caption{Example of a protest visualization in Unity: three groups of agents (protesters, bystanders, police) and a topological map of buildings}
 \label{fig1}
 \end{figure}
 
 
 \section*{Discussion}
 
-The project is currently progressing according to plan, except for the creation of a topological map of a whole city, which might have been an overly ambitious goal. Instead, we will likely limit ourselves to a smaller portion of a city (though still large enough to fit several hundred agents, as quantity will be of significant importance, particularly when observing crowd dispersal or redirection). 
+The project is currently progressing according to plan. The implemented model is scalable and modifiable, so we expect to mostly focus on parameter optimization for the remainder of the project. Current challenges are mostly related to effectively and realistically incorporating human psychology into the model. 
 
 
-\acknow{NČ is going to implement the baseline model, PNM is going to optimize parameters, PM is going to create the topological map, LB wrote the first report and is going to be working on crowd control.}
+\acknow{NČ implemented agent movement and interaction between different groups, PNM worked on the map, PM optimized parameters and improved the visualization, LB did image processing for the map, implemented the baseline model and wrote the reports}
 \showacknow % Display the acknowledgments section
 
 % \pnasbreak splits and balances the columns before the references.
