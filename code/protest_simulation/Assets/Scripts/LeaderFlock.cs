@@ -14,9 +14,9 @@ public class LeaderFlock : MonoBehaviour {
     const float AgentDensity = 0.08f;
 
     [Range(1f, 100f)]
-    public float driveFactor = 20f;
+    public float driveFactor = 10f;
     [Range(1f, 100f)]
-    public float maxSpeed = 50f;
+    public float maxSpeed = 5f;
     [Range(1f, 10f)]
     public float neighborRadius = 0.5f;
     [Range(0f, 1f)]
