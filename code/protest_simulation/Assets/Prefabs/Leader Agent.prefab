@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6675140257330919864}
   - component: {fileID: 1596073894181555379}
-  - component: {fileID: 6635233589494901293}
+  - component: {fileID: 5028340872804503121}
   m_Layer: 0
   m_Name: Leader Agent
   m_TagString: Untagged
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 842349893602044995}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -2.501, y: -2.534, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -70,7 +70,7 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.31
---- !u!114 &6635233589494901293
+--- !u!114 &5028340872804503121
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 842349893602044995}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc6468cb3f640794c9cd5db83470be20, type: 3}
+  m_Script: {fileID: 11500000, guid: c40e01a745484304fa1252e616c8e0e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2118740909709722218

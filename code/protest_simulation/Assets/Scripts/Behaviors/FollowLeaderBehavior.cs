@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // this class describes how protestors react to the leader that is present in the simulation
-[CreateAssetMenu(menuName = "Protester/Behavior/Protester follow leader")]
+[CreateAssetMenu(menuName = "Flock/Behavior/Protester follow leader")]
 public class FollowLeaderBehavior : FlockBehavior 
 {
     
