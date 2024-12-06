@@ -278,7 +278,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732231289}
-  - component: {fileID: 732231291}
+  - component: {fileID: 732231290}
   m_Layer: 0
   m_Name: Protesters
   m_TagString: Untagged
@@ -301,7 +301,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &732231291
+--- !u!114 &732231290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -310,15 +310,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 732231287}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3cd829af770de43acec34626f7622a, type: 3}
+  m_Script: {fileID: 11500000, guid: 6dd093e1e0d5cce4aab55c9ef0de36cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentPrefab: {fileID: 501936630447342001, guid: ad9d594d2dfc81f4f9da70109a000086, type: 3}
-  leaderPrefab: {fileID: 6635233589494901293, guid: cde6ff551c304d84f892474577003c88, type: 3}
-  behavior: {fileID: 11400000, guid: 6c4c712bce0e541f59fa2f5456ee1442, type: 2}
-  startingCount: 250
+  protesterPrefab: {fileID: 1402467770307558556, guid: 479df842326804ff19772732d931e800, type: 3}
+  protesterBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
+  protesterStartingCount: 250
+  leaderPrefab: {fileID: 7129078900468310528, guid: 254ba0b0379d1495e9945b9175e7ea0b, type: 3}
+  leaderBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
+  bystanderPrefab: {fileID: 937577674491967280, guid: 0fc20bf1b3f444f5488f83a993bbc276, type: 3}
+  bystanderBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
+  bystanderStartingCount: 250
+  policePrefab: {fileID: 5038820038526581583, guid: db7c3dd1541eb44388af7c649cb2716a, type: 3}
+  policeBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
+  policeStartingCount: 250
   driveFactor: 10
-  maxSpeed: 10
+  maxSpeed: 5
   neighborRadius: 1.5
   avoidanceRadiusMultiplier: 0.5
 --- !u!1 &1203668228
