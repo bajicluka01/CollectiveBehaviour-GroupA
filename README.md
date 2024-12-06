@@ -19,7 +19,7 @@ Group members (collaborators):
 
 ### Abstract
 
-The purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model. 
+The purpose of our project is to study the behavior of a crowd during a protest. In order to do so, we will first create a unified modular development environment that implements the basic flocking model. 
 
 Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into [different groups](https://www.researchgate.net/publication/281938638_Agent-Based_modeling_of_protests_and_violent_confrontation_a_micro-situational_multi-player_contextual_rule-based_approach) (e.g. leader, regular protest member and bypasser) and create different behavioural patterns for each group based on [group psychology](https://repozitorij.uni-lj.si/IzpisGradiva.php?id=66052). 
 
