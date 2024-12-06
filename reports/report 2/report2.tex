@@ -1,3 +1,4 @@
+
 \documentclass[9pt]{pnas-new}
 % Use the lineno option to display guide line numbers if required.
 % Note that the use of elements such as single-column equations
@@ -20,7 +21,8 @@
 \renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}
 \newcommand{\uvec}[1]{\ensuremath{\hat{\vec{#1}}}}
 \newcommand{\const}[1]{{\ensuremath{\kappa_\mathrm{#1}}}} 
-
+\usepackage{caption}
+\usepackage{subcaption}
 \newcommand{\num}[1]{#1}
 
 \graphicspath{{./fig/}}
@@ -55,7 +57,7 @@
 \keywords{Simulation | group behaviour | crowd control} 
 
 \begin{abstract}
-The purpose of our project is to study the behavior of a crowd during a protest. In order to so, we will first create a unified modular development environment that implements the basic flocking model. Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into different groups (e.g. leader, regular protest member and bystander) and create different behavioural patterns for each group based on human psychology. Finally, we will add agents for crowd control (e.g. police) and examine the effect they have on the behaviour of the crowd. Optional: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).
+The purpose of our project is to study the behavior of a crowd during a protest. In order to do so, we will first create a unified modular development environment that implements the basic flocking model. Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into different groups (e.g. leader, regular protest member and bystander) and create different behavioural patterns for each group based on human psychology. Finally, we will add agents for crowd control (e.g. police) and examine the effect they have on the behaviour of the crowd. Optional: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).
 \end{abstract}
 
 \dates{\textbf{\today}}
@@ -116,11 +118,11 @@ After we have created the map, we started modeling behaviours of the different g
 \end{itemize}
 
 \bigskip
-Next step will be the implementation of crowd control agents. The goal here will be to model the interactions between police agents and active (aggressive) protesters. The former are attempting to disperse larger groups of the latter and we plan to model this with approaches similar to predators and prey scenarios in nature (for instance targeting the center of a local group mass). Effectively, the goal of the crowd control agents will be to lower the aggression level in active protesters, i.e. turn them into bystanders (or potentially arrest them, though we are as of yet unsure whether this additional category is necessary). If this is achieved for all agents, the simulation should terminate. One of the possible ideas is to further optimize crowd control strategies using approaches such as genetic algorithm, with the intention of requiring as few of these agents as possible to achieve the end goal. 
+Next step will be the implementation of crowd control agents. The goal here will be to model the interactions between police agents and active (aggressive) protesters. The former are attempting to disperse larger groups of the latter and we plan to model this with approaches similar to predators and prey scenarios in nature (for instance targeting the center of a local group mass). Effectively, the goal of the crowd control agents will be to lower the aggression level in active protesters, i.e. turn them into bystanders (or potentially arrest them, though we are as of yet unsure whether this additional category is necessary). If this is achieved for all agents, the simulation should terminate. One of the possible ideas is to further optimize crowd control strategies using approaches such as genetic algorithms, with the intention of requiring as few of these agents as possible to achieve the end goal. 
 
 \section*{Results}
 
-So far we have implemented a simulation that incorporates four groups of agents in the same scene and we have defined different movement and interaction parameters for each of them. The agents are shown in figure \ref{fig1}, placed in an environment that is essentially a Unity representation of topological map of a portion of Ljubljana. We have decided to focus on an area with two main squares and a few narrow streets in-between and around them, in order to observe crowd behavior in different sized environments. We have also calculated an approximate amount of agents that could realistically fit into a square of this size. 
+So far we have implemented a simulation that incorporates four groups of agents in the same scene and we have defined different movement and interaction parameters for each of them. The agents are shown in figure \ref{fig1}, placed in an environment that is essentially a Unity representation of topological map of a portion of Ljubljana (shown in figure \ref{fig2}). We have decided to focus on an area with two main squares and a few narrow streets in-between and around them, in order to observe crowd behavior in different sized environments. We have also calculated an approximate amount of agents that could realistically fit into a square of this size. 
 
 \begin{figure}[H]
 \begin{center}
@@ -128,6 +130,24 @@ So far we have implemented a simulation that incorporates four groups of agents 
 \end{center}
 \caption{Example of a protest visualization in Unity: four groups of agents (leader, protesters, bystanders, police) denoted by distinct colors and a topological map of buildings}
 \label{fig1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\columnwidth]{finalmap_rotated.png}
+  \caption{Google map image without labels}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\columnwidth]{fullmap.png}
+  \caption{Generated map in Unity}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Example of a transformation of a Google map image into a Unity map. The rotation was added to make the simulation more easy to observe. }
+\label{fig2}
 \end{figure}
 
 
