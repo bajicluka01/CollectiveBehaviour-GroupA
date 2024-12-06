@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  5 DEC 2024 19:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  6 DEC 2024 18:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1553,31 +1553,35 @@ s of police agents (e.g. more
 c/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}{C:/Users/bajic/App
 Data/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/bajic/AppData
 /Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc} <./FRIteza_logo.pdf>]
-Overfull \hbox (0.10895pt too wide) in paragraph at lines 107--108
-\T1/lmr/m/n/9 (+17) and we took into ac-count the es-ti-mated max-i-mum num-ber
-s of peo-ple that can fit into 
+Overfull \hbox (0.14146pt too wide) in paragraph at lines 119--120
+[]\T1/lmr/m/n/9 (+3) Next step will be the im-ple-men-ta-tion of crowd con-trol
+ agents. The goal here will be 
  []
 
 
-Overfull \hbox (0.15308pt too wide) in paragraph at lines 110--112
-\T1/lmr/m/n/9 (+8) can at some point deflect to another group depending on "wil
-lingness" parameter), but 
+Overfull \hbox (0.14076pt too wide) in paragraph at lines 119--120
+\T1/lmr/m/n/9 (+1) to model the in-ter-ac-tions be-tween po-lice agents and ac-
+tive (ag-gres-sive) protesters. The 
  []
 
-<simulation.png, id=65, 325.215pt x 292.09125pt>
+
+Overfull \hbox (0.1231pt too wide) in paragraph at lines 119--120
+\T1/lmr/m/n/9 (+19) ing the cen-ter of a lo-cal group mass). Ef-fec-tively, the
+ goal of the crowd con-trol agents 
+ []
+
+<simulation.png, id=66, 1475.5125pt x 812.03375pt>
 File: simulation.png Graphic file (type png)
 <use simulation.png>
-Package pdftex.def Info: simulation.png  used on input line 129.
-(pdftex.def)             Requested size: 282.72137pt x 253.9435pt.
+Package pdftex.def Info: simulation.png  used on input line 127.
+(pdftex.def)             Requested size: 335.72926pt x 184.75655pt.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 139.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 132.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 139.
-[2{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
-c}{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc} <
-./simulation.png>]
+(Font)              scaled to size 6.64998pt on input line 132.
+[2]
 LaTeX Font Info:    Font shape `T1/phv/b/sc' will be
-(Font)              scaled to size 8.54997pt on input line 142.
+(Font)              scaled to size 8.54997pt on input line 146.
  (report2.bbl
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.59998pt on input line 1.
@@ -1592,7 +1596,7 @@ LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 Package caption Warning: Unused \captionsetup[table] on input line 173.
 See the caption package documentation for explanation.
 
-[3] 
+[3 <./simulation.png>] 
 enddocument/afterlastpage: lastpage setting LastPage.
 (report2.aux)
  ***********
@@ -1604,23 +1608,21 @@ Package rerunfilecheck Info: File `report2.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  29985 strings out of 474486
- 557205 string characters out of 5743755
+ 557199 string characters out of 5743755
  1950542 words of memory out of 5000000
  51471 multiletter control sequences out of 15000+600000
- 638122 words of font info for 191 fonts, out of 8000000 for 9000
+ 638211 words of font info for 192 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,11n,121p,1006b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb
-><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr6.pfb><
-C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C:
-/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/U
-sers/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C
-:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb
-><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a
-.pfb>
-Output written on report2.pdf (3 pages, 896825 bytes).
+<C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb>
+<C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C
+:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb
+><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
+pfb><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr
+o8a.pfb>
+Output written on report2.pdf (3 pages, 914188 bytes).
 PDF statistics:
- 123 PDF objects out of 1000 (max. 8388607)
+ 112 PDF objects out of 1000 (max. 8388607)
  9 named destinations out of 1000 (max. 500000)
  75807 words of extra memory for PDF output out of 89155 (max. 10000000)
 
