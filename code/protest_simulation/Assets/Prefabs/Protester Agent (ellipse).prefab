@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6675140257330919864}
   - component: {fileID: 1596073894181555379}
   - component: {fileID: 1402467770307558556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Protester Agent (ellipse)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.2057056, y: -19.751492, z: 0}
-  m_LocalScale: {x: 0.4, y: 0.3, z: 1}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4543586731047598511}
@@ -69,7 +69,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 0.007
+  m_Radius: 1
 --- !u!114 &1402467770307558556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4543586731047598511}
   - component: {fileID: 3546635873564180374}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Flock Agent Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6675140257330919864}

@@ -39,6 +39,7 @@ public class BuildMap : MonoBehaviour
                     Vector2 position = new Vector2(initialX+x, initialY+y);
                     GameObject obj = Instantiate(buildingPrefab, position, Quaternion.identity);
                     obj.transform.SetParent(gameObject.transform, false);
+                    obj.tag="map";
                 }
             }
         }

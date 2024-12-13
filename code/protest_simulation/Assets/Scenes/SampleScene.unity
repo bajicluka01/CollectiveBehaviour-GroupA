@@ -279,9 +279,9 @@ GameObject:
   m_Component:
   - component: {fileID: 732231289}
   - component: {fileID: 732231290}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Protesters
-  m_TagString: Untagged
+  m_TagString: agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -323,11 +323,12 @@ MonoBehaviour:
   bystanderStartingCount: 250
   policePrefab: {fileID: 5038820038526581583, guid: db7c3dd1541eb44388af7c649cb2716a, type: 3}
   policeBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
-  policeStartingCount: 250
+  policeStartingCount: 70
   driveFactor: 10
-  maxSpeed: 5
-  neighborRadius: 1.5
+  maxSpeed: 4
+  neighborRadius: 0.2
   avoidanceRadiusMultiplier: 0.5
+  buildingPrefab: {fileID: 842349893602044995, guid: 479df842326804ff19772732d931e800, type: 3}
 --- !u!1 &1203668228
 GameObject:
   m_ObjectHideFlags: 0
@@ -342,7 +343,7 @@ GameObject:
   - component: {fileID: 1203668232}
   m_Layer: 8
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,6 +13,7 @@ public class PhysicsLayerFilter : ContextFilter {
                 filtered.Add(item);
             } 
         }
+        
         return filtered;
     } 
     

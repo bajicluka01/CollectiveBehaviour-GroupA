@@ -43,8 +43,8 @@ public class Flock : MonoBehaviour {
     public float driveFactor = 10f;
     [Range(1f, 100f)]
     public float maxSpeed = 5f;
-    [Range(1f, 10f)]
-    public float neighborRadius = 1.5f;
+    [Range(0.001f, 10f)]
+    public float neighborRadius = 0.2f;
     [Range(0f, 1f)]
     public float avoidanceRadiusMultiplier = 0.5f;
 
@@ -52,6 +52,9 @@ public class Flock : MonoBehaviour {
     float squareNeighborRadius;
     float squareAvoidanceRadius;
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
+
+    public GameObject buildingPrefab;
+
 
     void Start() 
     {
@@ -63,6 +66,7 @@ public class Flock : MonoBehaviour {
         // leader
         FlockAgent leaderAgent = InstantiateAgent(leaderPrefab, 0); 
         leaderAgent.name = "Zlatko";
+        leaderAgent.tag = "agent";
         leaderAgent.Initialize(this);
         leader = leaderAgent;
 
@@ -89,16 +93,22 @@ public class Flock : MonoBehaviour {
     {
         FlockAgent newAgent = InstantiateAgent(prefab, startingCount);
         newAgent.name = name;
+        newAgent.tag = "agent";
         newAgent.Initialize(this);
         group.Add(newAgent);
     }
 
     FlockAgent InstantiateAgent(FlockAgent prefab, int startingCount)
     {
+
+        //GameObject obj = Instantiate(prefab, transform.position, Quaternion.identity);
+        //obj.transform.SetParent(gameObject.transform, false);
         return Instantiate(
             prefab,
             UnityEngine.Random.insideUnitCircle * startingCount * AgentDensity,
-            Quaternion.Euler(Vector3.forward * UnityEngine.Random.Range(0f, 360f)),
+            //Quaternion.Euler(Vector3.forward * UnityEngine.Random.Range(0f, 360f)),
+            //transform.position,
+            Quaternion.identity,
             transform
         );
     }
@@ -134,11 +144,13 @@ public class Flock : MonoBehaviour {
     List<Transform> GetNearbyObjects(FlockAgent agent) {
         List<Transform> context = new List<Transform>();
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(agent.transform.position, neighborRadius);
+        //Collider2D[] contextColliders = Physics2D.OverlapPointAll(agent.transform.position);
         foreach(Collider2D c in contextColliders) {
             if (c != agent.AgentCollider) {
                 context.Add(c.transform);
             }
         }
+        //Debug.Log(contextColliders[0].gameObject.layer);
         return context;
     }
 }
