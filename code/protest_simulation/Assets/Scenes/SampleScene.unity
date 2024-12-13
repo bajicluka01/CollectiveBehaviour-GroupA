@@ -325,8 +325,8 @@ MonoBehaviour:
   policeBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
   policeStartingCount: 70
   driveFactor: 10
-  maxSpeed: 4
-  neighborRadius: 0.2
+  maxSpeed: 2
+  neighborRadius: 2
   avoidanceRadiusMultiplier: 0.5
   buildingPrefab: {fileID: 842349893602044995, guid: 479df842326804ff19772732d931e800, type: 3}
 --- !u!1 &1203668228

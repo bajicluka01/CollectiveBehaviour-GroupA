@@ -106,9 +106,9 @@ public class Flock : MonoBehaviour {
         return Instantiate(
             prefab,
             UnityEngine.Random.insideUnitCircle * startingCount * AgentDensity,
-            //Quaternion.Euler(Vector3.forward * UnityEngine.Random.Range(0f, 360f)),
+            Quaternion.Euler(Vector3.forward * UnityEngine.Random.Range(0f, 360f)),
             //transform.position,
-            Quaternion.identity,
+            //Quaternion.identity,
             transform
         );
     }
