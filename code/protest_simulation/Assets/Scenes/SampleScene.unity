@@ -315,15 +315,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   protesterPrefab: {fileID: 1402467770307558556, guid: 479df842326804ff19772732d931e800, type: 3}
   protesterBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
-  protesterStartingCount: 250
+  protesterStartingCount: 10
   leaderPrefab: {fileID: 7129078900468310528, guid: 254ba0b0379d1495e9945b9175e7ea0b, type: 3}
-  leaderBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
+  leaderBehavior: {fileID: 11400000, guid: 026d9102a680748a3a8c96b745f3f52c, type: 2}
   bystanderPrefab: {fileID: 937577674491967280, guid: 0fc20bf1b3f444f5488f83a993bbc276, type: 3}
   bystanderBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
-  bystanderStartingCount: 250
+  bystanderStartingCount: 10
   policePrefab: {fileID: 5038820038526581583, guid: db7c3dd1541eb44388af7c649cb2716a, type: 3}
   policeBehavior: {fileID: 11400000, guid: 6af45fbabc2c53f418ac8d562287f035, type: 2}
-  policeStartingCount: 70
+  policeStartingCount: 10
   driveFactor: 10
   maxSpeed: 2
   neighborRadius: 2
