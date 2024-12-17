@@ -100,7 +100,6 @@ public class Flock : MonoBehaviour {
 
     FlockAgent InstantiateAgent(FlockAgent prefab, int startingCount)
     {
-
         //GameObject obj = Instantiate(prefab, transform.position, Quaternion.identity);
         //obj.transform.SetParent(gameObject.transform, false);
         return Instantiate(
@@ -135,22 +134,43 @@ public class Flock : MonoBehaviour {
         List<Transform> context = GetNearbyObjects(agent);
         Vector2 move = behavior.CalculateMove(agent, context, this);
         move*=driveFactor;
-        if (move.sqrMagnitude > squareMaxSpeed) {
+        if (move.sqrMagnitude > squareMaxSpeed) 
+        {
             move = move.normalized * maxSpeed;
         }
         agent.Move(move);
     }
 
-    List<Transform> GetNearbyObjects(FlockAgent agent) {
+    List<Transform> GetNearbyObjects(FlockAgent agent) 
+    {
         List<Transform> context = new List<Transform>();
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(agent.transform.position, neighborRadius);
         //Collider2D[] contextColliders = Physics2D.OverlapPointAll(agent.transform.position);
-        foreach(Collider2D c in contextColliders) {
-            if (c != agent.AgentCollider) {
+        foreach(Collider2D c in contextColliders) 
+        {
+            if (c != agent.AgentCollider) 
+            {
                 context.Add(c.transform);
             }
         }
         //Debug.Log(contextColliders[0].gameObject.layer);
         return context;
+    }
+
+    public void SwitchProtesterBystanderSquad(FlockAgent agent) 
+    {
+        if (bystanders.Contains(agent))
+        {
+            bystanders.Remove(agent);
+            FlockAgent newAgent = Instantiate(protesterPrefab, agent.transform.position, agent.transform.rotation, transform);
+            protestors.Add(newAgent);
+            Destroy(agent);
+        } else if (protestors.Contains(agent))
+        {
+            protestors.Remove(agent);
+            FlockAgent newAgent = Instantiate(bystanderPrefab, agent.transform.position, agent.transform.rotation, transform);
+            bystanders.Add(newAgent);
+            Destroy(agent);
+        }
     }
 }

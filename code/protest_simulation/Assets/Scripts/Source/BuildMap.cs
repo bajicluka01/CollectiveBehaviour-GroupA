@@ -12,7 +12,6 @@ public class BuildMap : MonoBehaviour
 
     void Start()
     {
-
         CreateBuildingsFromMap();
     }
 
