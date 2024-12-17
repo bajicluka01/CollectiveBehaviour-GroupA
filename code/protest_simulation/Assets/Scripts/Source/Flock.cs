@@ -157,6 +157,8 @@ public class Flock : MonoBehaviour {
         return context;
     }
 
+    // Call this function in order to change the group of a certain bystander or a protestor and pass the desired agent to be switched :)
+    // TODO: test this code in order to see if it works
     public void SwitchProtesterBystanderSquad(FlockAgent agent) 
     {
         if (bystanders.Contains(agent))
