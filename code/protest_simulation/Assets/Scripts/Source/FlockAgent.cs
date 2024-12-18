@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -19,24 +18,24 @@ public class FlockAgent : MonoBehaviour {
         }
     }
 
-    float desiredVelocity;
-    public float DesiredVelocity
+    float desiredSpeed;
+    public float DesiredSpeed
     {
-        get {return desiredVelocity;}
+        get {return desiredSpeed;}
         set
         {
-            desiredVelocity = value;
+            desiredSpeed = value;
         }
     }
 
-    Vector2 previousVelocity;
-    public Vector2 PreviousVelocity { get { return previousVelocity;}}
+    Vector2 previousMove;
+    public Vector2 PreviousMove { get { return previousMove;}}
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() 
     {
         agentCollider = GetComponent<Collider2D>();
-        desiredVelocity = 169.3f;
+        desiredSpeed = 19.3f;
     }
 
     public void Initialize(Flock flock) 
@@ -53,8 +52,6 @@ public class FlockAgent : MonoBehaviour {
     {
         transform.up = velocity;
         transform.position += (Vector3)velocity * Time.deltaTime;
-        
-        previousVelocity = velocity;
-        // Vector3.Lerp(exVector, newVector, time);
+        previousMove = velocity;
     }
 }

@@ -11,15 +11,14 @@ public class SocialForceModelBehavior : FlockBehavior
         if (agent.DesiredPosition == Vector3.zero || agent.OnDesiredPosition())
         {
             agent.DesiredPosition = GenerateNewDesiredPosition(distanceOfDesiredPosition, agent.transform.position);
-            Debug.Log(agent.DesiredPosition);
         }
         Vector2 desiredPositionVector = agent.DesiredPosition - agent.transform.position;
         desiredPositionVector.Normalize();
 
-        return agent.DesiredVelocity*desiredPositionVector - agent.PreviousVelocity;
+        return agent.DesiredSpeed*desiredPositionVector - agent.PreviousMove;
     }
 
-    public Vector2 GenerateNewDesiredPosition(float distance, Vector3 agentPosition)
+    Vector2 GenerateNewDesiredPosition(float distance, Vector3 agentPosition)
     {
         // Generate a random angle
         float angle = Random.Range(0f, 2f * Mathf.PI);

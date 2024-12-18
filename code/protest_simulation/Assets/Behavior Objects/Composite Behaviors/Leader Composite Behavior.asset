@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Leader Composite Behavior
   m_EditorClassIdentifier: 
   behaviors:
-  - {fileID: 11400000, guid: 33d6b262bd3bb4da79bb73ddcafd4bf0, type: 2}
+  - {fileID: 11400000, guid: 026d9102a680748a3a8c96b745f3f52c, type: 2}
   weights:
-  - 1
+  - 100
+  smoothing: 0.1

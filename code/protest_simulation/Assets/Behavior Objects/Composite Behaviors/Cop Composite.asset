@@ -16,3 +16,4 @@ MonoBehaviour:
   - {fileID: 11400000}
   weights:
   - 1
+  smoothing: 0.2

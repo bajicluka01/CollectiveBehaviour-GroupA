@@ -133,11 +133,11 @@ public class Flock : MonoBehaviour {
     {
         List<Transform> context = GetNearbyObjects(agent);
         Vector2 move = behavior.CalculateMove(agent, context, this);
-        move*=driveFactor;
-        if (move.sqrMagnitude > squareMaxSpeed) 
-        {
-            move = move.normalized * maxSpeed;
-        }
+        // move*=driveFactor;
+        // if (move.sqrMagnitude > squareMaxSpeed) 
+        // {
+        //     move = move.normalized * maxSpeed;
+        // }
         agent.Move(move);
     }
 

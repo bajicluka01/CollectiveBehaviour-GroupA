@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,24 +8,28 @@ public class CompositeBehavior : FlockBehavior
     public FlockBehavior[] behaviors;
     public float[] weights;
 
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock) 
+    // having higher smoothing means that the turns will be sharper
+    [Range(0f, 1f)]
+    public float smoothing = 0.01f;
+
+    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
     {
-        
-        if(weights.Length != behaviors.Length) 
+
+        if (weights.Length != behaviors.Length)
         {
-            Debug.LogError("Data mismatch in "+name, this);
+            Debug.LogError("Data mismatch in " + name, this);
             return Vector2.zero;
         }
 
-        Vector2  move = Vector2.zero;
+        Vector2 move = Vector2.zero;
 
-        for(int i = 0; i < behaviors.Length; i++) 
+        for (int i = 0; i < behaviors.Length; i++)
         {
             Vector2 partialMove = behaviors[i].CalculateMove(agent, context, flock) * weights[i];
-            
-            if (partialMove != Vector2.zero) 
+
+            if (partialMove != Vector2.zero)
             {
-                if (partialMove.sqrMagnitude > weights[i] * weights[i]) 
+                if (partialMove.sqrMagnitude > weights[i] * weights[i])
                 {
                     partialMove.Normalize();
                     partialMove *= weights[i];
@@ -36,6 +39,22 @@ public class CompositeBehavior : FlockBehavior
             }
         }
 
-        return move;
+        return SmoothenMove(agent, move);
+    }
+
+    Vector2 SmoothenMove(FlockAgent agent, Vector2 desiredMove)
+    {
+        if (smoothing == 0f)
+        {
+            return desiredMove;
+        }
+        Vector2 differenceVector = desiredMove - agent.PreviousMove;
+        differenceVector.Normalize();
+        differenceVector *= smoothing;
+        if (Vector2.Distance(agent.PreviousMove + differenceVector, desiredMove) < smoothing)
+        {
+            differenceVector = Vector2.zero;
+        }
+        return differenceVector + agent.PreviousMove;
     }
 }
