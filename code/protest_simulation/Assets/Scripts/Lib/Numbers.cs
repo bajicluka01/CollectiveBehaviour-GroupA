@@ -22,7 +22,4 @@ public class Numbers
         s = Mathf.Sqrt(-2.0f * Mathf.Log(s) / s);
         return v1 * s;
     }
-
-
-
 }
