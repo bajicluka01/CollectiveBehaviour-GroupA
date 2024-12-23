@@ -1,0 +1,179 @@
+
+\documentclass[9pt]{pnas-new}
+% Use the lineno option to display guide line numbers if required.
+% Note that the use of elements such as single-column equations
+% may affect the guide line number alignment. 
+
+%\RequirePackage[english,slovene]{babel} % when writing in slovene
+\RequirePackage[slovene,english]{babel} % when writing in english
+\DeclareUnicodeCharacter{202F}{ }
+\templatetype{pnasresearcharticle} % Choose template 
+% {pnasresearcharticle} = Template for a two-column research article
+% {pnasmathematics} = Template for a one-column mathematics article
+% {pnasinvited} = Template for a PNAS invited submission
+
+\selectlanguage{english}
+%\etal{in sod.} % comment out when writing in english
+%\renewcommand{\Authands}{ in } % comment out when writing in english
+%\renewcommand{\Authand}{ in } % comment out when writing in english
+
+\newcommand{\set}[1]{\ensuremath{\mathbf{#1}}}
+\renewcommand{\vec}[1]{\ensuremath{\mathbf{#1}}}
+\newcommand{\uvec}[1]{\ensuremath{\hat{\vec{#1}}}}
+\newcommand{\const}[1]{{\ensuremath{\kappa_\mathrm{#1}}}} 
+\usepackage{caption}
+\usepackage{subcaption}
+\newcommand{\num}[1]{#1}
+
+\graphicspath{{./fig/}}
+
+\title{Simulation of group behaviour during a protest}
+
+% Use letters for affiliations, numbers to show equal authorship (if applicable) and to indicate the corresponding author
+\author{Nik Čadež}
+\author{Pedro Nuno Ferreira Moura de Macedo}
+\author{Primož Mihelak}
+\author{Luka Bajić}
+
+\affil{Collective behaviour course research seminar report} 
+
+% Please give the surname of the lead author for the running footer
+\leadauthor{Čadež} 
+
+\selectlanguage{english}
+
+% Please add here a significance statement to explain the relevance of your work
+\significancestatement{By conducting simulations of protests using various models for different subgroups of people, we hope to gain some insight into group behaviour during such events, that might make them logistically easier to organize/control in the future.}{Simulation | group behaviour | crowd control}
+
+\selectlanguage{english}
+
+% Please include corresponding author, author contribution and author declaration information
+%\authorcontributions{Please provide details of author contributions here.}
+%\authordeclaration{Please declare any conflict of interest here.}
+%\equalauthors{\textsuperscript{1}A.O.(Author One) and A.T. (Author Two) contributed equally to this work (remove if not applicable).}
+%\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: author.two\@email.com}
+
+% Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
+\keywords{Simulation | group behaviour | crowd control} 
+
+\begin{abstract}
+The purpose of our project is to study the behavior of a crowd during a protest. In order to do so, we will first create a unified modular development environment that implements the basic flocking model. Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into different groups (e.g. leader, regular protest member and bystander) and create different behavioural patterns for each group based on human psychology. Finally, we will add agents for crowd control (e.g. police) and examine the effect they have on the behaviour of the crowd. Optional: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).
+\end{abstract}
+
+\dates{\textbf{\today}}
+\program{BMA-RI}
+\vol{2024/25}
+\no{Group A} % group ID
+%\fraca{FRIteza/201516.130}
+
+\begin{document}
+
+% Optional adjustment to line up main text (after abstract) of first page with line numbers, when using both lineno and twocolumn options.
+% You should only change this length when you've finalised the article contents.
+\verticaladjustment{-2pt}
+
+\maketitle
+\thispagestyle{firststyle}
+\ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
+
+% If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
+\dropcap{P}rotests are a widespread phenomenon involving typically large groups of people, oftentimes with different, or even conflicting goals between their respective subgroups. As such they are a fascinating subject for studies in various fields, from human psychology to group behaviour simulations, which will be our primary focus during the course of this project. 
+
+\bigskip
+The central idea for the project was inspired specifically by the 2020 protests in Ljubljana, that had a distinguishing feature of having an individual leader, but we will try to make our model applicable more generally (for instance, with minor parameter adjustments, we should be able to easily model sports riots or other similar events with various subgroups).  
+
+
+
+\section*{Related work}
+
+Although there are many existing attempts to model protest behaviour, our project will primarily build on concepts proposed in \cite{protests}. The basic idea is to split the agents into subgroups depending on their level of involvement with the protest. The proposed subgroups are:
+\begin{itemize}
+    \item active protesters (which are further divided by their level of "passion" or "interest" in the protest), 
+    \item bystanders (which may or may not at one point be persuaded to become active protesters, based on parameters discussed in \cite{sportsriots}),
+    \item media (which we omitted in our work, as it is not relevant to our observations): agents attracted to moving in the direction (in their field of view) where the most significant "action" is taking place,
+    \item police/crowd control agents (described in more detail in \cite{crowdcontrol2}): their primary goal is dispersing a crowd or redirecting it in a specific direction.
+\end{itemize}
+
+\bigskip
+Note: because we are intending to model specifically the 2020 Ljubljana protests, we needed to additionally implement the concept of a leader, who is to a large extent controlling the movement of all active protesters within a given range, but as such also becomes a more significant target for crowd control agents. 
+
+\bigskip
+To make simulations seem as realistic as possible, it is necessary to give all agents movement parameters that aim to mimic human behaviour in crowded environments. These parameters are described, for instance in \cite{socialcrowdsimulation}. 
+
+\bigskip
+We will attempt to model behaviour of each of the aforementioned subgroups by assigning them a parameter vector based on human psychology. These parameters are intended to cover a wide range of human emotion, such as willingness to participate in a protest (to determine how likely it is that a bystander will join a protest if the majority of agents in their vicinity are active protesters), inclination towards violence, etc. In \cite{sportsriots} these parameters are referred to as levels of recruitment and defection (willingness) and "mild unrest", "moderate unrest" and "severe unrest" (levels of violence). 
+
+
+\section*{Methods}
+
+Implementation of the model was done in Unity, in a 2-dimensional space observed from bird's-eye perspective. First step was the creation of a topological map of a portion Ljubljana. To ensure the correct scale and proportions, we used Google Maps for this step and we took into account the estimated maximum numbers of people that can fit into spaces of particular dimensions. In other words, we attempted to create an environment that's as realistic as possible, so that the obtained results will potentially be useful in various practical applications. 
+
+\bigskip
+After we have created the map, we started modeling behaviours of the different groups. We plan to perform experiments on various initial group sizes (as mentioned, agents can at some point deflect to another group depending on "willingness" parameter, so the sizes do change during runtime), but for the time being we have chosen the following amounts of agents per group:
+\begin{itemize}
+    \item active protesters: 250
+    \item bystanders: 200
+    \item police: 50
+    \item leader: 1
+\end{itemize}
+
+\bigskip
+Next step will be the implementation of crowd control agents. The goal here will be to model the interactions between police agents and active (aggressive) protesters. The former are attempting to disperse larger groups of the latter and we plan to model this with approaches similar to predators and prey scenarios in nature (for instance targeting the center of a local group mass). Effectively, the goal of the crowd control agents will be to lower the aggression level in active protesters, i.e. turn them into bystanders (or potentially arrest them, though we are as of yet unsure whether this additional category is necessary). If this is achieved for all agents, the simulation should terminate. One of the possible ideas is to further optimize crowd control strategies using approaches such as genetic algorithms, with the intention of requiring as few of these agents as possible to achieve the end goal. 
+
+\section*{Results}
+
+So far we have implemented a simulation that incorporates four groups of agents in the same scene and we have defined different movement and interaction parameters for each of them. The agents are shown in figure \ref{fig1}, placed in an environment that is essentially a Unity representation of topological map of a portion of Ljubljana (shown in figure \ref{fig2}). We have decided to focus on an area with two main squares and a few narrow streets in-between and around them, in order to observe crowd behavior in different sized environments. We have also calculated an approximate amount of agents that could realistically fit into a square of this size. 
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.95\columnwidth]{simulation.png}
+\end{center}
+\caption{Example of a protest visualization in Unity: four groups of agents (leader, protesters, bystanders, police) denoted by distinct colors and a topological map of buildings}
+\label{fig1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\columnwidth]{finalmap_rotated.png}
+  \caption{Google map image without labels}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\columnwidth]{fullmap.png}
+  \caption{Generated map in Unity}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Example of a transformation of a Google map image into a Unity map. The rotation was added to make the simulation more easy to observe. }
+\label{fig2}
+\end{figure}
+
+
+\section*{Discussion}
+
+The project is currently progressing according to plan. The implemented model is scalable and easily modifiable, so we expect to mostly focus on parameter optimization for the remainder of the project. Current challenges are mostly related to:
+\begin{itemize}
+\item finding realistic ways of incorporating human psychology into the model,
+\item obtaining sensible definitions/parameters for interactions between different groups (for instance, when a police agent interacts with a protester, should it simply become a bystander, or is it necessary to implement an additional group to differentiate between the two).
+\item solving the problem of displaying the agents' dimensions relative to building's dimensions (i.e. how to simultaneously show a big portion of the map while maintaining a clear vision of the agents).
+\item developing an approach for police agents to mimic predator behaviour from nature (while maintaining all the necessary human characteristics). 
+\end{itemize}
+
+
+\acknow{NČ implemented agent movement and interaction between different groups, PNM worked on the map, improved the visualization and co-wrote the second report, PM optimized parameters and improved the visualization, LB did image processing for the map, implemented the baseline model and wrote the reports}
+\showacknow % Display the acknowledgments section
+
+% \pnasbreak splits and balances the columns before the references.
+% If you see unexpected formatting errors, try commenting out this line
+% as it can run into problems with floats and footnotes on the final page.
+%\pnasbreak
+
+\begin{multicols}{2}
+\section*{\bibname}
+ %Bibliography
+\bibliography{./bib/bibliography}
+\end{multicols}
+
+\end{document}
