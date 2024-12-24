@@ -58,7 +58,7 @@ Navigate into "code" folder and delete "protest_simulation" folder.
 
 Run Unity and create a blank project using "Universal 2D" template. Name the project "protest_simulation" and save it inside "code" folder. Exit Unity.
 
-Copy the .gitignore file into the "protest_simulation" folder
+Create a ".gitignore" file in the "protest_simulation" folder and paste the contents of [this](https://github.com/bajicluka01/CollectiveBehaviour-GroupA/blob/main/code/protest_simulation/.gitignore) file into it.
 
 Run a terminal, navigate into CollectiveBehaviour_GroupA folder and run the following commands:
 ```
