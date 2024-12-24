@@ -25,8 +25,6 @@ Then we will add obstacle avoidance and place the model in a topological map of 
 
 Finally, we will add agents for [crowd control](https://www.researchgate.net/publication/347869556_Testing_Various_Riot_Control_Police_Formations_through_Agent-Based_Modeling_and_Simulation) (e.g. police) and examine the effect they have on the behaviour of the crowd. 
 
-**Optional**: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).
-
 
 
 ### Milestones:
@@ -44,3 +42,31 @@ Finally, we will add agents for [crowd control](https://www.researchgate.net/pub
 - Evaluation of implemented models
 - Final conclusions
 - Final presentation
+
+
+
+## Instructions for running the simulations
+
+Install the latest version of [Unity](https://unity.com/download)
+
+Run a terminal and clone our repository by typing the following command:
+```
+git clone https://github.com/bajicluka01/CollectiveBehaviour-GroupA.git
+```
+
+Navigate into "code" folder and delete "protest_simulation" folder.
+
+Run Unity and create a blank project using "Universal 2D" template. Name the project "protest_simulation" and save it inside "code" folder. Exit Unity.
+
+Copy the .gitignore file into the "protest_simulation" folder
+
+Run a terminal, navigate into CollectiveBehaviour_GroupA folder and run the following commands:
+```
+git fetch --all
+```
+
+```
+git reset --hard origin/main
+```
+
+Thus you have obtained the latest commited files. You can now open the project in Unity and freely change the starting parameters of the simulation by clicking "Protesters" in Scene View.
