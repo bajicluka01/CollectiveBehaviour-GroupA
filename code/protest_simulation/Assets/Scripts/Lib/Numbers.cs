@@ -22,4 +22,14 @@ public class Numbers
         s = Mathf.Sqrt(-2.0f * Mathf.Log(s) / s);
         return v1 * s;
     }
+
+    // given a 2D vector rotate it for the given angle given in degrees
+    // returns a rotated vector
+    public static Vector2 Rotate2D(Vector2 v, float angle)
+    {
+        Vector3 v3D = new(v.x,v.y,0);
+        Vector3 rotated3DVector = Quaternion.Euler(0,0,angle) * v3D;
+        Vector2 result = new(rotated3DVector.x,rotated3DVector.y);
+        return result;
+    }
 }

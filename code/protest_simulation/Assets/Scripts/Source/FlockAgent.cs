@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -29,20 +31,50 @@ public class FlockAgent : MonoBehaviour
         }
     }
 
-    float coliderRadius = 2;
-    public float eyesightDistance = 24.0f;
-    public float fov = 60f;
+    float coliderRadius;
+
+    float eyesightDistance = 24.0f;
+    public float EyesightDistance
+    {
+        get { return eyesightDistance; }
+        set
+        {
+            angleChange = CalculateRayCastAngleChange(coliderRadius,eyesightDistance);
+            eyesightDistance = value;
+        }
+    }
+
+    float fov = 60f;
+    public float Fov
+    {
+        get {return fov;}
+        set
+        {
+            fov = value;
+        }
+    }
+    
+    float angleChange;
 
     Vector2 previousMove;
     public Vector2 PreviousMove { get { return previousMove; } }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public bool showFOV;
+
     void Start()
     {
         agentCollider = GetComponent<Collider2D>();
         desiredSpeed = 19.3f;
         CircleCollider2D colider = GetComponent<CircleCollider2D>();
         coliderRadius = colider.radius;
+        angleChange = CalculateRayCastAngleChange(coliderRadius,eyesightDistance);
+    }
+
+    public void ChangeBodyColor(Color color)
+    {
+        Transform body = transform.Find("Capsule");
+        SpriteRenderer sr = body.GetComponent<SpriteRenderer>();
+        sr.color = color;   
     }
 
     public void Initialize(Flock flock)
@@ -62,7 +94,7 @@ public class FlockAgent : MonoBehaviour
         previousMove = velocity;
     }
 
-    float CalculateRayCastAngle(float humanRadius, float desiredDistance)
+    float CalculateRayCastAngleChange(float humanRadius, float desiredDistance)
     {
         float desiredDistanceSquared = Mathf.Pow(desiredDistance, 2);
         float cosTheta = (2 * desiredDistanceSquared - Mathf.Pow(humanRadius * 2, 2)) / (2 * desiredDistanceSquared);
@@ -70,34 +102,37 @@ public class FlockAgent : MonoBehaviour
         return angle/4;
     }
 
-    private void FixedUpdate()
+    public List<(RaycastHit2D, Vector2)> GetVisibleAgents()
     {
-        float angleChange = CalculateRayCastAngle(coliderRadius,eyesightDistance);
-        Vector2 direction = Vector2.up*eyesightDistance;
-        Vector3 direction3d = new Vector3(direction.x,direction.y,0);
+        List<(RaycastHit2D, Vector2)> visibleObjects = new(); 
+        Vector2 direction = transform.rotation*Vector2.up*eyesightDistance;
+        visibleObjects.Add((Physics2D.Raycast(transform.position,direction,eyesightDistance),direction));
         float angle = 0f;
-        (Vector2,RaycastHit2D)[] directionsAndHits = new (Vector2,RaycastHit2D)[1] {
-                (direction, Physics2D.Raycast(transform.position,direction,eyesightDistance))};
-        DrawHits(directionsAndHits);
         while (angle < fov)
         {
             angle = angle + angleChange;
-            Vector3 temp3Direction = Quaternion.Euler(0,0,angle) * direction3d;
-            Vector2 new2Direction = new(temp3Direction.x, temp3Direction.y); 
-            temp3Direction = Quaternion.Euler(0,0,-angle) * direction3d;
-            Vector2 negativeDirection = new(temp3Direction.x,temp3Direction.y);
-            Debug.Log(negativeDirection);
-            directionsAndHits = new (Vector2,RaycastHit2D)[2] {
-                (new2Direction, Physics2D.Raycast(transform.position,new2Direction,eyesightDistance)), 
-                (negativeDirection, Physics2D.Raycast(transform.position,negativeDirection,eyesightDistance))
-            };
-            DrawHits(directionsAndHits);
+            Vector2 positiveVector = Numbers.Rotate2D(direction,angle);
+            Vector2 negativeVector = Numbers.Rotate2D(direction,-angle);
+            visibleObjects.Add((Physics2D.Raycast(transform.position, positiveVector, eyesightDistance), positiveVector));
+            visibleObjects.Add((Physics2D.Raycast(transform.position, negativeVector, eyesightDistance), negativeVector));
+        }
+        return visibleObjects;
+    }
+
+    // TODO: delete this this is only for testing
+    private void FixedUpdate() 
+    {
+        List<(RaycastHit2D, Vector2)> hits = GetVisibleAgents();
+        if (showFOV) 
+        {
+            DrawHits(hits);
         }
     }
 
-    void DrawHits((Vector2, RaycastHit2D)[] directionsAndHits)
+
+    public void DrawHits(List<(RaycastHit2D,Vector2)> directionsAndHits)
     {
-        foreach((Vector2 direction, RaycastHit2D hit) in directionsAndHits)
+        foreach((RaycastHit2D hit, Vector2 direction) in directionsAndHits)
         {
             if (hit)
             {

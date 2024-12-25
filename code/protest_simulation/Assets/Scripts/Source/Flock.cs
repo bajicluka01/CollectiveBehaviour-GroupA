@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -52,6 +53,9 @@ public class Flock : MonoBehaviour {
     float squareNeighborRadius;
     float squareAvoidanceRadius;
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
+
+    public float agentFov = 60f;
+    public float eyesightDistance = 20f;
 
     public GameObject buildingPrefab;
 
@@ -132,6 +136,11 @@ public class Flock : MonoBehaviour {
     void MoveAgent(FlockAgent agent, FlockBehavior behavior)
     {
         List<Transform> context = GetNearbyObjects(agent);
+        List<(RaycastHit2D, Vector2)> hits = agent.GetVisibleAgents();
+        if (agent.showFOV) 
+        {
+            agent.DrawHits(hits);
+        }
         Vector2 move = behavior.CalculateMove(agent, context, this);
         // move*=driveFactor;
         // if (move.sqrMagnitude > squareMaxSpeed) 
@@ -143,7 +152,7 @@ public class Flock : MonoBehaviour {
 
     List<Transform> GetNearbyObjects(FlockAgent agent) 
     {
-        List<Transform> context = new List<Transform>();
+        List<Transform> context = new();
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(agent.transform.position, neighborRadius);
         //Collider2D[] contextColliders = Physics2D.OverlapPointAll(agent.transform.position);
         foreach(Collider2D c in contextColliders) 
