@@ -1,42 +1,14 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Flock : MonoBehaviour {
 
-    // protestors
-    public FlockAgent protesterPrefab;
-    List<FlockAgent> protestors = new List<FlockAgent>();
-    public FlockBehavior protesterBehavior;
+    public FlockAgent agentPrefab;
+    readonly List<FlockAgent> agents = new();
+
     [Range(10, 500)]
-    public int protesterStartingCount = 250;
-
-    // leader
-    public FlockAgent leaderPrefab;
-    private FlockAgent leader;
-
-    public FlockAgent Leader
-    {
-        get { return leader; } 
-    }
-    public FlockBehavior leaderBehavior;
-
-    // bystanders
-    public FlockAgent bystanderPrefab;
-    List<FlockAgent> bystanders = new List<FlockAgent>();
-    public FlockBehavior bystanderBehavior;
-    [Range(10, 500)]
-    public int bystanderStartingCount = 250;
-
-    // the popo
-    public FlockAgent policePrefab;
-    List<FlockAgent> police = new List<FlockAgent>();
-    public FlockBehavior policeBehavior;
-    [Range(10, 500)]
-    public int policeStartingCount = 250;
+    public int protestorStartingCount = 250;
 
     const float AgentDensity = 0.08f;
 
@@ -60,37 +32,23 @@ public class Flock : MonoBehaviour {
     public GameObject buildingPrefab;
 
 
+    public FlockBehavior leaderBehavior;
+    public FlockBehavior protesterBehavior;
+    public FlockBehavior bystanderBehavior;
+
+
     void Start() 
     {
-        //to avoid square roots
+        // to avoid calculating squares every time 
         squareMaxSpeed = maxSpeed * maxSpeed;
         squareNeighborRadius = neighborRadius * neighborRadius;
         squareAvoidanceRadius = squareNeighborRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
 
-        // leader
-        FlockAgent leaderAgent = InstantiateAgent(leaderPrefab, 0); 
-        leaderAgent.name = "Zlatko";
-        leaderAgent.tag = "agent";
-        leaderAgent.Initialize(this);
-        leader = leaderAgent;
-
         // protesters
-        for (int i = 0; i < protesterStartingCount; i++) 
+        for (int i = 0; i < protestorStartingCount; i++) 
         {
-            CreateNewAgent(protesterPrefab, protestors, protesterStartingCount, "Protester " + i);
+            CreateNewAgent(agentPrefab, agents, protestorStartingCount, "Protester " + i);
         }
-
-        // bystanders
-        for (int i = 0; i < bystanderStartingCount; i++) 
-        {
-            CreateNewAgent(bystanderPrefab, bystanders, bystanderStartingCount, "Bystander " + i);
-        } 
-
-        // police
-        for (int i = 0; i < policeStartingCount; i++) 
-        {
-            CreateNewAgent(policePrefab, police, policeStartingCount, "Police " + i);
-        } 
     }
 
     void CreateNewAgent(FlockAgent prefab, List<FlockAgent> group, int startingCount, string name)
@@ -104,14 +62,10 @@ public class Flock : MonoBehaviour {
 
     FlockAgent InstantiateAgent(FlockAgent prefab, int startingCount)
     {
-        //GameObject obj = Instantiate(prefab, transform.position, Quaternion.identity);
-        //obj.transform.SetParent(gameObject.transform, false);
         return Instantiate(
             prefab,
             UnityEngine.Random.insideUnitCircle * startingCount * AgentDensity,
             Quaternion.Euler(Vector3.forward * UnityEngine.Random.Range(0f, 360f)),
-            //transform.position,
-            //Quaternion.identity,
             transform
         );
     }
@@ -119,21 +73,18 @@ public class Flock : MonoBehaviour {
     // Update is called once per frame
     void Update() 
     {
-        MoveAgent(leader, leaderBehavior);
-        MoveAllAgents(protestors, protesterBehavior);
-        MoveAllAgents(bystanders, bystanderBehavior);
-        MoveAllAgents(police, policeBehavior);
+        MoveAllAgents(agents);
     }
 
-    void MoveAllAgents(List<FlockAgent> agents, FlockBehavior behavior)
+    void MoveAllAgents(List<FlockAgent> agents)
     {
         foreach(FlockAgent agent in agents)
         {
-            MoveAgent(agent, behavior);
+            MoveAgent(agent);
         }
     }
 
-    void MoveAgent(FlockAgent agent, FlockBehavior behavior)
+    void MoveAgent(FlockAgent agent)
     {
         List<Transform> context = GetNearbyObjects(agent);
         List<(RaycastHit2D, Vector2)> hits = agent.GetVisibleAgents();
@@ -141,12 +92,27 @@ public class Flock : MonoBehaviour {
         {
             agent.DrawHits(hits);
         }
-        Vector2 move = behavior.CalculateMove(agent, context, this);
+        Vector2 move = new();
+        switch (agent.Role)
+        {
+            case AgentRole.Leader:
+                move = leaderBehavior.CalculateMove(agent, context, this); 
+                break;
+            case AgentRole.Protester:
+                move = leaderBehavior.CalculateMove(agent, context, this); 
+                break;
+            case AgentRole.Bystander:
+                move = leaderBehavior.CalculateMove(agent, context, this); 
+                break;
+        }
+
+        // TODO: limit maximum speed -- reimplement this
         // move*=driveFactor;
         // if (move.sqrMagnitude > squareMaxSpeed) 
         // {
         //     move = move.normalized * maxSpeed;
         // }
+
         agent.Move(move);
     }
 
@@ -154,7 +120,6 @@ public class Flock : MonoBehaviour {
     {
         List<Transform> context = new();
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(agent.transform.position, neighborRadius);
-        //Collider2D[] contextColliders = Physics2D.OverlapPointAll(agent.transform.position);
         foreach(Collider2D c in contextColliders) 
         {
             if (c != agent.AgentCollider) 
@@ -162,26 +127,6 @@ public class Flock : MonoBehaviour {
                 context.Add(c.transform);
             }
         }
-        //Debug.Log(contextColliders[0].gameObject.layer);
         return context;
-    }
-
-    // Call this function in order to change the group of a certain bystander or a protestor and pass the desired agent to be switched :)
-    // TODO: test this code in order to see if it works
-    public void SwitchProtesterBystanderSquad(FlockAgent agent) 
-    {
-        if (bystanders.Contains(agent))
-        {
-            bystanders.Remove(agent);
-            FlockAgent newAgent = Instantiate(protesterPrefab, agent.transform.position, agent.transform.rotation, transform);
-            protestors.Add(newAgent);
-            Destroy(agent);
-        } else if (protestors.Contains(agent))
-        {
-            protestors.Remove(agent);
-            FlockAgent newAgent = Instantiate(bystanderPrefab, agent.transform.position, agent.transform.rotation, transform);
-            bystanders.Add(newAgent);
-            Destroy(agent);
-        }
     }
 }

@@ -1,10 +1,26 @@
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
+
+public enum AgentRole
+{
+    Leader,
+    Protester,
+    Bystander
+    // Police
+}
 
 [RequireComponent(typeof(Collider2D))]
 public class FlockAgent : MonoBehaviour
 {
+    AgentRole role = AgentRole.Bystander;
+    public AgentRole Role
+    {
+        get { return role; }
+    }
+
+
     Flock agentFlock;
     public Flock AgentFlock { get { return agentFlock; } }
 
@@ -68,6 +84,7 @@ public class FlockAgent : MonoBehaviour
         CircleCollider2D colider = GetComponent<CircleCollider2D>();
         coliderRadius = colider.radius;
         angleChange = CalculateRayCastAngleChange(coliderRadius,eyesightDistance);
+        SetAgentRole(role);
     }
 
     public void ChangeBodyColor(Color color)
@@ -119,16 +136,23 @@ public class FlockAgent : MonoBehaviour
         return visibleObjects;
     }
 
-    // TODO: delete this this is only for testing
-    private void FixedUpdate() 
+    public void SetAgentRole(AgentRole role)
     {
-        List<(RaycastHit2D, Vector2)> hits = GetVisibleAgents();
-        if (showFOV) 
+        switch (role)
         {
-            DrawHits(hits);
+            case AgentRole.Leader:
+                ChangeBodyColor(Color.green);
+                break;
+            case AgentRole.Protester:
+                ChangeBodyColor(Color.red);
+                break;
+            case AgentRole.Bystander:
+                ChangeBodyColor(Color.white);
+                break;
+            default:
+                throw new System.Exception("Agent does not have a role");
         }
     }
-
 
     public void DrawHits(List<(RaycastHit2D,Vector2)> directionsAndHits)
     {
