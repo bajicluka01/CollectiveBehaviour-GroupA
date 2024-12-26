@@ -52,12 +52,6 @@ git fetch --all
 git reset --hard origin/main
 ```
 
-Thus you have obtained the latest commited files. You can now open the project in Unity and freely change the starting parameters of the simulation by clicking "Protesters" in Scene View.
-#### Third report (January 11th)
-- Add agents for crowd control
-- Evaluation of implemented models
-- Final conclusions
-- Final presentation
 
 
 ### Important set up requrement
