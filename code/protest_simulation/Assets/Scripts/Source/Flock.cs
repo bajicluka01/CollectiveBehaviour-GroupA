@@ -70,7 +70,6 @@ public class Flock : MonoBehaviour {
         );
     }
 
-    // Update is called once per frame
     void Update() 
     {
         MoveAllAgents(agents);
@@ -99,10 +98,10 @@ public class Flock : MonoBehaviour {
                 move = leaderBehavior.CalculateMove(agent, context, this); 
                 break;
             case AgentRole.Protester:
-                move = leaderBehavior.CalculateMove(agent, context, this); 
+                move = protesterBehavior.CalculateMove(agent, context, this); 
                 break;
             case AgentRole.Bystander:
-                move = leaderBehavior.CalculateMove(agent, context, this); 
+                move = bystanderBehavior.CalculateMove(agent, context, this); 
                 break;
         }
 
