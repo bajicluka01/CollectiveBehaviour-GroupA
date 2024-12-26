@@ -8,8 +8,8 @@ public class FollowLeaderBehavior : FlockBehavior
     
     public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock) 
     {
-        FlockAgent leaderAgent = flock.Leader;
-        return GetLeaderDirectionVector(agent,leaderAgent);
+        Vector2 result = new();
+        return result;
     }
 
     // this returns the

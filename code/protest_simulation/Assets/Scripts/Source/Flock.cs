@@ -5,7 +5,7 @@ using UnityEngine;
 public class Flock : MonoBehaviour {
 
     public FlockAgent agentPrefab;
-    readonly List<FlockAgent> agents = new();
+    List<FlockAgent> agents = new();
 
     [Range(10, 500)]
     public int protestorStartingCount = 250;
