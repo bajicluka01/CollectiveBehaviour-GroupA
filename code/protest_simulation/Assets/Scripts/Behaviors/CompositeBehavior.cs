@@ -12,7 +12,7 @@ public class CompositeBehavior : FlockBehavior
     [Range(0f, 1f)]
     public float smoothing = 0.01f;
 
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
     {
 
         if (weights.Length != behaviors.Length)

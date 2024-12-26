@@ -5,10 +5,10 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Flock/Filter/Same Flock")]
 public class SameFlockFilter : ContextFilter
 {
-    public override List<Transform> Filter(FlockAgent agent, List<Transform> original) {
-        List<Transform> filtered = new List<Transform>();
-        foreach(Transform item in original) {
-            FlockAgent itemAgent = item.GetComponent<FlockAgent>();
+    public override List<GameObject> Filter(FlockAgent agent, List<GameObject> original) {
+        List<GameObject> filtered = new();
+        foreach(GameObject item in original) {
+            FlockAgent itemAgent = item.transform.GetComponent<FlockAgent>();
             if (itemAgent != null && itemAgent.AgentFlock == agent.AgentFlock) {
                 filtered.Add(item);
             }

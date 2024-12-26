@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Flock : MonoBehaviour {
@@ -29,9 +30,6 @@ public class Flock : MonoBehaviour {
     public float agentFov = 60f;
     public float eyesightDistance = 20f;
 
-    public GameObject buildingPrefab;
-
-
     public FlockBehavior leaderBehavior;
     public FlockBehavior protesterBehavior;
     public FlockBehavior bystanderBehavior;
@@ -56,6 +54,8 @@ public class Flock : MonoBehaviour {
         FlockAgent newAgent = InstantiateAgent(prefab, startingCount);
         newAgent.name = name;
         newAgent.tag = "agent";
+        newAgent.Fov = agentFov;
+        newAgent.EyesightDistance = eyesightDistance;
         newAgent.Initialize(this);
         group.Add(newAgent);
     }
@@ -79,29 +79,32 @@ public class Flock : MonoBehaviour {
     {
         foreach(FlockAgent agent in agents)
         {
+            agent.Fov = agentFov;
+            agent.EyesightDistance = eyesightDistance;
             MoveAgent(agent);
         }
     }
 
     void MoveAgent(FlockAgent agent)
     {
-        List<Transform> context = GetNearbyObjects(agent);
+        // List<GameObject> nearby = GetNearbyObjects(agent);
         List<(RaycastHit2D, Vector2)> hits = agent.GetVisibleAgents();
         if (agent.showFOV) 
         {
             agent.DrawHits(hits);
         }
+        List<GameObject> visibleAgents = hits.Where(pair => pair.Item1).Select((pair) => pair.Item1.collider.gameObject).ToList();
         Vector2 move = new();
         switch (agent.Role)
         {
             case AgentRole.Leader:
-                move = leaderBehavior.CalculateMove(agent, context, this); 
+                move = leaderBehavior.CalculateMove(agent, visibleAgents, this); 
                 break;
             case AgentRole.Protester:
-                move = protesterBehavior.CalculateMove(agent, context, this); 
+                move = protesterBehavior.CalculateMove(agent, visibleAgents, this); 
                 break;
             case AgentRole.Bystander:
-                move = bystanderBehavior.CalculateMove(agent, context, this); 
+                move = bystanderBehavior.CalculateMove(agent, visibleAgents, this); 
                 break;
         }
 
@@ -115,15 +118,15 @@ public class Flock : MonoBehaviour {
         agent.Move(move);
     }
 
-    List<Transform> GetNearbyObjects(FlockAgent agent) 
+    List<GameObject> GetNearbyObjects(FlockAgent agent) 
     {
-        List<Transform> context = new();
+        List<GameObject> context = new();
         Collider2D[] contextColliders = Physics2D.OverlapCircleAll(agent.transform.position, neighborRadius);
         foreach(Collider2D c in contextColliders) 
         {
             if (c != agent.AgentCollider) 
             {
-                context.Add(c.transform);
+                context.Add(c.gameObject);
             }
         }
         return context;

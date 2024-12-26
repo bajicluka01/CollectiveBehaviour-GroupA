@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Flock/Behavior/Leader Manual Control")]
 public class LeaderManualControlMovementBehavior : FlockBehavior
 {
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
     {
         Vector2 result = Vector2.zero;
         if (Input.GetKey(KeyCode.W))

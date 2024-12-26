@@ -6,7 +6,7 @@ public class SocialForceModelBehavior : FlockBehavior
 {
 
     public float distanceOfDesiredPosition = 10f;
-    public override Vector2 CalculateMove(FlockAgent agent, List<Transform> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
     {
         if (agent.DesiredPosition == Vector3.zero || agent.OnDesiredPosition())
         {

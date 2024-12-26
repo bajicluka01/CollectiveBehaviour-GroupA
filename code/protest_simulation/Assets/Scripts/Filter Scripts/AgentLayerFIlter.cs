@@ -6,10 +6,10 @@ using System.Collections.Generic;
 public class AgentLayerFilter : ContextFilter {
     public LayerMask mask;
 
-    public override List<Transform> Filter(FlockAgent agent, List<Transform> original) {
-        List<Transform> filtered = new List<Transform>();
-        foreach(Transform item in original) {
-            if (mask == (mask | (1 << item.gameObject.layer))) {
+    public override List<GameObject> Filter(FlockAgent agent, List<GameObject> original) {
+        List<GameObject> filtered = new();
+        foreach(GameObject item in original) {
+            if (mask == (mask | (1 << item.layer))) {
                 filtered.Add(item);
             } 
         }
