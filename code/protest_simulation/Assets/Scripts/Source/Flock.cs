@@ -6,10 +6,10 @@ using UnityEngine;
 public class Flock : MonoBehaviour {
 
     public FlockAgent agentPrefab;
-    List<FlockAgent> agents = new();
+    readonly List<FlockAgent> agents = new();
 
-    [Range(10, 500)]
-    public int protestorStartingCount = 250;
+    [Range(1, 500)]
+    public int protestorStartingCount = 1;
 
     const float AgentDensity = 0.08f;
 
@@ -31,8 +31,10 @@ public class Flock : MonoBehaviour {
     public float eyesightDistance = 20f;
 
     public FlockBehavior leaderBehavior;
-    public FlockBehavior protesterBehavior;
-    public FlockBehavior bystanderBehavior;
+    public FlockBehavior stationaryProtesterBehavior;
+    public FlockBehavior inMotionProtesterBehavior;
+    public FlockBehavior stationaryBystanderBehavior;
+    public FlockBehavior inMotionBystanderBehavior;
 
 
     void Start() 
@@ -45,7 +47,7 @@ public class Flock : MonoBehaviour {
         // protesters
         for (int i = 0; i < protestorStartingCount; i++) 
         {
-            CreateNewAgent(agentPrefab, agents, protestorStartingCount, "Protester " + i);
+            CreateNewAgent(agentPrefab, agents, protestorStartingCount, "Agent " + i);
         }
     }
 
@@ -56,6 +58,7 @@ public class Flock : MonoBehaviour {
         newAgent.tag = "agent";
         newAgent.Fov = agentFov;
         newAgent.EyesightDistance = eyesightDistance;
+        newAgent.Role = AgentRole.Protester;
         newAgent.Initialize(this);
         group.Add(newAgent);
     }
@@ -79,6 +82,8 @@ public class Flock : MonoBehaviour {
     {
         foreach(FlockAgent agent in agents)
         {
+            // TODO: once we are done testing we can remove this interchangeable fov and set it
+            // to initiate only on start -- we will debate if this will bring in enough of a speed up
             agent.Fov = agentFov;
             agent.EyesightDistance = eyesightDistance;
             MoveAgent(agent);
@@ -95,26 +100,29 @@ public class Flock : MonoBehaviour {
         }
         List<GameObject> visibleAgents = hits.Where(pair => pair.Item1).Select((pair) => pair.Item1.collider.gameObject).ToList();
         Vector2 move = new();
-        switch (agent.Role)
+        switch (agent.Role, agent.State)
         {
-            case AgentRole.Leader:
+            case (AgentRole.Leader, _):
                 move = leaderBehavior.CalculateMove(agent, visibleAgents, this); 
                 break;
-            case AgentRole.Protester:
-                move = protesterBehavior.CalculateMove(agent, visibleAgents, this); 
+            case (AgentRole.Protester, AgentState.inMotion):
+                move = inMotionProtesterBehavior.CalculateMove(agent, visibleAgents, this); 
                 break;
-            case AgentRole.Bystander:
-                move = bystanderBehavior.CalculateMove(agent, visibleAgents, this); 
+            case (AgentRole.Protester, AgentState.Stationary):
+                move = stationaryProtesterBehavior.CalculateMove(agent, visibleAgents, this); 
+                break;
+            case (AgentRole.Bystander, AgentState.inMotion):
+                move = inMotionBystanderBehavior.CalculateMove(agent, visibleAgents, this); 
+                break;
+            case (AgentRole.Bystander, AgentState.Stationary):
+                move = stationaryBystanderBehavior.CalculateMove(agent, visibleAgents, this); 
                 break;
         }
-
-        // TODO: limit maximum speed -- reimplement this
-        // move*=driveFactor;
-        // if (move.sqrMagnitude > squareMaxSpeed) 
-        // {
-        //     move = move.normalized * maxSpeed;
-        // }
-
+        move*=driveFactor;
+        if (move.sqrMagnitude > squareMaxSpeed) 
+        {
+            move = move.normalized * maxSpeed;
+        }
         agent.Move(move);
     }
 

@@ -32,4 +32,9 @@ public class Numbers
         Vector2 result = new(rotated3DVector.x,rotated3DVector.y);
         return result;
     }
+
+    public static float GetRandomFloatBetween0and05()
+    {
+        return Random.Range(0f, 0.5f);
+    }
 }

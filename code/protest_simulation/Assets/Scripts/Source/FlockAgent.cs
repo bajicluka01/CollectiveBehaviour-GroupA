@@ -1,6 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using Unity.VisualScripting;
-using UnityEditor.PackageManager;
 using UnityEngine;
 
 public enum AgentRole
@@ -11,13 +12,42 @@ public enum AgentRole
     // Police
 }
 
+public enum AgentState
+{
+    inMotion,
+    Stationary
+}
+
 [RequireComponent(typeof(Collider2D))]
 public class FlockAgent : MonoBehaviour
 {
+    
+    // agent characteristics
+    float restlessness = 0f;
+
+    public float Restlessness
+    {
+        get { return restlessness; }
+    }
+
     AgentRole role = AgentRole.Bystander;
     public AgentRole Role
     {
         get { return role; }
+        set 
+        {
+            SetAgentRole(value);
+        }
+    }
+
+    AgentState state = AgentState.Stationary;
+    public AgentState State
+    {
+        get { return state; }
+        set 
+        {
+            state = value;
+        }
     }
 
 
@@ -87,6 +117,25 @@ public class FlockAgent : MonoBehaviour
         SetAgentRole(role);
     }
 
+    private void Update() 
+    {
+        if (state == AgentState.Stationary)
+        {
+            restlessness += 0.1f*Time.deltaTime;
+            Debug.Log(restlessness);
+            if (restlessness > 1.0f)
+            {
+                state = AgentState.inMotion;
+                ResetRestlessness();
+            }
+        }
+    }
+
+    public void ResetRestlessness()
+    {
+        restlessness = Numbers.GetRandomFloatBetween0and05();
+    }
+
     public void ChangeBodyColor(Color color)
     {
         Transform body = transform.Find("Capsule");
@@ -136,9 +185,10 @@ public class FlockAgent : MonoBehaviour
         return visibleObjects;
     }
 
-    public void SetAgentRole(AgentRole role)
+    private void SetAgentRole(AgentRole newRole)
     {
-        switch (role)
+        role = newRole;
+        switch (newRole)
         {
             case AgentRole.Leader:
                 ChangeBodyColor(Color.green);

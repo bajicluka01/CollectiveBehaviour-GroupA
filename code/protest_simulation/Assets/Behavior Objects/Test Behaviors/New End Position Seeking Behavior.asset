@@ -9,11 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2313069a271374499fe060710a7e3d9, type: 3}
-  m_Name: Leader Composite Behavior
+  m_Script: {fileID: 11500000, guid: 4c586a3053ea24e79a5724e2ae3ebb5b, type: 3}
+  m_Name: New End Position Seeking Behavior
   m_EditorClassIdentifier: 
-  behaviors:
-  - {fileID: 11400000, guid: 026d9102a680748a3a8c96b745f3f52c, type: 2}
-  weights:
-  - 100
-  smoothing: 0.1
+  distanceOfDesiredPosition: 10
