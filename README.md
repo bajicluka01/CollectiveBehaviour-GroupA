@@ -51,9 +51,3 @@ git fetch --all
 ```
 git reset --hard origin/main
 ```
-
-
-
-### Important set up requrement
-In order for raycasting to work correctly:
-Disable 'Queries Start In Colliders' under Edit - Project Settings - Physics 2D
