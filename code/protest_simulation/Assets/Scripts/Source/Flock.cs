@@ -49,6 +49,9 @@ public class Flock : MonoBehaviour {
         {
             CreateNewAgent(agentPrefab, agents, protestorStartingCount, "Agent " + i);
         }
+        // todo: remove this. this if only for the leader testing purposes
+        FlockAgent lastAgent = agents.Last();
+        lastAgent.Role = AgentRole.Leader;
     }
 
     void CreateNewAgent(FlockAgent prefab, List<FlockAgent> group, int startingCount, string name)
@@ -98,6 +101,7 @@ public class Flock : MonoBehaviour {
         {
             agent.DrawHits(hits);
         }
+        // TODO: maybe use hashset here for speedup not sure
         List<GameObject> visibleAgents = hits.Where(pair => pair.Item1).Select((pair) => pair.Item1.collider.gameObject).ToList();
         Vector2 move = new();
         switch (agent.Role, agent.State)
