@@ -1,7 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Data.Common;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum AgentRole
@@ -78,7 +75,7 @@ public class FlockAgent : MonoBehaviour
     }
 
     float coliderRadius;
-
+    public float ColiderRadius{ get {return coliderRadius;}}
     float eyesightDistance = 24.0f;
     public float EyesightDistance
     {

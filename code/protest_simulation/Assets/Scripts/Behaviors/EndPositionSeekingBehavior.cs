@@ -10,9 +10,9 @@ public class EndPositionSeekingBehavior : FlockBehavior
     float minDistanceOfDesiredPosition = 15f;
     public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
     {
-        if (LeaderPositionInContext(context))
+        if (GroupContext.LeaderPositionInContext(context))
         {
-            Vector3 leaderPosition = GetLeaderPosition(context);
+            Vector3 leaderPosition = GroupContext.GetLeaderPosition(context);
             Vector2 leaderDirection = leaderPosition - agent.transform.position;
             leaderDirection.Normalize();
             return agent.DesiredSpeed*leaderDirection - agent.PreviousMove;
@@ -31,32 +31,6 @@ public class EndPositionSeekingBehavior : FlockBehavior
         desiredPositionVector.Normalize();
 
         return agent.DesiredSpeed*desiredPositionVector - agent.PreviousMove;
-    }
-
-    public static bool LeaderPositionInContext(List<GameObject> context)
-    {
-        foreach(GameObject obj in context)
-        {
-            FlockAgent agent= obj.GetComponent<FlockAgent>();
-            if(agent != null && agent.Role == AgentRole.Leader)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static Vector3 GetLeaderPosition(List<GameObject> context)
-    {
-        foreach(GameObject obj in context)
-        {
-            FlockAgent agent= obj.GetComponent<FlockAgent>();
-            if(agent != null && agent.Role == AgentRole.Leader)
-            {
-                return agent.transform.position;
-            }
-        }
-        return Vector3.zero;
     }
 
     Vector2 GenerateNewDesiredPosition(float minDistance, float maxDistance, Vector3 agentPosition)
