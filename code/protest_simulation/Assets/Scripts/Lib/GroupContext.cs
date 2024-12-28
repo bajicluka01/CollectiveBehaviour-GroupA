@@ -32,6 +32,7 @@ public class GroupContext
         return false;
     }
 
+    // TODO: to be tested
     public static List<FlockAgent> GetGroupMembers(FlockAgent agent, List<GameObject> context)
     {
         List<FlockAgent> groupMembers = new();
@@ -46,6 +47,7 @@ public class GroupContext
         return groupMembers;
     }
 
+    // TODO: to be tested
     public static List<FlockAgent> GetNonGroupMembers(FlockAgent agent, List<GameObject> context)
     {
         List<FlockAgent> nonMembers = new();
