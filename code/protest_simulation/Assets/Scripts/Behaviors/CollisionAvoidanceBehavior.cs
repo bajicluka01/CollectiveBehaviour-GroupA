@@ -22,6 +22,7 @@ public class CollisionAvoidanceBehavior : FlockBehavior
             // float S = 1;
             // float R = 1;
             // for now i will just leave this as it is and implement other behaviours first
+            // the s parameter needst to be calcluated for groups
             return wc;
         }
         return Vector2.zero;
@@ -31,7 +32,6 @@ public class CollisionAvoidanceBehavior : FlockBehavior
     {
             if (Vector2.Dot(wij, agent.PreviousMove) >= theta)
             {
-                Debug.Log("test");
                 return Vector3.up;
             }
             else
