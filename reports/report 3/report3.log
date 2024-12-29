@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  29 DEC 2024 13:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  29 DEC 2024 14:08
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1571,19 +1571,19 @@ Overfull \hbox (0.1231pt too wide) in paragraph at lines 120--121
  goal of the crowd con-trol agents 
  []
 
-<simulation.png, id=68, 1475.5125pt x 812.03375pt>
+<simulation.png, id=66, 1475.5125pt x 812.03375pt>
 File: simulation.png Graphic file (type png)
 <use simulation.png>
 Package pdftex.def Info: simulation.png  used on input line 128.
 (pdftex.def)             Requested size: 335.72926pt x 184.75655pt.
-<finalmap_rotated.png, id=70, 1930.21124pt x 1335.99126pt>
+<finalmap_rotated.png, id=68, 1930.21124pt x 1335.99126pt>
 File: finalmap_rotated.png Graphic file (type png)
 <use finalmap_rotated.png>
 Package pdftex.def Info: finalmap_rotated.png  used on input line 138.
 (pdftex.def)             Requested size: 167.86462pt x 116.17729pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 7.59998pt on input line 139.
-<fullmap.png, id=71, 546.04pt x 478.78876pt>
+<fullmap.png, id=69, 546.04pt x 478.78876pt>
 File: fullmap.png Graphic file (type png)
 <use fullmap.png>
 Package pdftex.def Info: fullmap.png  used on input line 144.
@@ -1626,11 +1626,11 @@ Package rerunfilecheck Info: File `report3.out' has not changed.
 (rerunfilecheck)             Checksum: 79D0649803C51E4678AD2F2B3EB78ECD;115.
  ) 
 Here is how much of TeX's memory you used:
- 30128 strings out of 474486
- 559959 string characters out of 5743755
- 1950542 words of memory out of 5000000
- 51603 multiletter control sequences out of 15000+600000
- 638623 words of font info for 197 fonts, out of 8000000 for 9000
+ 30118 strings out of 474486
+ 559821 string characters out of 5743755
+ 1949542 words of memory out of 5000000
+ 51600 multiletter control sequences out of 15000+600000
+ 638247 words of font info for 193 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,11n,121p,1006b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb>
@@ -1639,9 +1639,9 @@ Here is how much of TeX's memory you used:
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
 pfb><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr
 o8a.pfb>
-Output written on report3.pdf (3 pages, 1320884 bytes).
+Output written on report3.pdf (3 pages, 1318734 bytes).
 PDF statistics:
- 118 PDF objects out of 1000 (max. 8388607)
- 11 named destinations out of 1000 (max. 500000)
+ 115 PDF objects out of 1000 (max. 8388607)
+ 10 named destinations out of 1000 (max. 500000)
  75817 words of extra memory for PDF output out of 89155 (max. 10000000)
 
