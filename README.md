@@ -27,7 +27,7 @@ The purpose of our project is to model the behaviour of a crowd during a protest
 - Itatani, Pelechano - Social Crowd Simulation: Improving Realism with Social Rules and Gaze Behavior (2024)
 - Lemos, Coelho, Lopes - Agent-Based modeling of protests and violent confrontation: a micro-situational, multi-player, contextual rule-based approach (2014)
 - Clements, Fadai - Agent-based modelling of sports riots (2022)
-- 
+
 
 
 
