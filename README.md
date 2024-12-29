@@ -19,11 +19,7 @@ Group members (collaborators):
 
 ### Abstract
 
-The purpose of our project is to study the behavior of a crowd during a protest. In order to do so, we will first create a unified modular development environment that implements the basic flocking model. 
-
-Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into [different groups](https://www.researchgate.net/publication/281938638_Agent-Based_modeling_of_protests_and_violent_confrontation_a_micro-situational_multi-player_contextual_rule-based_approach) (e.g. leader, regular protest member and bypasser) and create different behavioural patterns for each group based on [group psychology](https://repozitorij.uni-lj.si/IzpisGradiva.php?id=66052). 
-
-Finally, we will add agents for [crowd control](https://www.researchgate.net/publication/347869556_Testing_Various_Riot_Control_Police_Formations_through_Agent-Based_Modeling_and_Simulation) (e.g. police) and examine the effect they have on the behaviour of the crowd. 
+The purpose of our project is to model the behaviour of a crowd during a protest as accurately as possible and attempt to observe the emerging behavioural patterns. At the start of a simulation we populate the scene with agents that belong in different subgroups (leader, protester, bystander), but eventually they can fluidly change between the groups based on various parameters, such as levels of aggression. The movement of the leader can either be manually controlled by the user, or determined by arbitrary goals within the topological map, while the other agents follow the leader when it appears in their field of vision, depending also on their aggression parameters. Additionally, the user is able to manually place police agents anywhere on the map to serve as a repulsive force for other agents. 
 
 
 

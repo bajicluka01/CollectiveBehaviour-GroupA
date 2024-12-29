@@ -43,7 +43,7 @@
 \selectlanguage{english}
 
 % Please add here a significance statement to explain the relevance of your work
-\significancestatement{By conducting simulations of protests using various models for different subgroups of people, we hope to gain some insight into group behaviour during such events, that might make them logistically easier to organize/control in the future.}{Simulation | group behaviour | crowd control}
+\significancestatement{By conducting simulations of protests using various models for different subgroups of people, we hope to gain some insight into group behaviour during such events, that might make them logistically easier to organize/control in the future.}{Simulation | group behaviour | group dynamics}
 
 \selectlanguage{english}
 
@@ -54,10 +54,10 @@
 %\correspondingauthor{\textsuperscript{2}To whom correspondence should be addressed. E-mail: author.two\@email.com}
 
 % Keywords are not mandatory, but authors are strongly encouraged to provide them. If provided, please include two to five keywords, separated by the pipe symbol, e.g:
-\keywords{Simulation | group behaviour | crowd control} 
+\keywords{Simulation | group behaviour | group dynamics} 
 
 \begin{abstract}
-The purpose of our project is to study the behavior of a crowd during a protest. In order to do so, we will first create a unified modular development environment that implements the basic flocking model. Then we will add obstacle avoidance and place the model in a topological map of Ljubljana. Furthermore, we will divide agents into different groups (e.g. leader, regular protest member and bystander) and create different behavioural patterns for each group based on human psychology. Finally, we will add agents for crowd control (e.g. police) and examine the effect they have on the behaviour of the crowd. Optional: we will attempt to optimize police behaviour with methods such as genetic algorithms (the purpose being crowd dispersal or redirection).
+The purpose of our project is to model the behaviour of a crowd during a protest as accurately as possible and attempt to observe the emerging behavioural patterns. At the start of a simulation we populate the scene with agents that belong in different subgroups (leader, protester, bystander), but eventually they can fluidly change between the groups based on various parameters, such as levels of aggression. The movement of the leader can either be manually controlled by the user, or determined by arbitrary goals within the topological map, while the other agents follow the leader when it appears in their field of vision, depending also on their aggression parameters. Additionally, the user is able to manually place police agents anywhere on the map to serve as a repulsive force for other agents. 
 \end{abstract}
 
 \dates{\textbf{\today}}
@@ -77,10 +77,10 @@ The purpose of our project is to study the behavior of a crowd during a protest.
 \ifthenelse{\boolean{shortarticle}}{\ifthenelse{\boolean{singlecolumn}}{\abscontentformatted}{\abscontent}}{}
 
 % If your first paragraph (i.e. with the \dropcap) contains a list environment (quote, quotation, theorem, definition, enumerate, itemize...), the line after the list may have some extra indentation. If this is the case, add \parshape=0 to the end of the list environment.
-\dropcap{P}rotests are a widespread phenomenon involving typically large groups of people, oftentimes with different, or even conflicting goals between their respective subgroups. As such they are a fascinating subject for studies in various fields, from human psychology to group behaviour simulations, which will be our primary focus during the course of this project. 
+\dropcap{P}rotests are a widespread phenomenon involving typically large groups of people, oftentimes with different, or even conflicting goals between their respective subgroups. As such they are a fascinating subject for studies in various fields, from human psychology to group behaviour simulations, which was be our primary focus during the course of this project. 
 
 \bigskip
-The central idea for the project was inspired specifically by the 2020 protests in Ljubljana, that had a distinguishing feature of having an individual leader, but we will try to make our model applicable more generally (for instance, with minor parameter adjustments, we should be able to easily model sports riots or other similar events with various subgroups).  
+The central idea for the project was inspired specifically by the 2020 protests in Ljubljana, that had a distinguishing feature of including a prominent individual leader, but we will try to make our model applicable more generally (for instance, with minor parameter adjustments, we should be able to easily model sports riots or other similar events with various subgroups).  
 
 
 
@@ -90,7 +90,6 @@ Although there are many existing attempts to model protest behaviour, our projec
 \begin{itemize}
     \item active protesters (which are further divided by their level of "passion" or "interest" in the protest), 
     \item bystanders (which may or may not at one point be persuaded to become active protesters, based on parameters discussed in \cite{sportsriots}),
-    \item media (which we omitted in our work, as it is not relevant to our observations): agents attracted to moving in the direction (in their field of view) where the most significant "action" is taking place,
     \item police/crowd control agents (described in more detail in \cite{crowdcontrol2}): their primary goal is dispersing a crowd or redirecting it in a specific direction.
 \end{itemize}
 
@@ -153,16 +152,15 @@ So far we have implemented a simulation that incorporates four groups of agents 
 
 \section*{Discussion}
 
-The project is currently progressing according to plan. The implemented model is scalable and easily modifiable, so we expect to mostly focus on parameter optimization for the remainder of the project. Current challenges are mostly related to:
+Future work:
 \begin{itemize}
-\item finding realistic ways of incorporating human psychology into the model,
-\item obtaining sensible definitions/parameters for interactions between different groups (for instance, when a police agent interacts with a protester, should it simply become a bystander, or is it necessary to implement an additional group to differentiate between the two).
+\item current implementation of the map assumes buildings are the only structure that acts as a repulsive force on the agents. To increase realism, it would be necessary to also include other objects, such as trees, statues, etc.
 \item solving the problem of displaying the agents' dimensions relative to building's dimensions (i.e. how to simultaneously show a big portion of the map while maintaining a clear vision of the agents).
-\item developing an approach for police agents to mimic predator behaviour from nature (while maintaining all the necessary human characteristics). 
+\item developing an approach for police agents to find more optimal formations (e.g. by using genetic algorithms). 
 \end{itemize}
 
 
-\acknow{NČ implemented agent movement and interaction between different groups, PNM worked on the map, improved the visualization and co-wrote the second report, PM optimized parameters and improved the visualization, LB did image processing for the map, implemented the baseline model and wrote the reports}
+\acknow{NČ implemented agent movement, vision and interaction between different groups, PNM worked on the map and improved the visualization PM optimized parameters and improved the visualization, LB did image processing for the map, implemented the baseline model and wrote the reports}
 \showacknow % Display the acknowledgments section
 
 % \pnasbreak splits and balances the columns before the references.

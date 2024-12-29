@@ -1,9 +1,9 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  23 DEC 2024 15:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  29 DEC 2024 13:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./report2.tex
-(report2.tex
+**./report3.tex
+(report3.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
 (pnas-new.cls
@@ -1274,8 +1274,8 @@ Package caption Info: New subtype `subfigure' on input line 238.
 \c@subfigure=\count372
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count373
-) (report2.aux)
-\openout1 = `report2.aux'.
+) (report3.aux)
+\openout1 = `report3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
 LaTeX Font Info:    ... okay on input line 69.
@@ -1322,9 +1322,9 @@ fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 Package hyperref Info: Link coloring ON on input line 69.
- (report2.out) (report2.out)
+ (report3.out) (report3.out)
 \@outlinefile=\write4
-\openout4 = `report2.out'.
+\openout4 = `report3.out'.
 
 
 *geometry* driver: auto-detecting
@@ -1486,38 +1486,38 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 7.59998pt on input line 77.
 
 Underfull \hbox (badness 10000) in paragraph at lines 77--77
-[]\T1/phv/b/n/8 (+20) The pur-pose of our project is to study the be-hav-ior of
- a crowd dur-ing a protest. In or-der to do
+[]\T1/phv/b/n/8 (+8) The pur-pose of our project is to model the be-haviour of 
+a crowd dur-ing a protest as ac-cu-rately as
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 77--77
-\T1/phv/b/n/8 (+20) so, we will first cre-ate a uni-fied mod-u-lar de-vel-op-me
-nt en-vi-ron-ment that im-ple-ments the ba-sic
+\T1/phv/b/n/8 (+20) pos-si-ble and at-tempt to ob-serve the emerg-ing be-haviou
+ral pat-terns. At the start of a sim-u-la-tion
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 77--77
-\T1/phv/b/n/8 (+20) flock-ing model. Then we will add ob-sta-cle avoid-ance and
- place the model in a topo-log-i-cal map
+\T1/phv/b/n/8 (+20) we pop-u-late the scene with agents that be-long in dif-fer
+-ent sub-groups (leader, protester, by-
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 77--77
-\T1/phv/b/n/8 (+15) of Ljubl-jana. Fur-ther-more, we will di-vide agents into d
-if-fer-ent groups (e.g. leader, reg-u-lar protest
+\T1/phv/b/n/8 (+20) such as lev-els of ag-gres-sion. The move-ment of the leade
+r can ei-ther be man-u-ally con-trolled by
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 77--77
-\T1/phv/b/n/8 (+8) psy-chol-ogy. Fi-nally, we will add agents for crowd con-tro
-l (e.g. po-lice) and ex-am-ine the ef-fect they
+\T1/phv/b/n/8 (+20) the user, or de-ter-mined by ar-bi-trary goals within the t
+opo-log-i-cal map, while the other agents
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 77--77
-\T1/phv/b/n/8 (+20) have on the be-haviour of the crowd. Op-tional: we will at-
-tempt to op-ti-mize po-lice be-haviour with
+\T1/phv/b/n/8 (+20) fol-low the leader when it ap-pears in their field of vi-si
+on, de-pend-ing also on their ag-gres-sion
  []
 
 Package microtype Info: Character `029' is missing
@@ -1543,7 +1543,7 @@ LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Overfull \hbox (0.15958pt too wide) in paragraph at lines 104--105
+Overfull \hbox (0.15958pt too wide) in paragraph at lines 103--104
 \T1/lmr/m/n/9 (+14) as-sign-ing them a pa-ram-e-ter vec-tor based on hu-man psy
 -chol-ogy. These pa-ram-e-ters are 
  []
@@ -1554,19 +1554,19 @@ Overfull \hbox (0.15958pt too wide) in paragraph at lines 104--105
 c/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}{C:/Users/bajic/App
 Data/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/bajic/AppData
 /Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc} <./FRIteza_logo.pdf>]
-Overfull \hbox (0.14146pt too wide) in paragraph at lines 121--122
+Overfull \hbox (0.14146pt too wide) in paragraph at lines 120--121
 []\T1/lmr/m/n/9 (+3) Next step will be the im-ple-men-ta-tion of crowd con-trol
  agents. The goal here will be 
  []
 
 
-Overfull \hbox (0.14076pt too wide) in paragraph at lines 121--122
+Overfull \hbox (0.14076pt too wide) in paragraph at lines 120--121
 \T1/lmr/m/n/9 (+1) to model the in-ter-ac-tions be-tween po-lice agents and ac-
 tive (ag-gres-sive) protesters. The 
  []
 
 
-Overfull \hbox (0.1231pt too wide) in paragraph at lines 121--122
+Overfull \hbox (0.1231pt too wide) in paragraph at lines 120--121
 \T1/lmr/m/n/9 (+19) ing the cen-ter of a lo-cal group mass). Ef-fec-tively, the
  goal of the crowd con-trol agents 
  []
@@ -1574,28 +1574,35 @@ Overfull \hbox (0.1231pt too wide) in paragraph at lines 121--122
 <simulation.png, id=68, 1475.5125pt x 812.03375pt>
 File: simulation.png Graphic file (type png)
 <use simulation.png>
-Package pdftex.def Info: simulation.png  used on input line 129.
+Package pdftex.def Info: simulation.png  used on input line 128.
 (pdftex.def)             Requested size: 335.72926pt x 184.75655pt.
 <finalmap_rotated.png, id=70, 1930.21124pt x 1335.99126pt>
 File: finalmap_rotated.png Graphic file (type png)
 <use finalmap_rotated.png>
-Package pdftex.def Info: finalmap_rotated.png  used on input line 139.
+Package pdftex.def Info: finalmap_rotated.png  used on input line 138.
 (pdftex.def)             Requested size: 167.86462pt x 116.17729pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.59998pt on input line 140.
+(Font)              scaled to size 7.59998pt on input line 139.
 <fullmap.png, id=71, 546.04pt x 478.78876pt>
 File: fullmap.png Graphic file (type png)
 <use fullmap.png>
-Package pdftex.def Info: fullmap.png  used on input line 145.
+Package pdftex.def Info: fullmap.png  used on input line 144.
 (pdftex.def)             Requested size: 167.86462pt x 147.18831pt.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 152.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 151.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 152.
+(Font)              scaled to size 6.64998pt on input line 151.
 [2 <./simulation.png>]
 LaTeX Font Info:    Font shape `T1/phv/b/sc' will be
-(Font)              scaled to size 8.54997pt on input line 166.
- (report2.bbl
+(Font)              scaled to size 8.54997pt on input line 164.
+
+Overfull \hbox (0.17165pt too wide) in paragraph at lines 164--165
+[] []|\T1/phv/b/sc/9 (+14) con-tri-bu-tions\T1/phv/b/n/9 (+14) .[] \T1/lmr/m/n/
+8 (+14) Nƒ im-ple-mented agent move-ment, vi-sion and in-ter-ac-tion be-tween d
+if-fer-ent 
+ []
+
+(report3.bbl
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 5.69998pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <6> not available
@@ -1610,20 +1617,20 @@ See the caption package documentation for explanation.
 [3 <./finalmap_rotated.png> <./fullmap.png (PNG copy)>]
 
 enddocument/afterlastpage: lastpage setting LastPage.
-(report2.aux)
+(report3.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
-Package rerunfilecheck Info: File `report2.out' has not changed.
+Package rerunfilecheck Info: File `report3.out' has not changed.
 (rerunfilecheck)             Checksum: 79D0649803C51E4678AD2F2B3EB78ECD;115.
  ) 
 Here is how much of TeX's memory you used:
- 30133 strings out of 474486
- 559995 string characters out of 5743755
+ 30128 strings out of 474486
+ 559959 string characters out of 5743755
  1950542 words of memory out of 5000000
  51603 multiletter control sequences out of 15000+600000
- 638809 words of font info for 200 fonts, out of 8000000 for 9000
+ 638623 words of font info for 197 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,11n,121p,1006b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb>
@@ -1632,7 +1639,7 @@ Here is how much of TeX's memory you used:
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
 pfb><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr
 o8a.pfb>
-Output written on report2.pdf (3 pages, 1321365 bytes).
+Output written on report3.pdf (3 pages, 1320884 bytes).
 PDF statistics:
  118 PDF objects out of 1000 (max. 8388607)
  11 named destinations out of 1000 (max. 500000)
