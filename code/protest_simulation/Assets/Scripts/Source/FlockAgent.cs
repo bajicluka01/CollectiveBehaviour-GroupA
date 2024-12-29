@@ -119,7 +119,7 @@ public class FlockAgent : MonoBehaviour
         if (state == AgentState.Stationary)
         {
             restlessness += 0.1f*Time.deltaTime;
-            // Debug.Log(restlessness);
+            Debug.Log(restlessness);
             if (restlessness > 1.0f)
             {
                 state = AgentState.inMotion;

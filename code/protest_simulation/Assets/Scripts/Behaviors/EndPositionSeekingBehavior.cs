@@ -6,8 +6,8 @@ using System.Collections.Generic;
 [CreateAssetMenu(menuName = "Flock/Behavior/End position seeking")]
 public class EndPositionSeekingBehavior : FlockBehavior
 {
-    float maxDistanceOfDesiredPosition = 30f;
-    float minDistanceOfDesiredPosition = 15f;
+    readonly float maxDistanceOfDesiredPosition = 30f;
+    readonly float minDistanceOfDesiredPosition = 15f;
     public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
     {
         if (GroupContext.LeaderPositionInContext(context))

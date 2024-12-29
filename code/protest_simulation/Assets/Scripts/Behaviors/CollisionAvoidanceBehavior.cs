@@ -15,7 +15,7 @@ public class CollisionAvoidanceBehavior : FlockBehavior
         {
             Vector3 wij = lowestTTCAgent.transform.position - agent.transform.position;
             Vector3 wu = CalculateWu(wij, agent);
-            Vector3 wc = Vector3.Cross(wu,wij);
+            Vector3 wc = Vector3.Cross(wu, wij);
             wc.Normalize();
             // TODO: check if this is good
             // for the R parameter that is defined as the maximum possible distance between the 
@@ -30,14 +30,14 @@ public class CollisionAvoidanceBehavior : FlockBehavior
 
     public Vector3 CalculateWu(Vector3 wij, FlockAgent agent)
     {
-            if (Vector2.Dot(wij, agent.PreviousMove) >= theta)
-            {
-                return Vector3.up;
-            }
-            else
-            {
-                return Vector3.Cross(wij,agent.PreviousMove);
-            }
+        if (Vector2.Dot(wij, agent.PreviousMove) >= theta)
+        {
+            return Vector3.up;
+        }
+        else
+        {
+            return Vector3.Cross(wij, agent.PreviousMove);
+        }
     }
 
     // this method handles the inputs so that if the minimum ttc is negative one 
@@ -51,7 +51,7 @@ public class CollisionAvoidanceBehavior : FlockBehavior
         {
             float ttc = CalculateTimeToCollision(agent.transform.position, agent.PreviousMove,
                                                 nonMember.transform.position, nonMember.PreviousMove,
-                                                agent.ColiderRadius/2, nonMember.ColiderRadius/2);
+                                                agent.ColiderRadius / 2, nonMember.ColiderRadius / 2);
             if (ttc != (-1) && ((minTTc == (-1)) || (ttc < minTTc)))
             {
                 minTTc = ttc;

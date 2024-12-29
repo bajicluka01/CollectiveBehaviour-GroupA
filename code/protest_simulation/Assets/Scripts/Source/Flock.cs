@@ -44,12 +44,11 @@ public class Flock : MonoBehaviour {
         squareNeighborRadius = neighborRadius * neighborRadius;
         squareAvoidanceRadius = squareNeighborRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
 
-        // protesters
         for (int i = 0; i < protestorStartingCount; i++) 
         {
             CreateNewAgent(agentPrefab, agents, protestorStartingCount, "Agent " + i);
         }
-        // todo: remove this. this if only for the leader testing purposes
+        // TODO: remove this. this if only for the leader testing purposes
         FlockAgent lastAgent = agents.Last();
         lastAgent.Role = AgentRole.Leader;
     }
@@ -61,6 +60,7 @@ public class Flock : MonoBehaviour {
         newAgent.tag = "agent";
         newAgent.Fov = agentFov;
         newAgent.EyesightDistance = eyesightDistance;
+        // TODO: not all should be protestors
         newAgent.Role = AgentRole.Protester;
         newAgent.Initialize(this);
         group.Add(newAgent);
@@ -95,6 +95,7 @@ public class Flock : MonoBehaviour {
 
     void MoveAgent(FlockAgent agent)
     {
+        // TODO: maybe leave this in
         // List<GameObject> nearby = GetNearbyObjects(agent);
         List<(RaycastHit2D, Vector2)> hits = agent.GetVisibleAgents();
         if (agent.showFOV) 
