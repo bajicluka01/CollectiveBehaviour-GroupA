@@ -22,7 +22,7 @@ Group members (collaborators):
 The purpose of our project is to model the behaviour of a crowd during a protest as accurately as possible and attempt to observe the emerging behavioural patterns. At the start of a simulation we populate the scene with agents that belong in different subgroups (leader, protester, bystander), but eventually they can fluidly change between the groups based on various parameters, such as levels of aggression. The movement of the leader can either be manually controlled by the user, or determined by arbitrary goals within the topological map, while the other agents follow the leader when it appears in their field of vision, depending also on their aggression parameters. Additionally, the user is able to manually place police agents anywhere on the map to serve as a repulsive force for other agents. 
 
 
-## References
+# References
 
 - Itatani, Pelechano - Social Crowd Simulation: Improving Realism with Social Rules and Gaze Behavior (2024)
 - Lemos, Coelho, Lopes - Agent-Based modeling of protests and violent confrontation: a micro-situational, multi-player, contextual rule-based approach (2014)
