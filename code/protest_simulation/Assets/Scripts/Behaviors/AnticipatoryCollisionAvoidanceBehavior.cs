@@ -8,7 +8,6 @@ public class AnticipatoryCollisionAvoidanceBehavior : FlockBehavior
 {
     public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
     {
-        Debug.Log("Hello");
         throw new System.NotImplementedException();
     }
 }
