@@ -22,8 +22,8 @@ public class FlockAgent : MonoBehaviour
     // agent characteristics
     float restlessness = 0f;
 
-    float recruitment = 0f;
-    float defection = 0f;
+    //float recruitment = 0f;
+    //float defection = 0f;
 
     public float Restlessness
     {
@@ -137,7 +137,7 @@ public class FlockAgent : MonoBehaviour
         }
 
         //testing contagion
-        defection += 0.1f*Time.deltaTime;
+        /*defection += 0.1f*Time.deltaTime;
         recruitment += 0.1f*Time.deltaTime;
 
         if (defection > 1.0f) 
@@ -150,7 +150,7 @@ public class FlockAgent : MonoBehaviour
         {
             SetAgentRole(AgentRole.Protester);
             recruitment = Numbers.GetRandomFloatBetween0and05();
-        }
+        }*/
 
     }
 

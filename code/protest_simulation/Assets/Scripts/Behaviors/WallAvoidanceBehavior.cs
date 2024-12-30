@@ -1,25 +1,35 @@
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using System.Linq;
 
-// this is calcualted using the formulas from the social crowd simulation paper
-// Social Crowd Simulation: Improving Realism with Social Rules and Gaze Behavior
-[CreateAssetMenu(menuName = "Flock/Behavior/Collision Avoidance")]
-public class CollisionAvoidanceBehavior : FlockBehavior
+[CreateAssetMenu(menuName = "Flock/Behavior/Wall Avoidance")]
+public class WallAvoidanceBehavior : FlockBehavior
 {
     readonly float theta = 0.9748f;
     public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
     {
-        List<FlockAgent> nonGroupMembers = GroupContext.GetNonGroupMembers(agent, context);
-        FlockAgent lowestTTCAgent = GetLowestTTCAgent(agent, nonGroupMembers);
-        if (lowestTTCAgent != agent)
+        List<GameObject> walls = context.Where(e => e.tag.Equals("map")).ToList();
+        GameObject lowestTTCWall = GetLowestTTCWall(agent, walls);
+
+        if (lowestTTCWall != null)
         {
-            Vector3 wij = lowestTTCAgent.transform.position - agent.transform.position;
+            Vector3 wij = lowestTTCWall.transform.position - agent.transform.position;
             Vector3 wu = CalculateWu(wij, agent);
+
+            //not sure if this is OK
+            if (wu.z < 0)
+            {
+                wu.z *= -1;
+            }
+
             Vector3 wc = Vector3.Cross(wu, wij);
             Vector2 wc2 = new Vector2(wc.x, wc.y);
             wc2.Normalize();
+            //wc.Normalize();
             Vector2 wc2final = Vector2.Perpendicular(wc2);
             wc2final.Normalize();
+            wij.Normalize();
 
             //Debug.Log(wij+ " " + wu);
 
@@ -32,13 +42,23 @@ public class CollisionAvoidanceBehavior : FlockBehavior
             // for now i will just leave this as it is and implement other behaviours first
             // the s parameter needst to be calcluated for groups
             float S = 1.0f;
-            float R = 10f;
-            Vector2 fc = S * (1-wij2.sqrMagnitude/R) * wc2final;
+            float R = 5.0f;
+            //Vector2 fc = S * (1-wij2.sqrMagnitude/R) * wc2final;
+            //Vector2 fc = S * Mathf.Abs((1-wij.sqrMagnitude/R)) * wc;
+            Vector2 fc = S * (1-wij.sqrMagnitude/R) * wc;
             //Debug.Log(wij2.magnitude+" "+ fc+" "+ wc2final);
 
-            return Vector2.Perpendicular(wij2);
-            //return fc;
+            Debug.DrawRay(agent.transform.position, fc, Color.red);
+
+            //Debug.Log(wu+" "+ wc+ " "+wij+ " "+ Vector2.Perpendicular(wij)+" " +fc);
+
+
+            //normalization doesn't seem to change anything
+            //fc.Normalize();
+            return fc;
+            //return Vector2.Perpendicular(wij2);
         }
+
         return Vector2.zero;
     }
 
@@ -49,6 +69,7 @@ public class CollisionAvoidanceBehavior : FlockBehavior
         if (Vector2.Dot(wij2, agent.PreviousMove) * Mathf.Deg2Rad >= theta)
         {
             return Vector3.up;
+            //return Vector3.Cross(wij, agent.PreviousMove);
         }
         else
         {
@@ -56,28 +77,24 @@ public class CollisionAvoidanceBehavior : FlockBehavior
         }
     }
 
-    // this method handles the inputs so that if the minimum ttc is negative one 
-    // where -1 means that there is no collision the agent itself is returned else
-    // the coliding agent that has the min ttc is returned
-    public FlockAgent GetLowestTTCAgent(FlockAgent agent, List<FlockAgent> nonGroupMembers)
+    public GameObject GetLowestTTCWall(FlockAgent agent, List<GameObject> walls)
     {
         float minTTc = -1;
-        FlockAgent colidingAgent = agent;
-        foreach (FlockAgent nonMember in nonGroupMembers)
+        GameObject closestWall = null;
+        foreach (GameObject wall in walls)
         {
             float ttc = CalculateTimeToCollision(agent.transform.position, agent.PreviousMove,
-                                                nonMember.transform.position, nonMember.PreviousMove,
-                                                agent.ColiderRadius / 2, nonMember.ColiderRadius / 2);
+                                                wall.transform.position, Vector2.zero,
+                                                agent.ColiderRadius / 2, 0);
             if (ttc != (-1) && ((minTTc == (-1)) || (ttc < minTTc)))
             {
                 minTTc = ttc;
-                colidingAgent = nonMember;
+                closestWall = wall;
             }
         }
-        return colidingAgent;
+        return closestWall;
     }
 
-    // TODO: check if this method is correct
     public float CalculateTimeToCollision(Vector3 positionA, Vector2 velocityA,
                                         Vector3 positionB, Vector2 velocityB,
                                         float radiusA, float radiusB)
