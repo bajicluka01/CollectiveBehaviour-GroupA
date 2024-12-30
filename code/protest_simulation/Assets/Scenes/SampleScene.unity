@@ -325,7 +325,7 @@ MonoBehaviour:
   stationaryProtesterBehavior: {fileID: 11400000, guid: 4bad7142c65be4b14897c11ca07d67ac, type: 2}
   inMotionProtesterBehavior: {fileID: 11400000, guid: 529d8ab2ab9664b7facaa64f938366ef, type: 2}
   stationaryBystanderBehavior: {fileID: 11400000, guid: 4bad7142c65be4b14897c11ca07d67ac, type: 2}
-  inMotionBystanderBehavior: {fileID: 11400000, guid: 529d8ab2ab9664b7facaa64f938366ef, type: 2}
+  inMotionBystanderBehavior: {fileID: 11400000, guid: 87747f80abd37ee4c8913206ee5a288e, type: 2}
 --- !u!1 &1203668228
 GameObject:
   m_ObjectHideFlags: 0
