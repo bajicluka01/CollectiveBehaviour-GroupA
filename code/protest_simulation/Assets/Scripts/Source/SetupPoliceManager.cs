@@ -2,64 +2,82 @@ using UnityEngine;
 
 public class SetupPhaseManager : MonoBehaviour
 {
-    public GameObject policeAgent; // The police agent GameObject
-    public KeyCode startKey = KeyCode.Return; // Key to start the animation
-    private bool isSetupPhase = true; // Flag for the setup phase
+    public GameObject policePrefab; // The police agent GameObject
     private Camera mainCamera;
+
+    private Vector2? initialMousePosition = null;
+    private Vector2? finalMousePosition = null;
 
     void Start()
     {
-        // mainCamera = Camera.main;
-
-        // Disable the police agent's animation initially
-        // var animator = policeAgent.GetComponent<Animator>();
-        // if (animator != null)
-        // {
-        //     animator.enabled = false; // Disable animations during setup
-        // }
+        mainCamera = Camera.main; // Get the main camera
     }
 
     void Update()
     {
-        // Debug.Log("[SetupPoliceManager.cs] isSetupPhase: " + isSetupPhase);
-        // if (isSetupPhase)
-        // {
-        //     // Allow the user to drag and position the police agent with the mouse
-        //     HandleMouseDragging();
-
-        //     // Check if the user presses the start key to finish setup
-        //     if (Input.GetKeyDown(startKey))
-        //     {
-        //         StartSimulation();
-        //     }
-        // }
-    }
-
-    private void HandleMouseDragging()
-    {
-        // Debug.Log("[SetupPoliceManager.cs] mainCamera: " + mainCamera);
-        // Debug.Log("[SetupPoliceManager.cs] Input.mousePosition: " + Input.mousePosition);
-        // Get the mouse position in world space
-        Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
+        // Detect the initial and final positions on mouse click
+        if (Input.GetMouseButtonDown(0) && initialMousePosition == null)
         {
-            // Move the police agent to the mouse pointer position
-            policeAgent.transform.position = hit.point;
+            initialMousePosition = DetectMousePressPosition();
+        } else if (Input.GetMouseButtonUp(0) && initialMousePosition != null)
+        {
+            finalMousePosition = DetectMousePressPosition();
+
+            // If both the initial and final mouse positions are detected, create a line of police agents
+            if (finalMousePosition != null)
+            {
+                // Create a line of police agents between the initial and final mouse positions
+                CreatePoliceAgentsBetweenPositions((Vector2)initialMousePosition, (Vector2)finalMousePosition);
+
+                // Reset the initial and final mouse positions
+                initialMousePosition = null;
+                finalMousePosition = null;
+            }
         }
     }
 
-    private void StartSimulation()
+    private Vector2 DetectMousePressPosition()
     {
-        isSetupPhase = false; // End the setup phase
+        // Convert the mouse position from screen space to world space
+        Vector3 screenPosition = Input.mousePosition;
+        Vector3 worldPosition = mainCamera.ScreenToWorldPoint(screenPosition);
 
-        // Enable the police agent's animation
-        var animator = policeAgent.GetComponent<Animator>();
-        if (animator != null)
+        // Return a 2D world position (ignore the z-coordinate)
+        return new Vector2(worldPosition.x, worldPosition.y);
+    }
+
+    private void CreatePoliceAgentsBetweenPositions(Vector2 initialPosition, Vector2 finalPosition)
+    {
+        // I want the number of agents to depend on the distance between the initial and final positions
+        int numberOfAgents = Mathf.CeilToInt(Vector2.Distance(initialPosition, finalPosition) / 2);
+
+        Debug.Log("[SetupPoliceManager] numberOfAgents: " + numberOfAgents);
+
+        // Calculate the direction vector between the initial and final positions
+        Vector2 direction = (finalPosition - initialPosition).normalized;
+
+        // Calculate the distance between each police agent
+        float distanceBetweenAgents = Vector2.Distance(initialPosition, finalPosition) / numberOfAgents;
+
+        // Create a line of police agents between the initial and final positions
+        for (int i = 0; i < numberOfAgents; i++)
         {
-            animator.enabled = true; // Enable the animator
-            animator.SetTrigger("StartAnimation"); // Trigger the start animation
-        }
+            // Calculate the position of the police agent
+            Vector2 position = initialPosition + direction * i * distanceBetweenAgents;
 
-        Debug.Log("Simulation Started! Police agent placed at position: " + policeAgent.transform.position);
+            // Check if there is already an object in this position
+            Collider2D existingObject = Physics2D.OverlapCircle(position, 0.5f); // Adjust radius as needed
+            if (existingObject != null)
+            {
+                Debug.Log("[SetupPoliceManager] Skipping position; object already exists at " + position);
+                continue; // Skip this position if an object is already there
+            }
+
+            // Instantiate the police agent at the calculated position
+            GameObject policeAgent = Instantiate(policePrefab, position, Quaternion.identity);
+
+            // Destroy the police agent after 10 seconds
+            Destroy(policeAgent, 10f);
+        }
     }
 }
