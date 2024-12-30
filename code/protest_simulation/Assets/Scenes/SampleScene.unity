@@ -316,7 +316,7 @@ MonoBehaviour:
   agentPrefab: {fileID: 4590270472881923037, guid: b47747e970ec549799e5829daa4051a7, type: 3}
   protestorStartingCount: 2
   driveFactor: 10
-  maxSpeed: 5
+  maxSpeed: 1
   neighborRadius: 0.2
   avoidanceRadiusMultiplier: 0.5
   agentFov: 60
