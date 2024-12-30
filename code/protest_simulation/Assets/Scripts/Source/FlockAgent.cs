@@ -22,6 +22,9 @@ public class FlockAgent : MonoBehaviour
     // agent characteristics
     float restlessness = 0f;
 
+    float recruitment = 0f;
+    float defection = 0f;
+
     public float Restlessness
     {
         get { return restlessness; }
@@ -112,6 +115,8 @@ public class FlockAgent : MonoBehaviour
         coliderRadius = colider.radius;
         angleChange = CalculateRayCastAngleChange(coliderRadius,eyesightDistance);
         SetAgentRole(role);
+
+        restlessness = Numbers.GetRandomFloatBetween0and05();
     }
 
     private void Update() 
@@ -119,7 +124,7 @@ public class FlockAgent : MonoBehaviour
         if (state == AgentState.Stationary)
         {
             restlessness += 0.1f*Time.deltaTime;
-            Debug.Log(restlessness);
+            //Debug.Log(restlessness);
             if (restlessness > 1.0f)
             {
                 state = AgentState.inMotion;
@@ -130,6 +135,23 @@ public class FlockAgent : MonoBehaviour
         {
             state = AgentState.inMotion;
         }
+
+        //testing contagion
+        defection += 0.1f*Time.deltaTime;
+        recruitment += 0.1f*Time.deltaTime;
+
+        if (defection > 1.0f) 
+        {
+            SetAgentRole(AgentRole.Bystander);
+            defection = Numbers.GetRandomFloatBetween0and05();
+        }
+
+        if (recruitment > 1.0f)
+        {
+            SetAgentRole(AgentRole.Protester);
+            recruitment = Numbers.GetRandomFloatBetween0and05();
+        }
+
     }
 
     public void ResetRestlessness()

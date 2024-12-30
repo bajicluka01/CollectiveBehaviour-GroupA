@@ -101,7 +101,7 @@ public class Flock : MonoBehaviour {
     void MoveAgent(FlockAgent agent)
     {
         // TODO: maybe leave this in
-        // List<GameObject> nearby = GetNearbyObjects(agent);
+        List<GameObject> nearby = GetNearbyObjects(agent);
         List<(RaycastHit2D, Vector2)> hits = agent.GetVisibleAgents();
         if (agent.showFOV) 
         {
@@ -109,6 +109,7 @@ public class Flock : MonoBehaviour {
         }
         // TODO: maybe use hashset here for speedup not sure
         List<GameObject> visibleAgents = hits.Where(pair => pair.Item1).Select((pair) => pair.Item1.collider.gameObject).ToList();
+        visibleAgents.AddRange(nearby);
         Vector2 move = new();
         switch (agent.Role, agent.State)
         {

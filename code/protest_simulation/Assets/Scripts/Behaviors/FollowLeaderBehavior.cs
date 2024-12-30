@@ -17,6 +17,8 @@ public class FollowLeaderBehavior : FlockBehavior
     {
         Vector2 directionVector = leaderAgent.transform.position - protester.transform.position ;
         directionVector.Normalize();
+
+        Debug.Log(directionVector);
         return directionVector;
     }
 }

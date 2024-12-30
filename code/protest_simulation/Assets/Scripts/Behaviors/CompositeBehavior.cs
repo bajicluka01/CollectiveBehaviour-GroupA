@@ -39,9 +39,10 @@ public class CompositeBehavior : FlockBehavior
             }
         }
 
-        return SmoothenMove(agent, move);
+        return move;
     }
 
+    //doesn't work appropriately
     Vector2 SmoothenMove(FlockAgent agent, Vector2 desiredMove)
     {
         if (smoothing == 0f)
