@@ -16,15 +16,47 @@ public class WallAvoidanceBehavior : FlockBehavior
         {
             Vector3 wij = lowestTTCWall.transform.position - agent.transform.position;
             Vector3 wu = CalculateWu(wij, agent);
+
+            //not sure if this is OK
+            if (wu.z < 0)
+            {
+                wu.z *= -1;
+            }
+
             Vector3 wc = Vector3.Cross(wu, wij);
-            wc.Normalize();
+            Vector2 wc2 = new Vector2(wc.x, wc.y);
+            wc2.Normalize();
+            //wc.Normalize();
+            Vector2 wc2final = Vector2.Perpendicular(wc2);
+            wc2final.Normalize();
+            wij.Normalize();
+
+            //Debug.Log(wij+ " " + wu);
+
+            Vector2 wij2 = new Vector2(wij.x, wij.y);
+
             // TODO: check if this is good
             // for the R parameter that is defined as the maximum possible distance between the 
             // float S = 1;
             // float R = 1;
             // for now i will just leave this as it is and implement other behaviours first
             // the s parameter needst to be calcluated for groups
-            return wc;
+            float S = 1.0f;
+            float R = 5.0f;
+            //Vector2 fc = S * (1-wij2.sqrMagnitude/R) * wc2final;
+            //Vector2 fc = S * Mathf.Abs((1-wij.sqrMagnitude/R)) * wc;
+            Vector2 fc = S * (1-wij.sqrMagnitude/R) * wc;
+            //Debug.Log(wij2.magnitude+" "+ fc+" "+ wc2final);
+
+            Debug.DrawRay(agent.transform.position, fc, Color.red);
+
+            //Debug.Log(wu+" "+ wc+ " "+wij+ " "+ Vector2.Perpendicular(wij)+" " +fc);
+
+
+            //normalization doesn't seem to change anything
+            //fc.Normalize();
+            return fc;
+            //return Vector2.Perpendicular(wij2);
         }
 
         return Vector2.zero;
@@ -32,9 +64,12 @@ public class WallAvoidanceBehavior : FlockBehavior
 
     public Vector3 CalculateWu(Vector3 wij, FlockAgent agent)
     {
-        if (Vector2.Dot(wij, agent.PreviousMove) >= theta)
+        Vector2 wij2 = new Vector2(wij.x, wij.y);
+
+        if (Vector2.Dot(wij2, agent.PreviousMove) * Mathf.Deg2Rad >= theta)
         {
             return Vector3.up;
+            //return Vector3.Cross(wij, agent.PreviousMove);
         }
         else
         {

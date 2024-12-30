@@ -23,12 +23,19 @@ public class CompositeBehavior : FlockBehavior
 
         Vector2 move = Vector2.zero;
 
+        //for testing purposes
+        //string current = "";
+
         for (int i = 0; i < behaviors.Length; i++)
         {
             Vector2 partialMove = behaviors[i].CalculateMove(agent, context, flock) * weights[i];
 
+            //move+=partialMove;
+            //current+= partialMove+" ";
+
             if (partialMove != Vector2.zero)
             {
+                //Debug.Log(partialMove.sqrMagnitude);
                 if (partialMove.sqrMagnitude > weights[i] * weights[i])
                 {
                     partialMove.Normalize();
@@ -36,10 +43,13 @@ public class CompositeBehavior : FlockBehavior
                 }
 
                 move += partialMove;
+                //current+= partialMove+" ";
             }
         }
+        //Debug.Log(current+" "+move);
 
-        return move;
+        //return move;
+        return move.normalized;
     }
 
     //doesn't work appropriately

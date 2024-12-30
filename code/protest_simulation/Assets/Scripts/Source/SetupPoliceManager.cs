@@ -69,6 +69,7 @@ public class SetupPhaseManager : MonoBehaviour
             Collider2D existingObject = Physics2D.OverlapCircle(position, 0.5f); // Adjust radius as needed
             if (existingObject != null)
             {
+
                 continue; // Skip this position if an object is already there
             }
 
@@ -88,5 +89,6 @@ public class SetupPhaseManager : MonoBehaviour
         Transform body = transform.Find("Capsule");
         SpriteRenderer sr = body.GetComponent<SpriteRenderer>();
         sr.color = color;   
+
     }
 }
