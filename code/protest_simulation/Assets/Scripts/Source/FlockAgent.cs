@@ -5,8 +5,8 @@ public enum AgentRole
 {
     Leader,
     Protester,
-    Bystander
-    // Police
+    Bystander,
+    Police
 }
 
 public enum AgentState
@@ -208,7 +208,7 @@ public class FlockAgent : MonoBehaviour
         return visibleObjects;
     }
 
-    private void SetAgentRole(AgentRole newRole)
+    public void SetAgentRole(AgentRole newRole)
     {
         role = newRole;
         switch (newRole)
@@ -221,6 +221,9 @@ public class FlockAgent : MonoBehaviour
                 break;
             case AgentRole.Bystander:
                 ChangeBodyColor(Color.white);
+                break;
+            case AgentRole.Police:
+                ChangeBodyColor(Color.blue);
                 break;
             default:
                 throw new System.Exception("Agent does not have a role");
