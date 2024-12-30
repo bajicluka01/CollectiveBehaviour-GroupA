@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SetupPhaseManager : MonoBehaviour
 {
-    public GameObject policeAgent; // The police agent GameObject
+    /*public GameObject policeAgent; // The police agent GameObject
     public KeyCode startKey = KeyCode.Return; // Key to start the animation
     private bool isSetupPhase = true; // Flag for the setup phase
     private Camera mainCamera;
@@ -61,5 +61,5 @@ public class SetupPhaseManager : MonoBehaviour
         }
 
         Debug.Log("Simulation Started! Police agent placed at position: " + policeAgent.transform.position);
-    }
+    }*/
 }

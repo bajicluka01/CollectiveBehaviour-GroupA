@@ -13,19 +13,9 @@ MonoBehaviour:
   m_Name: Protester Composite
   m_EditorClassIdentifier: 
   behaviors:
-  - {fileID: 11400000, guid: 64057bfa7e749fe4bb9559013182f540, type: 2}
-  - {fileID: 11400000, guid: 8abdf837c071f8e45a21d4ee21bf9228, type: 2}
-  - {fileID: 11400000, guid: c3523eef3a479194d9d34122ae6518c6, type: 2}
-  - {fileID: 11400000, guid: 451b8b2cdac6664499f3e8fbb9ec3c56, type: 2}
-  - {fileID: 11400000, guid: 8d42844f0fd44431ca7cda010942c494, type: 2}
-  - {fileID: 11400000, guid: f7c74271820f74a83a6ee041b617f36a, type: 2}
+  - {fileID: 11400000, guid: 34612594ca23a094d94d1c9ba70db4d6, type: 2}
   - {fileID: 11400000, guid: 8340b777732d67a46a0590e1a664b865, type: 2}
   weights:
   - 1
   - 1
-  - 0.1
-  - 1
-  - 1
-  - 1
-  - 50
   smoothing: 0.01
