@@ -108,6 +108,7 @@ public class Flock : MonoBehaviour {
         }
         // TODO: maybe use hashset here for speedup not sure
         List<GameObject> visibleAgents = hits.Where(pair => pair.Item1).Select((pair) => pair.Item1.collider.gameObject).ToList();
+
         visibleAgents.AddRange(nearby);
         Vector2 move = new();
         switch (agent.Role, agent.State)
