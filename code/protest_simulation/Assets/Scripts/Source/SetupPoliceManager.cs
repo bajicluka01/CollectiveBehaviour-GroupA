@@ -69,15 +69,26 @@ public class SetupPhaseManager : MonoBehaviour
             Collider2D existingObject = Physics2D.OverlapCircle(position, 0.5f); // Adjust radius as needed
             if (existingObject != null)
             {
-                Debug.Log("[SetupPoliceManager] Skipping position; object already exists at " + position);
+
                 continue; // Skip this position if an object is already there
             }
 
             // Instantiate the police agent at the calculated position
             GameObject policeAgent = Instantiate(policePrefab, position, Quaternion.identity);
 
+            // Change police body color to blue
+            policeAgent.GetComponent<FlockAgent>().SetAgentRole(AgentRole.Police);
+
             // Destroy the police agent after 10 seconds
             Destroy(policeAgent, 10f);
         }
+    }
+
+    public void ChangeBodyColor(Color color)
+    {
+        Transform body = transform.Find("Capsule");
+        SpriteRenderer sr = body.GetComponent<SpriteRenderer>();
+        sr.color = color;   
+
     }
 }
