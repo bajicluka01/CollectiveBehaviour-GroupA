@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GroupContext
@@ -60,5 +61,10 @@ public class GroupContext
             }
         }
         return nonMembers;
+    }
+
+    public static List<GameObject> GetVisibleWalls(FlockAgent agent, List<GameObject> context)
+    {
+        return context.Where(e => e.tag.Equals("map")).ToList();
     }
 }
