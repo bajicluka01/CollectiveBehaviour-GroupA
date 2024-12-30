@@ -60,8 +60,13 @@ public class Flock : MonoBehaviour {
         newAgent.tag = "agent";
         newAgent.Fov = agentFov;
         newAgent.EyesightDistance = eyesightDistance;
-        // TODO: not all should be protestors
-        newAgent.Role = AgentRole.Protester;
+
+        // an agent is randomly chosen to be either protester or bystander
+        System.Random r = new System.Random();
+        if (r.Next(100) < 50)
+            newAgent.Role = AgentRole.Protester;
+        else
+            newAgent.Role = AgentRole.Bystander;
         newAgent.Initialize(this);
         group.Add(newAgent);
     }

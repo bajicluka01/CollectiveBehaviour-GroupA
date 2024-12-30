@@ -257,5 +257,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40e01a745484304fa1252e616c8e0e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eyesightDistance: 34
-  fov: 60
+  showFOV: 0
