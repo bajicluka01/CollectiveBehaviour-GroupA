@@ -36,7 +36,6 @@ public class Flock : MonoBehaviour {
     public FlockBehavior stationaryBystanderBehavior;
     public FlockBehavior inMotionBystanderBehavior;
 
-
     void Start() 
     {
         // to avoid calculating squares every time 

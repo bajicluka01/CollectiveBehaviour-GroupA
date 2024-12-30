@@ -25,6 +25,7 @@ public class FlockAgent : MonoBehaviour
     float recruitment = 0f;
     float defection = 0f;
 
+
     public float Restlessness
     {
         get { return restlessness; }
