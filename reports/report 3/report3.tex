@@ -23,6 +23,7 @@
 \newcommand{\const}[1]{{\ensuremath{\kappa_\mathrm{#1}}}} 
 \usepackage{caption}
 \usepackage{subcaption}
+\usepackage{gensymb}
 \newcommand{\num}[1]{#1}
 
 \graphicspath{{./fig/}}
@@ -57,7 +58,7 @@
 \keywords{Simulation | group behaviour | group dynamics} 
 
 \begin{abstract}
-The purpose of our project is to model the behaviour of a crowd during a protest as accurately as possible and attempt to observe the emerging behavioural patterns. At the start of a simulation we populate the scene with agents that belong in different subgroups (leader, protester, bystander), but eventually they can fluidly change between the groups based on various parameters, such as levels of aggression. The movement of the leader can either be manually controlled by the user, or determined by arbitrary goals within the topological map, while the other agents follow the leader when it appears in their field of vision, depending also on their aggression parameters. Additionally, the user is able to manually place police agents anywhere on the map to serve as a repulsive force for other agents. 
+The purpose of our project is to model the behaviour of a crowd during a protest as accurately as possible and attempt to observe the emerging behavioural patterns. At the start of a simulation we populate the scene with agents that belong in different subgroups (leader, protester, bystander), but eventually they can fluidly change between the groups based on various parameters, such as proneness to defection and recruitment. These parameters depend upon the distribution (in the sense of groups) of agents in an individual's field of view. The movement of the leader can either be manually controlled by the user, or determined by arbitrary goals within the topological map, while the other agents follow the leader when it appears in their field of vision, depending also on their aggression parameters. To give the simulation a practical use, we additionally allow the user to manually place police agents into the scene and observe how they impact the behaviour of the crowd. 
 \end{abstract}
 
 \dates{\textbf{\today}}
@@ -80,32 +81,48 @@ The purpose of our project is to model the behaviour of a crowd during a protest
 \dropcap{P}rotests are a widespread phenomenon involving typically large groups of people, oftentimes with different, or even conflicting goals between their respective subgroups. As such they are a fascinating subject for studies in various fields, from human psychology to group behaviour simulations, which was be our primary focus during the course of this project. 
 
 \bigskip
-The central idea for the project was inspired specifically by the 2020 protests in Ljubljana, that had a distinguishing feature of including a prominent individual leader, but we will try to make our model applicable more generally (for instance, with minor parameter adjustments, we should be able to easily model sports riots or other similar events with various subgroups).  
-
-
+The central idea for the project was inspired specifically by the 2020 protests in Ljubljana, that had a distinguishing feature of a prominent individual leader emerging and influencing the movement of the crowd, but we have attempted to make our model applicable more generally (for instance, with minor parameter adjustments, we should be able to easily model sports riots or other similar events with various subgroups).  
 
 \section*{Related work}
 
-Although there are many existing attempts to model protest behaviour, our project will primarily build on concepts proposed in \cite{protests}. The basic idea is to split the agents into subgroups depending on their level of involvement with the protest. The proposed subgroups are:
+Although there are many existing attempts to model protest behaviour, in terms of general structure, our project will primarily build on concepts proposed by Lemos, et. al. \cite{protests}. The basic idea is to split the agents into subgroups depending on their level of involvement with the protest. The proposed subgroups are:
 \begin{itemize}
-    \item active protesters (which are further divided by their level of "passion" or "interest" in the protest), 
-    \item bystanders (which may or may not at one point be persuaded to become active protesters, based on parameters discussed in \cite{sportsriots}),
+    \item active protesters, further divided by their level of aggression, 
+    \item passive protesters - hereafter we refer to them as bystanders,
     \item police/crowd control agents: their primary goal is dispersing a crowd or redirecting it in a specific direction.
 \end{itemize}
 
 \bigskip
-Note: because we are intending to model specifically the 2020 Ljubljana protests, we needed to additionally implement the concept of a leader, who is to a large extent controlling the movement of all active protesters within a given range, but as such also becomes a more significant target for crowd control agents. 
+Clements and Fadai \cite{sportsriots} have developed a model that attempts to simulate emotional contagion in the context of a sports riot. Although our problem is slightly different in nature, we do use the same principles of defection and recruitment in order to create approximately realistic transitions from active protesters to bystanders and vice versa, depending on what group the majority of agents in the current field of view of an individual belong to. 
 
 \bigskip
-To make simulations seem as realistic as possible, it is necessary to give all agents movement parameters that aim to mimic human behaviour in crowded environments. These parameters are described, for instance in \cite{socialcrowdsimulation}. 
-
-\bigskip
-We will attempt to model behaviour of each of the aforementioned subgroups by assigning them a parameter vector based on human psychology. These parameters are intended to cover a wide range of human emotion, such as willingness to participate in a protest (to determine how likely it is that a bystander will join a protest if the majority of agents in their vicinity are active protesters), inclination towards violence, etc. In \cite{sportsriots} these parameters are referred to as levels of recruitment and defection (willingness) and "mild unrest", "moderate unrest" and "severe unrest" (levels of violence). 
-
+To make simulations appear as realistic as possible, it is necessary to give all agents movement parameters that aim to mimic human behaviour in crowded environments. The forces that impact each agent are described, for instance by Itatani and Pelechano \cite{socialcrowdsimulation} and are divided into: collision avoidance force, wall repulsion force, end-position seeking force, group dynamics force and anticipatory collision avoidance force. 
 
 \section*{Methods}
 
-Implementation of the model was done in Unity, in a 2-dimensional space observed from bird's-eye perspective. First step was the creation of a topological map of a portion Ljubljana. To ensure the correct scale and proportions, we used Google Maps for this step and we took into account the estimated maximum numbers of people that can fit into spaces of particular dimensions. In other words, we attempted to create an environment that's as realistic as possible, so that the obtained results will potentially be useful in various practical applications. 
+Implementation of the model was done in Unity, in a 2-dimensional space observed from bird's-eye perspective. While creating the topological map of Ljubljana into which the agents will later be placed, we had to ensure the correct scale and proportions. We used Google Maps for this step and we took into account the estimated maximum numbers of people that can fit into spaces of particular dimensions. In other words, we attempted to create an environment that's as realistic as possible, so that the obtained results will potentially be useful in various practical applications. 
+
+\bigskip
+To give our agents awareness of their surroundings, we also need to model vision (example of a visualization is shown in figure \ref{vision}). This consists of two parts: 
+\begin{itemize}
+    \item field of view to model a human's eyesight. Default value is \begin{math}60\degree\end{math}, with a distance of 24 Unity units.
+    \item peripersonal space to model a human's ability to feel a presence outside of their field of view, if the distance is small enough. Default value is \begin{math}360\degree\end{math}, with a distance of 1.6 Unity units.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\columnwidth]{vision.png}
+\caption{Visualization of the implemented vision: red rays represent field of vision, yellow rays represent peripersonal space, green ray represents a detected agent.}
+\label{vision}
+\end{figure}
+
+
+Movement: restlessness parameter, gradually increases, once it reaches a threshold, the agent starts to move. 
+
+We deviate from Itatani \cite{socialcrowdsimulation} when it comes to End-Position-Seeking-Force, because the nature of our problem is considerably different. Our agents do not have an end position per se, therefore we have to set this value either to the position of the leader (in case a particular agent is currently following the leader), or an arbitrary nearby point in space (if an agent is not attached to the leader). 
+
+
+\section*{Results}
 
 \bigskip
 After we have created the map, we started modeling behaviours of the different groups. We plan to perform experiments on various initial group sizes (as mentioned, agents can at some point deflect to another group depending on "willingness" parameter, so the sizes do change during runtime), but for the time being we have chosen the following amounts of agents per group:
@@ -116,20 +133,8 @@ After we have created the map, we started modeling behaviours of the different g
     \item leader: 1
 \end{itemize}
 
-\bigskip
-Next step will be the implementation of crowd control agents. The goal here will be to model the interactions between police agents and active (aggressive) protesters. The former are attempting to disperse larger groups of the latter and we plan to model this with approaches similar to predators and prey scenarios in nature (for instance targeting the center of a local group mass). Effectively, the goal of the crowd control agents will be to lower the aggression level in active protesters, i.e. turn them into bystanders (or potentially arrest them, though we are as of yet unsure whether this additional category is necessary). If this is achieved for all agents, the simulation should terminate. One of the possible ideas is to further optimize crowd control strategies using approaches such as genetic algorithms, with the intention of requiring as few of these agents as possible to achieve the end goal. 
+So far we have implemented a simulation that incorporates four groups of agents in the same scene and we have defined different movement and interaction parameters for each of them. The agents are shown in figure, placed in an environment that is essentially a Unity representation of topological map of a portion of Ljubljana (shown in figure \ref{fig2}). We have decided to focus on an area with two main squares and a few narrow streets in-between and around them, in order to observe crowd behavior in different sized environments. We have also calculated an approximate amount of agents that could realistically fit into a square of this size. 
 
-\section*{Results}
-
-So far we have implemented a simulation that incorporates four groups of agents in the same scene and we have defined different movement and interaction parameters for each of them. The agents are shown in figure \ref{fig1}, placed in an environment that is essentially a Unity representation of topological map of a portion of Ljubljana (shown in figure \ref{fig2}). We have decided to focus on an area with two main squares and a few narrow streets in-between and around them, in order to observe crowd behavior in different sized environments. We have also calculated an approximate amount of agents that could realistically fit into a square of this size. 
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[width=0.95\columnwidth]{simulation.png}
-\end{center}
-\caption{Example of a protest visualization in Unity: four groups of agents (leader, protesters, bystanders, police) denoted by distinct colors and a topological map of buildings}
-\label{fig1}
-\end{figure}
 
 \begin{figure}[H]
 \centering
@@ -152,15 +157,16 @@ So far we have implemented a simulation that incorporates four groups of agents 
 
 \section*{Discussion}
 
-Future work:
+Most of the goals of the project were accomplished successfully, however we propose some potential improvements that are yet to be implemented: 
 \begin{itemize}
 \item current implementation of the map assumes buildings are the only structure that acts as a repulsive force on the agents. To increase realism, it would be necessary to also include other objects, such as trees, statues, etc.
 \item solving the problem of displaying the agents' dimensions relative to building's dimensions (i.e. how to simultaneously show a big portion of the map while maintaining a clear vision of the agents).
 \item developing an approach for police agents to find more optimal formations (e.g. by using genetic algorithms). 
+\item introducing some uncertainty into vision might further improve the realism of the simulation - an agent should occasionally incorrectly recognize a protester as a bystander or vice versa, with a low, but non-zero probability. 
 \end{itemize}
 
 
-\acknow{NČ implemented agent movement, vision and interaction between different groups, PNM worked on the map and improved the visualization PM optimized parameters and improved the visualization, LB did image processing for the map, implemented the baseline model and wrote the reports}
+\acknow{NČ implemented agent movement, vision and interaction between different groups, PNM created the map and implemented the police agents, PM implemented transitions between groups (emotional contagion) and improved the visualization, LB did image processing for the map, implemented the baseline model and wrote the reports}
 \showacknow % Display the acknowledgments section
 
 % \pnasbreak splits and balances the columns before the references.

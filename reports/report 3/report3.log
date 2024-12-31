@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  29 DEC 2024 14:08
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  31 DEC 2024 18:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1274,27 +1274,30 @@ Package caption Info: New subtype `subfigure' on input line 238.
 \c@subfigure=\count372
 Package caption Info: New subtype `subtable' on input line 238.
 \c@subtable=\count373
-) (report3.aux)
+) (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/gensymb\gensymb.sty
+Package: gensymb 2022/10/17 v1.0.2 (KJH)
+)
+(report3.aux)
 \openout1 = `report3.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 69.
-LaTeX Font Info:    ... okay on input line 69.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
 
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
@@ -1321,7 +1324,7 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 69.
+Package hyperref Info: Link coloring ON on input line 70.
  (report3.out) (report3.out)
 \@outlinefile=\write4
 \openout4 = `report3.out'.
@@ -1363,21 +1366,21 @@ Package hyperref Info: Link coloring ON on input line 69.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \microtypecontext on input line 69.
-Package microtype Info: Applying patch `item' on input line 69.
-Package microtype Info: Applying patch `toc' on input line 69.
+LaTeX Info: Redefining \microtypecontext on input line 70.
+Package microtype Info: Applying patch `item' on input line 70.
+Package microtype Info: Applying patch `toc' on input line 70.
 
-Package microtype Warning: Unable to apply patch `eqnum' on input line 69.
+Package microtype Warning: Unable to apply patch `eqnum' on input line 70.
 
-Package microtype Info: Applying patch `footnote' on input line 69.
-Package microtype Info: Applying patch `verbatim' on input line 69.
+Package microtype Info: Applying patch `footnote' on input line 70.
+Package microtype Info: Applying patch `verbatim' on input line 70.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 69.
+LaTeX Info: Redefining \showhyphens on input line 70.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -1385,57 +1388,68 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 75
+\symgns@font=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `gns@font' in version `bold'
+(Font)                  TS1/lmr/m/n --> TS1/lmr/b/n on input line 70.
+Package gensymb Info: Math companion symbols declared on input line 70.
+LaTeX Info: Redefining \degree on input line 70.
+LaTeX Info: Redefining \celsius on input line 70.
+Package gensymb Info: Using text companion symbols for \degree, \celsius and \p
+erthousand on input line 70.
+LaTeX Info: Redefining \ohm on input line 70.
+Package gensymb Info: Using \textohm for \ohm on input line 70.
+Package gensymb Info: Using \textmu for \micro on input line 70.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 76
 .
 
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.54997pt on input line 75.
+(Font)              scaled to size 8.54997pt on input line 76.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `phv' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 8.54997pt on input line 75.
+(Font)              scaled to size 8.54997pt on input line 76.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 20.89993pt on input line 75.
+(Font)              scaled to size 20.89993pt on input line 76.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.64998pt on input line 75.
+(Font)              scaled to size 6.64998pt on input line 76.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.64998pt on input line 75.
+(Font)              scaled to size 6.64998pt on input line 76.
 LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 7
-5.
+6.
 
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/lm\ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 7
-5.
+6.
 
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/lm\omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 
-75.
+76.
 
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/lm\omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 
-75.
+76.
 
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/lm\omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <9> on input line 75.
+(Font)              <9> on input line 76.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 75.
+(Font)              <6> on input line 76.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 75.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 75.
+(Font)              <5> on input line 76.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 76.
 
 
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
@@ -1444,7 +1458,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 75.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 76.
 
 
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
@@ -1453,99 +1467,131 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-Underfull \hbox (badness 10000) in paragraph at lines 75--75
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 7
+6.
+
+(C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
+File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
 []\T1/phv/b/n/7 (+20) By con-duct-ing sim-u-la-tions of protests us-ing
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--75
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
 \T1/phv/b/n/7 (+20) var-i-ous mod-els for dif-fer-ent sub-groups
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--75
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
 \T1/phv/b/n/7 (+20) of peo-ple, we hope to gain some in-sight
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--75
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
 \T1/phv/b/n/7 (+20) into group be-haviour dur-ing such events,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--75
+Underfull \hbox (badness 10000) in paragraph at lines 76--76
 \T1/phv/b/n/7 (+20) that might make them lo-gis-ti-cally eas-ier to
  []
 
 <FRIteza_logo.pdf, id=10, 73.97717pt x 36.98859pt>
 File: FRIteza_logo.pdf Graphic file (type pdf)
 <use FRIteza_logo.pdf>
-Package pdftex.def Info: FRIteza_logo.pdf  used on input line 75.
+Package pdftex.def Info: FRIteza_logo.pdf  used on input line 76.
 (pdftex.def)             Requested size: 73.97697pt x 36.98848pt.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 7.59998pt on input line 77.
+(Font)              scaled to size 7.59998pt on input line 78.
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--77
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
 []\T1/phv/b/n/8 (+8) The pur-pose of our project is to model the be-haviour of 
 a crowd dur-ing a protest as ac-cu-rately as
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--77
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
 \T1/phv/b/n/8 (+20) pos-si-ble and at-tempt to ob-serve the emerg-ing be-haviou
 ral pat-terns. At the start of a sim-u-la-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--77
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
 \T1/phv/b/n/8 (+20) we pop-u-late the scene with agents that be-long in dif-fer
 -ent sub-groups (leader, protester, by-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--77
-\T1/phv/b/n/8 (+20) such as lev-els of ag-gres-sion. The move-ment of the leade
-r can ei-ther be man-u-ally con-trolled by
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
+\T1/phv/b/n/8 (+10) such as prone-ness to de-fec-tion and re-cruit-ment. These 
+pa-ram-e-ters de-pend upon the dis-tri-bu-tion
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--77
-\T1/phv/b/n/8 (+20) the user, or de-ter-mined by ar-bi-trary goals within the t
-opo-log-i-cal map, while the other agents
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
+\T1/phv/b/n/8 (+8) (in the sense of groups) of agents in an in-di-vid-ual's fie
+ld of view. The move-ment of the leader can
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 77--77
-\T1/phv/b/n/8 (+20) fol-low the leader when it ap-pears in their field of vi-si
-on, de-pend-ing also on their ag-gres-sion
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
+\T1/phv/b/n/8 (+16) ei-ther be man-u-ally con-trolled by the user, or de-ter-mi
+ned by ar-bi-trary goals within the topo-log-i-cal
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
+\T1/phv/b/n/8 (+20) map, while the other agents fol-low the leader when it ap-p
+ears in their field of vi-sion, de-pend-ing
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
+\T1/phv/b/n/8 (+20) also on their ag-gres-sion pa-ram-e-ters. To give the sim-u
+-la-tion a prac-ti-cal use, we ad-di-tion-ally
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 78--78
+\T1/phv/b/n/8 (+20) al-low the user to man-u-ally place po-lice agents into the
+ scene and ob-serve how they im-pact the
  []
 
 Package microtype Info: Character `029' is missing
 (microtype)             in font `T1/lmr/m/sc/9'.
 (microtype)             Ignoring protrusion settings for this character.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 21.82016pt on input line 80.
+(Font)              scaled to size 21.82016pt on input line 81.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 21.82016pt on input line 80.
+(Font)              scaled to size 21.82016pt on input line 81.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 24.69992pt on input line 80.
+(Font)              scaled to size 24.69992pt on input line 81.
 Package lettrine.sty Info: Targeted height = 15.69254pt
 (lettrine.sty)             (for loversize=0, accent excluded),
 (lettrine.sty)             Lettrine height = 17.48743pt ({\normalfont \sffamily
  \bfseries \fontsize {26pt}{28pt}\selectfont {P}});
-(lettrine.sty)             reported on input line 80.
+(lettrine.sty)             reported on input line 81.
+
+Overfull \hbox (0.11786pt too wide) in paragraph at lines 84--85
+\T1/lmr/m/n/9 (+20) model ap-pli-ca-ble more gen-er-ally (for in-stance, with m
+i-nor pa-ram-e-ter ad-just-ments, we 
+ []
+
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 9.49997pt on input line 87.
+(Font)              scaled to size 9.49997pt on input line 86.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 9.49997pt on input line 87.
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 9
-1.
-(C:\Users\bajic\AppData\Local\Programs\MiKTeX\tex/latex/lm\ts1lmr.fd
-File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
-Overfull \hbox (0.15958pt too wide) in paragraph at lines 103--104
-\T1/lmr/m/n/9 (+14) as-sign-ing them a pa-ram-e-ter vec-tor based on hu-man psy
--chol-ogy. These pa-ram-e-ters are 
+(Font)              scaled to size 9.49997pt on input line 86.
+
+Overfull \hbox (0.15411pt too wide) in paragraph at lines 88--90
+\T1/lmr/m/n/9 (+18) al. [[]]. The basic idea is to split the agents into subgro
+ups depending on their level of 
+ []
+
+
+Overfull \hbox (0.13237pt too wide) in paragraph at lines 96--97
+\T1/lmr/m/n/9 (+7) cre-ate ap-prox-i-mately re-al-is-tic tran-si-tions from ac-
+tive protesters to by-standers and vice 
  []
 
 [1
@@ -1554,49 +1600,39 @@ Overfull \hbox (0.15958pt too wide) in paragraph at lines 103--104
 c/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}{C:/Users/bajic/App
 Data/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ec.enc}{C:/Users/bajic/AppData
 /Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-ts1.enc} <./FRIteza_logo.pdf>]
-Overfull \hbox (0.14146pt too wide) in paragraph at lines 120--121
-[]\T1/lmr/m/n/9 (+3) Next step will be the im-ple-men-ta-tion of crowd con-trol
- agents. The goal here will be 
+<vision.png, id=64, 541.27219pt x 370.38374pt>
+File: vision.png Graphic file (type png)
+<use vision.png>
+Package pdftex.def Info: vision.png  used on input line 114.
+(pdftex.def)             Requested size: 335.72926pt x 229.73726pt.
+
+Overfull \hbox (0.11435pt too wide) in paragraph at lines 128--130
+\T1/lmr/m/n/9 (+4) After we have created the map, we started modeling behaviour
+s of the different groups. 
  []
 
-
-Overfull \hbox (0.14076pt too wide) in paragraph at lines 120--121
-\T1/lmr/m/n/9 (+1) to model the in-ter-ac-tions be-tween po-lice agents and ac-
-tive (ag-gres-sive) protesters. The 
- []
-
-
-Overfull \hbox (0.1231pt too wide) in paragraph at lines 120--121
-\T1/lmr/m/n/9 (+19) ing the cen-ter of a lo-cal group mass). Ef-fec-tively, the
- goal of the crowd con-trol agents 
- []
-
-<simulation.png, id=66, 1475.5125pt x 812.03375pt>
-File: simulation.png Graphic file (type png)
-<use simulation.png>
-Package pdftex.def Info: simulation.png  used on input line 128.
-(pdftex.def)             Requested size: 335.72926pt x 184.75655pt.
 <finalmap_rotated.png, id=68, 1930.21124pt x 1335.99126pt>
 File: finalmap_rotated.png Graphic file (type png)
 <use finalmap_rotated.png>
-Package pdftex.def Info: finalmap_rotated.png  used on input line 138.
+Package pdftex.def Info: finalmap_rotated.png  used on input line 143.
 (pdftex.def)             Requested size: 167.86462pt x 116.17729pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.59998pt on input line 139.
+(Font)              scaled to size 7.59998pt on input line 144.
 <fullmap.png, id=69, 546.04pt x 478.78876pt>
 File: fullmap.png Graphic file (type png)
 <use fullmap.png>
-Package pdftex.def Info: fullmap.png  used on input line 144.
+Package pdftex.def Info: fullmap.png  used on input line 149.
 (pdftex.def)             Requested size: 167.86462pt x 147.18831pt.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 151.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 156.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 151.
-[2 <./simulation.png>]
+(Font)              scaled to size 6.64998pt on input line 156.
+[2{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc} <
+./vision.png>]
 LaTeX Font Info:    Font shape `T1/phv/b/sc' will be
-(Font)              scaled to size 8.54997pt on input line 164.
+(Font)              scaled to size 8.54997pt on input line 170.
 
-Overfull \hbox (0.17165pt too wide) in paragraph at lines 164--165
+Overfull \hbox (0.17165pt too wide) in paragraph at lines 170--171
 [] []|\T1/phv/b/sc/9 (+14) con-tri-bu-tions\T1/phv/b/n/9 (+14) .[] \T1/lmr/m/n/
 8 (+14) Nƒ im-ple-mented agent move-ment, vi-sion and in-ter-ac-tion be-tween d
 if-fer-ent 
@@ -1626,11 +1662,11 @@ Package rerunfilecheck Info: File `report3.out' has not changed.
 (rerunfilecheck)             Checksum: 79D0649803C51E4678AD2F2B3EB78ECD;115.
  ) 
 Here is how much of TeX's memory you used:
- 30118 strings out of 474486
- 559821 string characters out of 5743755
- 1949542 words of memory out of 5000000
- 51600 multiletter control sequences out of 15000+600000
- 638247 words of font info for 193 fonts, out of 8000000 for 9000
+ 30211 strings out of 474486
+ 561174 string characters out of 5743755
+ 1950542 words of memory out of 5000000
+ 51666 multiletter control sequences out of 15000+600000
+ 639664 words of font info for 207 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,11n,121p,1006b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb>
@@ -1639,9 +1675,9 @@ Here is how much of TeX's memory you used:
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
 pfb><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr
 o8a.pfb>
-Output written on report3.pdf (3 pages, 1318734 bytes).
+Output written on report3.pdf (3 pages, 1296029 bytes).
 PDF statistics:
- 115 PDF objects out of 1000 (max. 8388607)
+ 119 PDF objects out of 1000 (max. 8388607)
  10 named destinations out of 1000 (max. 500000)
- 75817 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 79913 words of extra memory for PDF output out of 89155 (max. 10000000)
 
