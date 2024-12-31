@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum AgentRole
@@ -22,8 +24,15 @@ public class FlockAgent : MonoBehaviour
     // agent characteristics
     float restlessness = 0f;
 
-    //float recruitment = 0f;
-    //float defection = 0f;
+    float recruitment_timer = 0f;
+    float defection_timer = 0f;
+
+    float defection_prob = 0f;
+
+    float recruitment_prob = 0f;
+
+    //float recruitment_probability = 0.2f;
+    //float defection_probability = 0.8f;
 
     public float Restlessness
     {
@@ -137,21 +146,77 @@ public class FlockAgent : MonoBehaviour
         }
 
         //testing contagion
-        /*defection += 0.1f*Time.deltaTime;
-        recruitment += 0.1f*Time.deltaTime;
 
-        if (defection > 1.0f) 
-        {
-            SetAgentRole(AgentRole.Bystander);
-            defection = Numbers.GetRandomFloatBetween0and05();
+        if(role == AgentRole.Protester){
+            defection_timer += 0.1f*Time.deltaTime;
+        } else if(role == AgentRole.Bystander){
+            recruitment_timer += 0.1f*Time.deltaTime;
         }
 
-        if (recruitment > 1.0f)
-        {
-            SetAgentRole(AgentRole.Protester);
-            recruitment = Numbers.GetRandomFloatBetween0and05();
-        }*/
+        List<(RaycastHit2D, Vector2)> visible = GetVisibleAgents();
+        List<GameObject> visibleAgents = visible.Where(pair => pair.Item1).Select((pair) => pair.Item1.collider.gameObject).ToList();
+        List<GameObject> visibleAgents2 = visibleAgents.Where(e => e.tag.Equals("agent")).ToList();
+        List<GameObject> visibleAgents3 = new List<GameObject>();
 
+        int bystander_count = 0;
+        int protester_count = 0;
+        bool sees_leader = false;
+        for (int i = 0; i < visibleAgents2.Count; i++){
+            if (visibleAgents3.IndexOf(visibleAgents2[i]) == -1 ) {
+                visibleAgents3.Add(visibleAgents2[i]);
+
+                if(visibleAgents2[i].GetComponent<FlockAgent>().Role == AgentRole.Bystander){
+                    bystander_count++;
+                } else if(visibleAgents2[i].GetComponent<FlockAgent>().Role == AgentRole.Protester){
+                    protester_count++;
+                } else if(visibleAgents2[i].GetComponent<FlockAgent>().Role == AgentRole.Leader){
+                    sees_leader = true;
+                }            
+            }
+        }
+
+        Debug.Log("visible bystanders: " + bystander_count + "visible protesters: " + protester_count + "sees leader: " + sees_leader);
+
+ 
+        System.Random random = new System.Random();
+
+        if (defection_timer > 1.0f) 
+        {
+            defection_timer = Numbers.GetRandomFloatBetween0and05();
+
+            defection_prob = defection_probability(protester_count,bystander_count,sees_leader);
+
+            if(random.Next(100) < defection_prob * 100) {
+                SetAgentRole(AgentRole.Bystander);
+            }
+        }
+
+        if (recruitment_timer > 1.0f)
+        {
+            recruitment_timer = Numbers.GetRandomFloatBetween0and05();
+
+            recruitment_prob = recruitment_probability(protester_count,bystander_count,sees_leader);
+
+            if(random.Next(100) < recruitment_prob * 100) {
+                SetAgentRole(AgentRole.Protester);
+            }
+        }
+    }
+
+    public float defection_probability(int num_protesters, int num_bystanders, bool sees_leader)
+    {
+        //TODO: add fuction that calculates defection probability based on num_protesters and num_bystanders
+
+        //placeholder
+        return 0.8f;
+    }
+
+    public float recruitment_probability(int num_protesters, int num_bystanders, bool sees_leader)
+    {
+        //TODO: add fuction that calculates defection probability based on num_protesters and num_bystanders
+
+        //placeholder
+        return 0.2f;
     }
 
     public void ResetRestlessness()
