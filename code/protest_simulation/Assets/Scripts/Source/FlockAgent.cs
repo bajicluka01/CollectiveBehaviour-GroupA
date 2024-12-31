@@ -116,6 +116,8 @@ public class FlockAgent : MonoBehaviour
 
     public bool showFOV;
 
+    Rigidbody2D agentRigidBody;
+
     void Start()
     {
         agentCollider = GetComponent<Collider2D>();
@@ -124,7 +126,7 @@ public class FlockAgent : MonoBehaviour
         coliderRadius = colider.radius;
         angleChange = CalculateRayCastAngleChange(coliderRadius,eyesightDistance);
         SetAgentRole(role);
-
+        agentRigidBody = GetComponent<Rigidbody2D>();
         restlessness = Numbers.GetRandomFloatBetween0and05();
     }
 
@@ -244,7 +246,7 @@ public class FlockAgent : MonoBehaviour
     public void Move(Vector2 velocity)
     {
         transform.up = velocity;
-        transform.position += (Vector3)velocity * Time.deltaTime;
+        agentRigidBody.linearVelocity= velocity;
         previousMove = velocity;
     }
 
