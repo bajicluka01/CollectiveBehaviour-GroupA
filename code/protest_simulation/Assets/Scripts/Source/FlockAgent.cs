@@ -7,8 +7,8 @@ public enum AgentRole
 {
     Leader,
     Protester,
-    Bystander
-    // Police
+    Bystander,
+    Police
 }
 
 public enum AgentState
@@ -33,7 +33,6 @@ public class FlockAgent : MonoBehaviour
 
     //float recruitment_probability = 0.2f;
     //float defection_probability = 0.8f;
-
 
     public float Restlessness
     {
@@ -172,8 +171,7 @@ public class FlockAgent : MonoBehaviour
                     protester_count++;
                 } else if(visibleAgents2[i].GetComponent<FlockAgent>().Role == AgentRole.Leader){
                     sees_leader = true;
-                }
-                 
+                }            
             }
         }
 
@@ -203,7 +201,6 @@ public class FlockAgent : MonoBehaviour
                 SetAgentRole(AgentRole.Protester);
             }
         }
-
     }
 
     public float defection_probability(int num_protesters, int num_bystanders, bool sees_leader)
@@ -276,7 +273,7 @@ public class FlockAgent : MonoBehaviour
         return visibleObjects;
     }
 
-    private void SetAgentRole(AgentRole newRole)
+    public void SetAgentRole(AgentRole newRole)
     {
         role = newRole;
         switch (newRole)
@@ -289,6 +286,9 @@ public class FlockAgent : MonoBehaviour
                 break;
             case AgentRole.Bystander:
                 ChangeBodyColor(Color.white);
+                break;
+            case AgentRole.Police:
+                ChangeBodyColor(Color.blue);
                 break;
             default:
                 throw new System.Exception("Agent does not have a role");
