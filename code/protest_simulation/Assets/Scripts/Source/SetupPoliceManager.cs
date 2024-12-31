@@ -1,4 +1,6 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System;
 
 public class SetupPhaseManager : MonoBehaviour
 {
@@ -7,6 +9,9 @@ public class SetupPhaseManager : MonoBehaviour
 
     private Vector2? initialMousePosition = null;
     private Vector2? finalMousePosition = null;
+
+    private List<GameObject> activePoliceAgents = new List<GameObject>(); // List to track active police agents
+    private const int maxPoliceCount = 50; // Maximum allowed police agents
 
     void Start()
     {
@@ -59,6 +64,11 @@ public class SetupPhaseManager : MonoBehaviour
         // Calculate the distance between each police agent
         float distanceBetweenAgents = Vector2.Distance(initialPosition, finalPosition) / numberOfAgents;
 
+        if (activePoliceAgents.Count + numberOfAgents > maxPoliceCount)
+        {
+            numberOfAgents = Math.Max(0, maxPoliceCount - activePoliceAgents.Count);
+        }
+
         // Create a line of police agents between the initial and final positions
         for (int i = 0; i < numberOfAgents; i++)
         {
@@ -79,16 +89,24 @@ public class SetupPhaseManager : MonoBehaviour
             // Change police body color to blue
             policeAgent.GetComponent<FlockAgent>().SetAgentRole(AgentRole.Police);
 
-            // Destroy the police agent after 10 seconds
-            Destroy(policeAgent, 10f);
+            // Add the police agent to the active list
+            activePoliceAgents.Add(policeAgent);
         }
     }
+
+    // private IEnumerator<WaitForSeconds> DestroyPoliceAgentAfterTime(GameObject policeAgent, float delay)
+    // {
+    //     yield return new WaitForSeconds(delay);
+
+    //     // Remove from the active list and destroy the object
+    //     activePoliceAgents.Remove(policeAgent);
+    //     Destroy(policeAgent);
+    // }
 
     public void ChangeBodyColor(Color color)
     {
         Transform body = transform.Find("Capsule");
         SpriteRenderer sr = body.GetComponent<SpriteRenderer>();
         sr.color = color;   
-
     }
 }
