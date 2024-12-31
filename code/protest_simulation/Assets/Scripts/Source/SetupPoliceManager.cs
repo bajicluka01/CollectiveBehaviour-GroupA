@@ -83,8 +83,15 @@ public class SetupPhaseManager : MonoBehaviour
                 continue; // Skip this position if an object is already there
             }
 
+            // Calculate the perpendicular direction (clockwise)
+            Vector2 perpendicularDirection = new Vector2(direction.y, -direction.x);
+
+            // Calculate the rotation from the perpendicular direction
+            float angle = Mathf.Atan2(perpendicularDirection.y, perpendicularDirection.x) * Mathf.Rad2Deg + 90;
+            Quaternion rotation = Quaternion.Euler(0, 0, angle); // Z-axis rotation for 2D
+
             // Instantiate the police agent at the calculated position
-            GameObject policeAgent = Instantiate(policePrefab, position, Quaternion.identity);
+            GameObject policeAgent = Instantiate(policePrefab, position, rotation);
 
             // Change police body color to blue
             policeAgent.GetComponent<FlockAgent>().SetAgentRole(AgentRole.Police);
