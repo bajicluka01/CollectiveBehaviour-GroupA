@@ -133,9 +133,9 @@ public class FlockAgent : MonoBehaviour
 
     public List<GameObject> allVisibleThings;
     public List<FlockAgent> visibleAgents; 
-    public List<FlockAgent> bystanders;
-    public List<FlockAgent> protesters;
-    public List<FlockAgent> leaders; 
+    public List<FlockAgent> visibleBystanders;
+    public List<FlockAgent> visibleProtesters;
+    public List<FlockAgent> visibleLeaders; 
 
     void Start()
     {
@@ -147,7 +147,7 @@ public class FlockAgent : MonoBehaviour
         personalSpaceAngleChange = CalculateRayCastAngleChange(coliderRadius, peripersonalDistance);
         SetAgentRole(role);
         agentRigidBody = GetComponent<Rigidbody2D>();
-        restlessness = UnityEngine.Random.Range(0f, 0.5f);
+        restlessness = UnityEngine.Random.Range(0f, 1f);
     }
 
     public void CustomUpdate()
@@ -155,11 +155,11 @@ public class FlockAgent : MonoBehaviour
         
         allVisibleThings = GroupContext.GetDistinctGameObjectFromHits(GroupContext.GetHits(GetVisibleAgents()));
         visibleAgents = GroupContext.GetFlockAgents(allVisibleThings);
-        bystanders = GroupContext.GetBystanders(visibleAgents);
-        protesters = GroupContext.GetProtesters(visibleAgents);
-        leaders = GroupContext.GetLeaders(visibleAgents);
+        visibleBystanders = GroupContext.GetBystanders(visibleAgents);
+        visibleProtesters = GroupContext.GetProtesters(visibleAgents);
+        visibleLeaders = GroupContext.GetLeaders(visibleAgents);
         CalculateAgentState();
-        CalculateContagion();
+        // CalculateContagion();
     }
 
     void CalculateAgentState()
@@ -197,7 +197,7 @@ public class FlockAgent : MonoBehaviour
         if (defectionTimer > 1.0f)
         {
             defectionTimer = UnityEngine.Random.Range(0, 0.5f);
-            defectionProb = DefectionProbability(protesters.Count(), bystanders.Count(), leaders.Count());
+            defectionProb = DefectionProbability(visibleProtesters.Count(), visibleBystanders.Count(), visibleLeaders.Count());
             if (UnityEngine.Random.Range(0,100f) < defectionProb * 100)
             {
                 SetAgentRole(AgentRole.Bystander);
@@ -206,7 +206,7 @@ public class FlockAgent : MonoBehaviour
         if (recruitmentTimer > 1.0f)
         {
             recruitmentTimer = UnityEngine.Random.Range(0, 0.5f);
-            recruitmentProb = RecruitmentProbability(protesters.Count(), bystanders.Count(), leaders.Count());
+            recruitmentProb = RecruitmentProbability(visibleProtesters.Count(), visibleBystanders.Count(), visibleLeaders.Count());
             if (UnityEngine.Random.Range(0,100f) < recruitmentProb * 100)
             {
                 SetAgentRole(AgentRole.Protester);
@@ -253,6 +253,11 @@ public class FlockAgent : MonoBehaviour
         if (velocity != Vector2.zero)
         {
             transform.up = velocity;
+            agentRigidBody.constraints = RigidbodyConstraints2D.None;
+        }
+        else
+        {
+            agentRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
         agentRigidBody.linearVelocity = velocity;
         previousMove = velocity;
@@ -302,7 +307,8 @@ public class FlockAgent : MonoBehaviour
 
     // note that the lookaround angle should be maximum 180 degrees 
     // the lookaround angle is in degrees
-    public List<FlockAgent> LookAround(float lookAroundAngle)
+    // 180 -> 360
+    public void LookAround(float lookAroundAngle)
     {
         List<RaycastHit2D> hits = new();
         Vector2 direction = transform.rotation * Vector2.up * eyesightDistance;
@@ -319,8 +325,10 @@ public class FlockAgent : MonoBehaviour
             }
             angle += visualAngleChange;
         }
-        
-        return null;
+        visibleAgents =  GroupContext.GetFlockAgents(GroupContext.GetDistinctGameObjectFromHits(hits));
+        visibleProtesters = GroupContext.GetProtesters(visibleAgents);
+        visibleBystanders = GroupContext.GetBystanders(visibleAgents);
+        visibleLeaders = GroupContext.GetLeaders(visibleAgents);
     }
 
     public void SetAgentRole(AgentRole newRole)

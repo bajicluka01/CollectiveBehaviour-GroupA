@@ -68,7 +68,10 @@ public class GroupContext
     
     public static List<GameObject> GetDistinctGameObjectFromHits(List<RaycastHit2D> hits)
     {
-        return hits.Select(e => e.collider.gameObject).Distinct().ToList();
+        return hits.Where(e => e.collider != null)
+            .Select(e => e.collider.gameObject)
+            .Distinct()
+            .ToList();
     }
 
     public static List<FlockAgent> GetFlockAgents(List<GameObject> distinctGameObjects)

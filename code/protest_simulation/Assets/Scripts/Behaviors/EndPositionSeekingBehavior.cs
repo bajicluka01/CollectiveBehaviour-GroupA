@@ -1,13 +1,12 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 // NOTE: this class now implements the follow leader behaviour since it sets the desired position of 
 // the agent to the leader position
 [CreateAssetMenu(menuName = "Flock/Behavior/End position seeking")]
 public class EndPositionSeekingBehavior : FlockBehavior
 {
-    readonly float maxDistanceOfDesiredPosition = 30f;
-    readonly float minDistanceOfDesiredPosition = 15f;
     public override Vector2 CalculateMove(FlockAgent agent, Flock flock)
     {
         // if (GroupContext.LeaderPositionInContext(context))
@@ -19,7 +18,7 @@ public class EndPositionSeekingBehavior : FlockBehavior
         // } else
         if (agent.DesiredPosition == Vector3.zero )
         {
-            agent.DesiredPosition = GenerateNewDesiredPosition(minDistanceOfDesiredPosition, maxDistanceOfDesiredPosition, agent.transform.position);
+            agent.DesiredPosition = GenerateNewDesiredPosition(agent);
         }
         if (agent.OnDesiredPosition())
         {
@@ -33,7 +32,38 @@ public class EndPositionSeekingBehavior : FlockBehavior
         return agent.DesiredSpeed*desiredPositionVector - agent.PreviousMove;
     }
 
-    Vector2 GenerateNewDesiredPosition(float minDistance, float maxDistance, Vector3 agentPosition)
+    // IDEA: here we can take the center (same calculation and everything)
+    // of the flock protestors. So take in the entire flock 
+    //
+    //    (agents.Count(agent => agent.Role == AgentRole.Protester));
+    //    (agents.Count(agent => agent.Role == AgentRole.Bystander));
+    //    (agents.Count(agent => agent.Role == AgentRole.Police));
+    //
+    Vector2 GenerateNewDesiredPosition(FlockAgent agent)
+    {
+        agent.LookAround(150);
+        List<Vector3> agentPositions = agent.visibleProtesters.Select(protester => protester.transform.position).ToList(); 
+        if (agentPositions.Count() < 1)
+        {
+            float minDistance = Random.Range(5,10);
+            float maxDistance = Random.Range(minDistance,20);
+            return GenerateRandomPositionInsideRing(minDistance, maxDistance, agent.transform.position);
+        }
+
+        Vector3 center = agentPositions.Aggregate(Vector3.zero, (curr, vec) => curr + vec) / agentPositions.Count();
+        float distance = agentPositions.OrderByDescending(v => Vector3.Distance(v, center)).First().magnitude;
+        if (agent.Role == AgentRole.Protester)
+        {
+            return GenerateRandomPositionInsideRing(0f, distance, center);
+        }
+        else
+        {
+            // distance/2 is a random made up constanct by the one and only GENIUS NIK
+            return GenerateRandomPositionInsideRing(distance, distance+(distance/2), center);
+        }
+    }
+
+    Vector2 GenerateRandomPositionInsideRing(float minDistance, float maxDistance, Vector3 center)
     {
         // Generate a random angle
         float angle = Random.Range(0f, 2f * Mathf.PI);
@@ -41,10 +71,10 @@ public class EndPositionSeekingBehavior : FlockBehavior
         float randomDistance = Random.Range(minDistance, maxDistance);
         
         // Calculate the random position using polar coordinates
-        float x = agentPosition.x + randomDistance * Mathf.Cos(angle);
-        float y = agentPosition.y + randomDistance * Mathf.Sin(angle);
+        float x = center.x + randomDistance * Mathf.Cos(angle);
+        float y = center.y + randomDistance * Mathf.Sin(angle);
         
-        // TODO: implement a check if this position is not in a building 
+        // TODO: implement a check if this position is not in a building !!!!!!!  
         // - if it is inside a building recalculate
         // else return the result
         

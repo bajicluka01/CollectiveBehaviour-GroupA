@@ -314,12 +314,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 5987027978688631966, guid: 46497012f7227440ba8872b06e381462, type: 3}
-  protestorStartingCount: 2
+  protestorStartingCount: 206
   driveFactor: 10
   maxSpeed: 1
   neighborRadius: 0.2
   avoidanceRadiusMultiplier: 0.5
-  agentFov: 60
+  flockFOV: 60
   eyesightDistance: 20
   personalSpaceDistance: 1.7
   leaderBehavior: {fileID: 11400000, guid: aa7edb85226f040028aa931faa2fc78d, type: 2}
