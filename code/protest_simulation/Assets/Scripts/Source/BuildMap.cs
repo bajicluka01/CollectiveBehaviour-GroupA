@@ -4,7 +4,6 @@ public class BuildMap : MonoBehaviour
 {
     public Texture2D mapTexture; // Assign this in the Inspector
     public GameObject buildingPrefab; // Assign a prefab for the buildings
-
     public BoxCollider2D boxCollider;
 
     void Start()

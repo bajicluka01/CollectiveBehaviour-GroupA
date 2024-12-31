@@ -1,17 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System;
+using UnityEngine.UIElements;
 
 public class SetupPhaseManager : MonoBehaviour
 {
     public GameObject policePrefab; // The police agent GameObject
     private Camera mainCamera;
-
     private Vector2? initialMousePosition = null;
     private Vector2? finalMousePosition = null;
-
     private List<GameObject> activePoliceAgents = new List<GameObject>(); // List to track active police agents
     private const int maxPoliceCount = 50; // Maximum allowed police agents
+    
 
     void Start()
     {
@@ -39,6 +39,9 @@ public class SetupPhaseManager : MonoBehaviour
                 finalMousePosition = null;
             }
         }
+
+        // Set police cound on textField
+        TextFieldManager.setPolice(activePoliceAgents.Count);
     }
 
     private Vector2 DetectMousePressPosition()

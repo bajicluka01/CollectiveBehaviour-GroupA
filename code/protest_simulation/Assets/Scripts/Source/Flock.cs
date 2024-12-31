@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class Flock : MonoBehaviour {
 
@@ -50,6 +51,8 @@ public class Flock : MonoBehaviour {
         // TODO: remove this. this if only for the leader testing purposes
         FlockAgent lastAgent = agents.Last();
         lastAgent.Role = AgentRole.Leader;
+
+        TextFieldManager.Initialize();
     }
 
     void CreateNewAgent(FlockAgent prefab, List<FlockAgent> group, int startingCount, string name)
@@ -83,6 +86,9 @@ public class Flock : MonoBehaviour {
     void Update() 
     {
         MoveAllAgents(agents);
+
+        // Change UI legend based on the number of agents
+        ChangeUILegend();
     }
 
     void MoveAllAgents(List<FlockAgent> agents)
@@ -149,5 +155,12 @@ public class Flock : MonoBehaviour {
             }
         }
         return context;
+    }
+
+    void ChangeUILegend()
+    {
+        TextFieldManager.setProtestors(agents.Count(agent => agent.Role == AgentRole.Protester));
+        TextFieldManager.setBystanders(agents.Count(agent => agent.Role == AgentRole.Bystander));
+        TextFieldManager.setPolice(agents.Count(agent => agent.Role == AgentRole.Police));
     }
 }
