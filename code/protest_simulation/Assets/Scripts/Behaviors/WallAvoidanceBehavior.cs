@@ -7,9 +7,9 @@ using System.Linq;
 public class WallAvoidanceBehavior : FlockBehavior
 {
     readonly float theta = 0.9748f;
-    public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, Flock flock)
     {
-        List<GameObject> walls = context.Where(e => e.tag.Equals("map")).ToList();
+        List<GameObject> walls = agent.allVisibleThings.Where(e => e.tag.Equals("map")).ToList();
         GameObject lowestTTCWall = GetLowestTTCWall(agent, walls);
 
         if (lowestTTCWall != null)

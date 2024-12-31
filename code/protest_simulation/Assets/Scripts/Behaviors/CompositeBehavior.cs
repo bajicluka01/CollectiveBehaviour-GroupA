@@ -12,7 +12,7 @@ public class CompositeBehavior : FlockBehavior
     [Range(0f, 1f)]
     public float smoothing = 0.01f;
 
-    public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, Flock flock)
     {
 
         if (weights.Length != behaviors.Length)
@@ -28,7 +28,7 @@ public class CompositeBehavior : FlockBehavior
 
         for (int i = 0; i < behaviors.Length; i++)
         {
-            Vector2 partialMove = behaviors[i].CalculateMove(agent, context, flock) * weights[i];
+            Vector2 partialMove = behaviors[i].CalculateMove(agent, flock) * weights[i];
 
             //move+=partialMove;
             //current+= partialMove+" ";

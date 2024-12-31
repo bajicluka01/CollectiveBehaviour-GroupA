@@ -27,7 +27,7 @@ public class Flock : MonoBehaviour {
     float squareAvoidanceRadius;
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
 
-    public float agentFov = 60f;
+    public float flockFOV = 60f;
     public float eyesightDistance = 20f;
     public float personalSpaceDistance = 1.7f;
 
@@ -60,9 +60,9 @@ public class Flock : MonoBehaviour {
         FlockAgent newAgent = InstantiateAgent(prefab, startingCount);
         newAgent.name = name;
         newAgent.tag = "agent";
-        newAgent.Fov = agentFov;
+        newAgent.Fov = flockFOV;
         newAgent.EyesightDistance = eyesightDistance;
-        newAgent.PersonalSpaceDistance = personalSpaceDistance;
+        newAgent.PeripsersonalDistance = personalSpaceDistance;
 
         // an agent is randomly chosen to be either protester or bystander
         System.Random r = new System.Random();
@@ -98,40 +98,41 @@ public class Flock : MonoBehaviour {
         {
             // TODO: once we are done testing we can remove this interchangeable fov and set it
             // to initiate only on start -- we will debate if this will bring in enough of a speed up
-            agent.Fov = agentFov;
+            agent.Fov = flockFOV;
             agent.EyesightDistance = eyesightDistance;
-            agent.PersonalSpaceDistance = personalSpaceDistance;
+            agent.PeripsersonalDistance = personalSpaceDistance;
             MoveAgent(agent);
         }
     }
 
     void MoveAgent(FlockAgent agent)
     {
+        // first we update the internal state of the agent
+        agent.CustomUpdate();
+
+        // TODO: comment this out for performance
         List<(RaycastHit2D, Vector2)> hits = agent.GetVisibleAgents();
         if (agent.showFOV) 
         {
             agent.DrawHits(hits);
         }
-        // TODO: maybe use hashset here for speedup not sure
-        List<GameObject> visibleAgents = hits.Where(pair => pair.Item1).Select((pair) => pair.Item1.collider.gameObject).ToList();
-
         Vector2 move = new();
         switch (agent.Role, agent.State)
         {
             case (AgentRole.Leader, _):
-                move = leaderBehavior.CalculateMove(agent, visibleAgents, this); 
+                move = leaderBehavior.CalculateMove(agent, this); 
                 break;
             case (AgentRole.Protester, AgentState.inMotion):
-                move = inMotionProtesterBehavior.CalculateMove(agent, visibleAgents, this); 
+                move = inMotionProtesterBehavior.CalculateMove(agent, this); 
                 break;
             case (AgentRole.Protester, AgentState.Stationary):
-                move = stationaryProtesterBehavior.CalculateMove(agent, visibleAgents, this); 
+                move = stationaryProtesterBehavior.CalculateMove(agent, this); 
                 break;
             case (AgentRole.Bystander, AgentState.inMotion):
-                move = inMotionBystanderBehavior.CalculateMove(agent, visibleAgents, this); 
+                move = inMotionBystanderBehavior.CalculateMove(agent, this); 
                 break;
             case (AgentRole.Bystander, AgentState.Stationary):
-                move = stationaryBystanderBehavior.CalculateMove(agent, visibleAgents, this); 
+                move = stationaryBystanderBehavior.CalculateMove(agent, this); 
                 break;
         }
         move*=driveFactor;

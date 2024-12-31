@@ -5,20 +5,20 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Flock/Behavior/Alignment")]
 public class AlignmentBehavior : FilteredFlockBehavior 
 {
-    public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock) 
+    public override Vector2 CalculateMove(FlockAgent agent, Flock flock) 
     {
         //no neighbors
-        if(context.Count == 0)
+        if(agent.allVisibleThings.Count == 0)
             return agent.transform.up;
 
         Vector2 alignmentMove = Vector2.zero;
-        List<GameObject> filteredContext = (filter == null) ? context : filter.Filter(agent, context);
+        List<GameObject> filteredContext = (filter == null) ? agent.allVisibleThings : filter.Filter(agent, agent.allVisibleThings);
         foreach (GameObject item in filteredContext) 
         {
             alignmentMove += (Vector2)item.transform.transform.up;
         }       
 
-        alignmentMove /= context.Count;
+        alignmentMove /= agent.allVisibleThings.Count;
 
         return alignmentMove;
     }

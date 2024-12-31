@@ -7,9 +7,9 @@ using UnityEngine;
 public class CollisionAvoidanceBehavior : FlockBehavior
 {
     readonly float theta = 0.9748f;
-    public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
+    public override Vector2 CalculateMove(FlockAgent agent, Flock flock)
     {
-        List<FlockAgent> nonGroupMembers = GroupContext.GetNonGroupMembers(agent, context);
+        List<FlockAgent> nonGroupMembers = GroupContext.GetNonGroupMembers(agent, agent.allVisibleThings);
         FlockAgent lowestTTCAgent = GetLowestTTCAgent(agent, nonGroupMembers);
         if (lowestTTCAgent != agent)
         {

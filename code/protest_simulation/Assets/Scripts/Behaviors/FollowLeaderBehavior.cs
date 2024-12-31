@@ -6,7 +6,7 @@ using UnityEngine;
 public class FollowLeaderBehavior : FlockBehavior 
 {
     
-    public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock) 
+    public override Vector2 CalculateMove(FlockAgent agent, Flock flock) 
     {
         Vector2 result = new();
         return result;
