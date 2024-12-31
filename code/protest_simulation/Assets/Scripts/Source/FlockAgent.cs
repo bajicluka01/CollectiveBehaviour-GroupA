@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public enum AgentRole
 {
@@ -94,8 +95,19 @@ public class FlockAgent : MonoBehaviour
         get { return eyesightDistance; }
         set
         {
-            angleChange = CalculateRayCastAngleChange(coliderRadius,eyesightDistance);
+            visualAngleChange = CalculateRayCastAngleChange(coliderRadius, value);
             eyesightDistance = value;
+        }
+    }
+
+    float personalSpaceDistanace = 1.7f;
+    public float PersonalSpaceDistance
+    {
+        get { return personalSpaceDistanace; }
+        set 
+        {
+            personalSpaceAngleChange = CalculateRayCastAngleChange(coliderRadius, value);
+            personalSpaceDistanace = value;
         }
     }
 
@@ -109,7 +121,8 @@ public class FlockAgent : MonoBehaviour
         }
     }
     
-    float angleChange;
+    float visualAngleChange;
+    float personalSpaceAngleChange;
 
     Vector2 previousMove;
     public Vector2 PreviousMove { get { return previousMove; } }
@@ -124,17 +137,18 @@ public class FlockAgent : MonoBehaviour
         desiredSpeed = 19.3f;
         CircleCollider2D colider = GetComponent<CircleCollider2D>();
         coliderRadius = colider.radius;
-        angleChange = CalculateRayCastAngleChange(coliderRadius,eyesightDistance);
+        visualAngleChange = CalculateRayCastAngleChange(coliderRadius,eyesightDistance);
+        personalSpaceAngleChange = CalculateRayCastAngleChange(coliderRadius, personalSpaceDistanace);
         SetAgentRole(role);
         agentRigidBody = GetComponent<Rigidbody2D>();
-        restlessness = Numbers.GetRandomFloatBetween0and05();
+        restlessness = UnityEngine.Random.Range(0f, 0.5f);
     }
 
     private void Update() 
     {
         if (state == AgentState.Stationary)
         {
-            restlessness += 0.1f*Time.deltaTime;
+            restlessness += 0.04f*Time.deltaTime;
             //Debug.Log(restlessness);
             if (restlessness > 1.0f)
             {
@@ -184,7 +198,7 @@ public class FlockAgent : MonoBehaviour
 
         if (defection_timer > 1.0f) 
         {
-            defection_timer = Numbers.GetRandomFloatBetween0and05();
+            defection_timer = UnityEngine.Random.Range(0,0.5f);
 
             defection_prob = defection_probability(protester_count,bystander_count,sees_leader);
 
@@ -195,7 +209,7 @@ public class FlockAgent : MonoBehaviour
 
         if (recruitment_timer > 1.0f)
         {
-            recruitment_timer = Numbers.GetRandomFloatBetween0and05();
+            recruitment_timer = UnityEngine.Random.Range(0,0.5f);
 
             recruitment_prob = recruitment_probability(protester_count,bystander_count,sees_leader);
 
@@ -223,7 +237,7 @@ public class FlockAgent : MonoBehaviour
 
     public void ResetRestlessness()
     {
-        restlessness = Numbers.GetRandomFloatBetween0and05();
+        restlessness = UnityEngine.Random.Range(0,0.5f);
     }
 
     public void ChangeBodyColor(Color color)
@@ -245,7 +259,10 @@ public class FlockAgent : MonoBehaviour
 
     public void Move(Vector2 velocity)
     {
-        transform.up = velocity;
+        if (velocity != Vector2.zero)
+        {
+            transform.up = velocity;
+        }
         agentRigidBody.linearVelocity= velocity;
         previousMove = velocity;
     }
@@ -266,11 +283,22 @@ public class FlockAgent : MonoBehaviour
         float angle = 0f;
         while (angle < fov)
         {
-            angle = angle + angleChange;
+            angle += visualAngleChange;
             Vector2 positiveVector = Numbers.Rotate2D(direction,angle);
             Vector2 negativeVector = Numbers.Rotate2D(direction,-angle);
             visibleObjects.Add((Physics2D.Raycast(transform.position, positiveVector, eyesightDistance), positiveVector));
             visibleObjects.Add((Physics2D.Raycast(transform.position, negativeVector, eyesightDistance), negativeVector));
+        }
+        direction.Normalize();
+        direction*=personalSpaceDistanace;
+        while (angle < 180)
+        {
+            // TODO: Draw short sticks
+            Vector2 positiveVector = Numbers.Rotate2D(direction,angle);
+            Vector2 negativeVector = Numbers.Rotate2D(direction,-angle);
+            visibleObjects.Add((Physics2D.Raycast(transform.position, positiveVector, personalSpaceDistanace), positiveVector));
+            visibleObjects.Add((Physics2D.Raycast(transform.position, negativeVector, personalSpaceDistanace), negativeVector));
+            angle += personalSpaceAngleChange/4;
         }
         return visibleObjects;
     }
@@ -307,7 +335,14 @@ public class FlockAgent : MonoBehaviour
             }
             else
             {
-                Debug.DrawRay(transform.position, direction, Color.red);
+                if(direction.magnitude > personalSpaceDistanace+0.1f)
+                {
+                    Debug.DrawRay(transform.position, direction, Color.red);
+                }
+                else
+                {
+                    Debug.DrawRay(transform.position, direction, Color.yellow);
+                }
             }
 
         }

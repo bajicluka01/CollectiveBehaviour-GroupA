@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class Flock : MonoBehaviour {
 
@@ -30,6 +29,7 @@ public class Flock : MonoBehaviour {
 
     public float agentFov = 60f;
     public float eyesightDistance = 20f;
+    public float personalSpaceDistance = 1.7f;
 
     public FlockBehavior leaderBehavior;
     public FlockBehavior stationaryProtesterBehavior;
@@ -62,6 +62,7 @@ public class Flock : MonoBehaviour {
         newAgent.tag = "agent";
         newAgent.Fov = agentFov;
         newAgent.EyesightDistance = eyesightDistance;
+        newAgent.PersonalSpaceDistance = personalSpaceDistance;
 
         // an agent is randomly chosen to be either protester or bystander
         System.Random r = new System.Random();
@@ -99,14 +100,13 @@ public class Flock : MonoBehaviour {
             // to initiate only on start -- we will debate if this will bring in enough of a speed up
             agent.Fov = agentFov;
             agent.EyesightDistance = eyesightDistance;
+            agent.PersonalSpaceDistance = personalSpaceDistance;
             MoveAgent(agent);
         }
     }
 
     void MoveAgent(FlockAgent agent)
     {
-        // TODO: maybe leave this in
-        List<GameObject> nearby = GetNearbyObjects(agent);
         List<(RaycastHit2D, Vector2)> hits = agent.GetVisibleAgents();
         if (agent.showFOV) 
         {
@@ -115,7 +115,6 @@ public class Flock : MonoBehaviour {
         // TODO: maybe use hashset here for speedup not sure
         List<GameObject> visibleAgents = hits.Where(pair => pair.Item1).Select((pair) => pair.Item1.collider.gameObject).ToList();
 
-        visibleAgents.AddRange(nearby);
         Vector2 move = new();
         switch (agent.Role, agent.State)
         {

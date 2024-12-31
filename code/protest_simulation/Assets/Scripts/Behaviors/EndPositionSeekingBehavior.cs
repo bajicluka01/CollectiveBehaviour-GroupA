@@ -10,14 +10,14 @@ public class EndPositionSeekingBehavior : FlockBehavior
     readonly float minDistanceOfDesiredPosition = 15f;
     public override Vector2 CalculateMove(FlockAgent agent, List<GameObject> context, Flock flock)
     {
-        if (GroupContext.LeaderPositionInContext(context))
-        {
-            Vector3 leaderPosition = GroupContext.GetLeaderPosition(context);
-            Vector2 leaderDirection = leaderPosition - agent.transform.position;
-            leaderDirection.Normalize();
-            return agent.DesiredSpeed*leaderDirection - agent.PreviousMove;
-        }
-        else if (agent.DesiredPosition == Vector3.zero )
+        // if (GroupContext.LeaderPositionInContext(context))
+        // {
+        //     Vector3 leaderPosition = GroupContext.GetLeaderPosition(context);
+        //     Vector2 leaderDirection = leaderPosition - agent.transform.position;
+        //     leaderDirection.Normalize();
+        //     return agent.DesiredSpeed*leaderDirection - agent.PreviousMove;
+        // } else
+        if (agent.DesiredPosition == Vector3.zero )
         {
             agent.DesiredPosition = GenerateNewDesiredPosition(minDistanceOfDesiredPosition, maxDistanceOfDesiredPosition, agent.transform.position);
         }
