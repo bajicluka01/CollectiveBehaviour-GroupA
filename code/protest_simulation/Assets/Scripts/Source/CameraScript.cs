@@ -38,7 +38,7 @@ public class CameraScript : MonoBehaviour
            // position.z += camera_speed;
           //  this.transform.position = position;
 
-            Camera.main.orthographicSize -= .5f;
+            Camera.main.orthographicSize -= camera_speed;
         }
         if (Input.GetKey(KeyCode.X))
         {
@@ -46,13 +46,13 @@ public class CameraScript : MonoBehaviour
             //position.z -= camera_speed;
             //this.transform.position = position;
 
-            Camera.main.orthographicSize += .5f;
+            Camera.main.orthographicSize += camera_speed;
         }
-        if (Input.GetKey(KeyCode.Plus))
+        if (Input.GetKey(KeyCode.KeypadPlus))
         {
             camera_speed += 0.1F;
         }
-        if (Input.GetKey(KeyCode.Minus))
+        if (Input.GetKey(KeyCode.KeypadMinus))
         {
             camera_speed -= 0.1F;
         }
