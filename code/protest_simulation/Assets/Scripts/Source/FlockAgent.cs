@@ -32,9 +32,6 @@ public class FlockAgent : MonoBehaviour
 
     float recruitmentProb = 0f;
 
-    //float recruitment_probability = 0.2f;
-    //float defection_probability = 0.8f;
-
     public float Restlessness
     {
         get { return restlessness; }
@@ -295,7 +292,6 @@ public class FlockAgent : MonoBehaviour
         direction *= peripersonalDistance;
         while (angle < 180)
         {
-            // TODO: Draw short sticks
             Vector2 positiveVector = Numbers.Rotate2D(direction, angle);
             Vector2 negativeVector = Numbers.Rotate2D(direction, -angle);
             visibleObjects.Add((Physics2D.Raycast(transform.position, positiveVector, peripersonalDistance), positiveVector));

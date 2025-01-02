@@ -2,8 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-// NOTE: this class now implements the follow leader behaviour since it sets the desired position of 
-// the agent to the leader position
 [CreateAssetMenu(menuName = "Flock/Behavior/End position seeking")]
 public class EndPositionSeekingBehavior : FlockBehavior
 {
@@ -20,6 +18,10 @@ public class EndPositionSeekingBehavior : FlockBehavior
         {
             agent.DesiredPosition = GenerateNewDesiredPosition(agent);
         }
+
+        //TODO 
+        //we need some logic to make the agent give up if it can't reach desired position (either because a building or barricade is in the way)
+
         if (agent.OnDesiredPosition())
         {
             agent.State = AgentState.Stationary;
@@ -58,26 +60,57 @@ public class EndPositionSeekingBehavior : FlockBehavior
         }
         else
         {
-            // distance/2 is a random made up constanct by the one and only GENIUS NIK
-            return GenerateRandomPositionInsideRing(distance, distance+(distance/2), center);
+            float someConst = distance/2;
+            return GenerateRandomPositionInsideRing(distance, distance+someConst, center);
         }
+    }
+
+    //returns true if point (x,y) lies inside a building, false otherwise
+    bool isInsideBuilding(float x, float y) 
+    {
+        //these two methods should be more efficient than the loop, but for some reason I can' get them to work)
+
+        //Collider[] intersecting = Physics.OverlapSphere(new Vector3(x,y,0), 0.01f);
+        //if (intersecting.Length != 0)
+        //    Debug.Log(intersecting.Length);
+        //return intersecting.Length != 0;
+
+        //if (Physics.CheckSphere(new Vector3 (x,y,0), 0.01f))
+        //    Debug.Log(x+" "+ y);
+
+        //List<GameObject> walls = agent.allVisibleThings.Where(e => e.tag.Equals("map")).ToList();
+        List<GameObject> walls = GameObject.FindGameObjectsWithTag("map").ToList();
+        foreach (GameObject wall in walls)
+        {
+            if (Vector3.Distance(new Vector3(x,y,0), wall.transform.position) <= 0.1f)
+                return true;
+        }
+
+        return false;
     }
 
     Vector2 GenerateRandomPositionInsideRing(float minDistance, float maxDistance, Vector3 center)
     {
-        // Generate a random angle
-        float angle = Random.Range(0f, 2f * Mathf.PI);
-        // Generate a random distance from 0 to maxDistance
-        float randomDistance = Random.Range(minDistance, maxDistance);
+        //just in case we have the worst luck imaginable (with the Random generator)
+        float maxIter = 1000;
         
-        // Calculate the random position using polar coordinates
-        float x = center.x + randomDistance * Mathf.Cos(angle);
-        float y = center.y + randomDistance * Mathf.Sin(angle);
+        for (float i = 0f; i < maxIter; i++) 
+        {
+            // Generate a random angle
+            float angle = Random.Range(0f, 2f * Mathf.PI);
+            // Generate a random distance from 0 to maxDistance
+            float randomDistance = Random.Range(minDistance, maxDistance);
+            
+            // Calculate the random position using polar coordinates
+            float x = center.x + randomDistance * Mathf.Cos(angle);
+            float y = center.y + randomDistance * Mathf.Sin(angle);
+
+            //check if the position is acceptable
+            if (!isInsideBuilding(x,y))
+                return new Vector2(x,y);
+        }
         
-        // TODO: implement a check if this position is not in a building !!!!!!!  
-        // - if it is inside a building recalculate
-        // else return the result
-        
-        return new Vector2(x, y);
+        //not quite sure what to do here, maybe simply no movement?
+        return new Vector2(center.x, center.y);
     }
 }

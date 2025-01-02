@@ -54,6 +54,8 @@ public class SetupPhaseManager : MonoBehaviour
         return new Vector2(worldPosition.x, worldPosition.y);
     }
 
+
+    //TODO the user shouldn't be able to place police agents inside a building!
     private void CreatePoliceAgentsBetweenPositions(Vector2 initialPosition, Vector2 finalPosition)
     {
         // I want the number of agents to depend on the distance between the initial and final positions
