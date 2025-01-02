@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour
 {
-    float camera_speed = 0.03f;
+
+   // Camera cam;
+    float camera_speed = 0.5f;
 
     void Update()
     {
@@ -32,23 +34,27 @@ public class CameraScript : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.C))
         {
-            Vector3 position = this.transform.position;
-            position.z += camera_speed;
-            this.transform.position = position;
+         //   Vector3 position = this.transform.position;
+           // position.z += camera_speed;
+          //  this.transform.position = position;
+
+            Camera.main.orthographicSize -= .5f;
         }
         if (Input.GetKey(KeyCode.X))
         {
-            Vector3 position = this.transform.position;
-            position.z -= camera_speed;
-            this.transform.position = position;
+          //  Vector3 position = this.transform.position;
+            //position.z -= camera_speed;
+            //this.transform.position = position;
+
+            Camera.main.orthographicSize += .5f;
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.Plus))
         {
-            camera_speed += 0.01F;
+            camera_speed += 0.1F;
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.Minus))
         {
-            camera_speed -= 0.01F;
+            camera_speed -= 0.1F;
         }
     }
 }
