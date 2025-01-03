@@ -37,6 +37,8 @@ public class Flock : MonoBehaviour {
     public FlockBehavior stationaryBystanderBehavior;
     public FlockBehavior inMotionBystanderBehavior;
 
+    public bool manualLeaderMovement = false;
+
     void Start() 
     {
         // to avoid calculating squares every time 
@@ -48,9 +50,11 @@ public class Flock : MonoBehaviour {
         {
             CreateNewAgent(agentPrefab, agents, protestorStartingCount, "Agent " + i);
         }
-        // TODO: remove this. this if only for the leader testing purposes
+        // TODO: remove this. this if only for the leader testing purposes -Nik
+        //keep it, but add logic based on manualLeaderMovement -Luka
         FlockAgent lastAgent = agents.Last();
         lastAgent.Role = AgentRole.Leader;
+        lastAgent.manualMovement = manualLeaderMovement;
 
         TextFieldManager.Initialize();
     }
@@ -63,6 +67,7 @@ public class Flock : MonoBehaviour {
         newAgent.Fov = flockFOV;
         newAgent.EyesightDistance = eyesightDistance;
         newAgent.PeripsersonalDistance = personalSpaceDistance;
+        newAgent.manualMovement = false; //this is only true for leader
 
         // an agent is randomly chosen to be either protester or bystander
         System.Random r = new System.Random();
@@ -121,6 +126,7 @@ public class Flock : MonoBehaviour {
         {
             case (AgentRole.Leader, _):
                 move = leaderBehavior.CalculateMove(agent, this); 
+                agent.manualMovement = manualLeaderMovement; //maybe not the most elegant place for this, but I didn't wanna put an unnecessary if in MoveAllAgents
                 break;
             case (AgentRole.Protester, AgentState.inMotion):
                 move = inMotionProtesterBehavior.CalculateMove(agent, this); 

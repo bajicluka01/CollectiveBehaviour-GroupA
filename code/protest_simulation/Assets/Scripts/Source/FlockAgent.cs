@@ -125,6 +125,7 @@ public class FlockAgent : MonoBehaviour
     public Vector2 PreviousMove { get { return previousMove; } }
 
     public bool showFOV;
+    public bool manualMovement;
 
     Rigidbody2D agentRigidBody;
 
@@ -209,6 +210,9 @@ public class FlockAgent : MonoBehaviour
                 SetAgentRole(AgentRole.Protester);
             }
         }
+
+        //TODO add contagion for leader self-identification
+
     }
 
     float DefectionProbability(int protesterCount, int bystanderCount, int leaderCount)
