@@ -63,3 +63,12 @@ git reset --hard origin/main
 ```
 
 Thus you have obtained the latest commited files. You can now open the project in Unity and freely change the starting parameters of the simulation by clicking "Protesters" in Scene View.
+
+### Keybinds
+
+- camera movement: arrow keys 
+- camera zoom in: X
+- camera zoom out: C 
+- increase zoom speed: +
+- decrease zoom speed: -
+- manual leader movement: W, A, S, D

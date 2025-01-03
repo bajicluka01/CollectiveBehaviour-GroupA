@@ -112,8 +112,8 @@ In addition to Lemos' subgroups \cite{protests}, we also implemented the concept
 \subsection*{Vision}
 To give our agents awareness of their surroundings, we also need to model vision (example of a visualization is shown in figure \ref{vision}). This consists of two parts: 
 \begin{itemize}
-    \item field of view to model a human's eyesight. Default value is \begin{math}60\degree\end{math}, with a distance of 24 Unity units.
-    \item peripersonal space to model a human's ability to feel a presence outside of their field of view, if the distance is small enough. Default value is \begin{math}300\degree\end{math}, with a distance of 1.6 Unity units.
+    \item field of view to model a human's eyesight. Default value is \begin{math}60\degree\end{math}, with a distance of 20 Unity units.
+    \item peripersonal space to model a human's ability to feel a presence outside of their field of view, if the distance is small enough. Default value is \begin{math}300\degree\end{math}, with a distance of 1.7 Unity units.
 \end{itemize}
 
 \begin{figure}[H]
@@ -141,22 +141,40 @@ So far we have implemented a simulation that incorporates four groups of agents 
   \centering
   \includegraphics[width=0.95\columnwidth]{finalmap_rotated.png}
   \caption{Google map image without labels}
-  \label{fig:sub1}
+  \label{fig:sub3}
 \end{subfigure}%
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=0.95\columnwidth]{fullmap.png}
   \caption{Generated map in Unity}
-  \label{fig:sub2}
+  \label{fig:sub4}
 \end{subfigure}
-\caption{Example of a transformation of a Google map image into a Unity map. The rotation was added to make the simulation more easy to observe. }
+\caption{Example of a transformation of a Google map image into a Unity map. The rotation was added to make the simulation more easy to observe.}
 \label{fig2}
 \end{figure}
 
 The simulation is designed to start with a fixed number of agents (default value is 200), one being the leader, the rest being randomly distributed between protesters and bystanders, as well as randomly positioned on the map. Additionally, the user can manually place a certain amount of police agents into the scene (upper bound is set to 50 by default) in straight lines to simulate barricades. 
 
 \bigskip
-One of the principal observations is that the end-position-seeking-behaviour correctly and realistically forms a group of protesters in the center of the crowd, while the bystanders seek to move away from the formed group. Emotional contagion ensures that if an individual bystander is surrounded by a group of protesters for a long enough period of time, it will eventually turn into a protester as well, with a relatively high likelihood. 
+One of the principal observations is that the end-position-seeking-behaviour correctly and realistically forms a group of protesters in the center of the crowd, while the bystanders seek to move away from the formed group (example shown in figure \ref{fig3}). Emotional contagion ensures that if an individual bystander is surrounded by a group of protesters for a long enough period of time, it will eventually turn into a protester as well, with a relatively high likelihood. 
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\columnwidth]{before.png}
+  \caption{State at the start of the simulation}
+  \label{fig:sub1}
+\end{subfigure}%
+\begin{subfigure}{.5\textwidth}
+  \centering
+  \includegraphics[width=0.95\columnwidth]{after.png}
+  \caption{State after several end-position-seeking-behaviour iterations}
+  \label{fig:sub2}
+\end{subfigure}
+\caption{Example of the effects of end-position-seeking-behaviour.}
+\label{fig3}
+\end{figure}
 
 \bigskip
 A hierarchy of leaders emerges spontaneously. Active protesters identify themselves as leaders with a very low probability and keep the role only a big enough number of surrounding agents begins to follow them. We use emotional contagion for deidentification in a similar manner as well. 
