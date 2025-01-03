@@ -22,6 +22,13 @@ Group members (collaborators):
 The purpose of our project is to model the behaviour of a crowd during a protest as accurately as possible and attempt to observe the emerging behavioural patterns. At the start of a simulation we populate the scene with agents that belong in different subgroups (leader, protester, bystander), but eventually they can fluidly change between the groups based on various parameters, such as proneness to defection and recruitment. These parameters depend upon the distribution (in the sense of groups) of agents in an individual's field of view. The movement of the leader can either be manually controlled by the user, or determined by arbitrary goals within the topological map, while the other agents follow the leader when it appears in their field of vision, depending also on their aggression parameters. To give the simulation a practical use, we additionally allow the user to manually place police agents into the scene and observe how they impact the behaviour of the crowd. 
 
 
+### Summary of obtained results
+
+- End-Position-Seeking-Behaviour forms a concentrated mass of agents in the center of a protest, while the bystanders tend to move towards the perimeter.
+- Active protesters follow the leader as it appears in their field of view.
+- Emotional contagion causes agents to switch their state depending on their surroundings. 
+- A hierarchy of leaders emerges spontaneously.
+
 ### References
 
 - Itatani, Pelechano - Social Crowd Simulation: Improving Realism with Social Rules and Gaze Behavior (2024)

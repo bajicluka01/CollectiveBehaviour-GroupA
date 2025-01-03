@@ -36,7 +36,7 @@ public static class TextFieldManager
         myTextField.alignment = TextAnchor.UpperRight;
         myTextField.color = Color.black; // Set the text color to black
         myTextField.text = "Protestors:  " + protestors + "  \nBystanders:  " + bystanders + "  \nPolice:  " + police + "  \n\n";
-        myTextField.fontSize = 18; // Adjust font size to fit better
+        myTextField.fontSize = 44; // Adjust font size to fit better
         myTextField.horizontalOverflow = HorizontalWrapMode.Wrap; // Allow wrapping
         myTextField.verticalOverflow = VerticalWrapMode.Overflow; // Let text overflow vertically if needed
 

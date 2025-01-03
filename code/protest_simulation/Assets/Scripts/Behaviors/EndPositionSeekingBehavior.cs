@@ -78,7 +78,6 @@ public class EndPositionSeekingBehavior : FlockBehavior
         //if (Physics.CheckSphere(new Vector3 (x,y,0), 0.01f))
         //    Debug.Log(x+" "+ y);
 
-        //List<GameObject> walls = agent.allVisibleThings.Where(e => e.tag.Equals("map")).ToList();
         List<GameObject> walls = GameObject.FindGameObjectsWithTag("map").ToList();
         foreach (GameObject wall in walls)
         {

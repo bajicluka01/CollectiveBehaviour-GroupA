@@ -102,11 +102,18 @@ To make simulations appear as realistic as possible, it is necessary to give all
 
 Implementation of the model was done in Unity, in a 2-dimensional space observed from bird's-eye perspective. While creating the topological map of Ljubljana into which the agents will later be placed, we had to ensure the correct scale and proportions. We used Google Maps for this step and we took into account the estimated maximum numbers of people that can fit into spaces of particular dimensions. In other words, we attempted to create an environment that's as realistic as possible, so that the obtained results will potentially be useful in various practical applications. 
 
-\bigskip
+\subsection*{Subgroups}
+In addition to Lemos' subgroups \cite{protests}, we also implemented the concept of a leader and for this purpose we divided the simulation into two modes:
+\begin{itemize}
+    \item user manually controls the movement of a single leader: this can be used for instance to recreate very specific movement from real-life situations.
+    \item multiple local leaders emerge spontaneously within the group and form a hierarchy of leaders.
+\end{itemize}
+
+\subsection*{Vision}
 To give our agents awareness of their surroundings, we also need to model vision (example of a visualization is shown in figure \ref{vision}). This consists of two parts: 
 \begin{itemize}
     \item field of view to model a human's eyesight. Default value is \begin{math}60\degree\end{math}, with a distance of 24 Unity units.
-    \item peripersonal space to model a human's ability to feel a presence outside of their field of view, if the distance is small enough. Default value is \begin{math}360\degree\end{math}, with a distance of 1.6 Unity units.
+    \item peripersonal space to model a human's ability to feel a presence outside of their field of view, if the distance is small enough. Default value is \begin{math}300\degree\end{math}, with a distance of 1.6 Unity units.
 \end{itemize}
 
 \begin{figure}[H]
@@ -115,6 +122,8 @@ To give our agents awareness of their surroundings, we also need to model vision
 \caption{Visualization of the implemented vision: red rays represent field of vision, yellow rays represent peripersonal space, green ray represents a detected agent.}
 \label{vision}
 \end{figure}
+
+\subsection*{Movement}
 
 Agents switch between two main states during the course of the simulation: standing still and in-motion. For this purpose we have come up with a restlessness parameter that gradually increases in agents that are standing still and once it reaches a certain threshold, the agent begins to move. To ensure that not all agents start and stop moving at the same time, it is paramount that the restlessness parameter is increased randomly (which based on our observations of various protest footage is the case for humans as well). 
 
@@ -148,6 +157,9 @@ The simulation is designed to start with a fixed number of agents (default value
 
 \bigskip
 One of the principal observations is that the end-position-seeking-behaviour correctly and realistically forms a group of protesters in the center of the crowd, while the bystanders seek to move away from the formed group. Emotional contagion ensures that if an individual bystander is surrounded by a group of protesters for a long enough period of time, it will eventually turn into a protester as well, with a relatively high likelihood. 
+
+\bigskip
+A hierarchy of leaders emerges spontaneously. Active protesters identify themselves as leaders with a very low probability and keep the role only a big enough number of surrounding agents begins to follow them. We use emotional contagion for deidentification in a similar manner as well. 
 
 
 \section*{Discussion}
