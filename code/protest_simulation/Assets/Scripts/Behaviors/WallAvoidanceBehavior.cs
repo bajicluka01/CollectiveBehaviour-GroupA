@@ -22,14 +22,14 @@ public class WallAvoidanceBehavior : FlockBehavior
             //TODO
             //not sure which of these next 2 lines are needed
             agent.WallAvoidDirection = Vector2.zero;
-            agent.State = AgentState.Stationary;
         }
 
         if(agent.IncreaseWallTimer){
             agent.WallAvoidTimer += Time.deltaTime;
         }
 
-        if (lowestTTCWall != null)
+        // not sure if 2nd condition is necessary
+        if (lowestTTCWall != null && agent.State != AgentState.Stationary)
         {
 
             Vector3 wij = lowestTTCWall.transform.position - agent.transform.position;
@@ -80,7 +80,7 @@ public class WallAvoidanceBehavior : FlockBehavior
 
             if(fc != Vector2.zero){
                 agent.WallAvoidDirection = fc;
-                agent.WallAvoidTimer = 0.0f;
+                //agent.WallAvoidTimer = 0.0f;
             }
 
             if(agent.IncreaseWallTimer){
@@ -89,9 +89,9 @@ public class WallAvoidanceBehavior : FlockBehavior
 
             return fc;
             //return Vector2.Perpendicular(wij2);
-        } else{
+        }// else{
            // agent.WallAvoidDirection = Vector2.zero;
-        }
+        //}
 
         if(agent.IncreaseWallTimer){
             return agent.WallAvoidDirection;
