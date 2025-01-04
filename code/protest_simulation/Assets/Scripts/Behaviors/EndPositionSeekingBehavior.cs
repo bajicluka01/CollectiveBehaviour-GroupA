@@ -22,6 +22,13 @@ public class EndPositionSeekingBehavior : FlockBehavior
         //TODO 
         //we need some logic to make the agent give up if it can't reach desired position (either because a building or barricade is in the way)
 
+        RaycastHit2D hit = CheckPath(agent.transform.position, agent.DesiredPosition);
+        if (hit.collider != null) {
+            // Path is obstructed, calculate perpendicular movement
+            Vector2 moveDirection = GetPerpendicularMove(agent.transform.position, hit);
+            return moveDirection * agent.DesiredSpeed;
+        }
+
         if (agent.OnDesiredPosition())
         {
             agent.State = AgentState.Stationary;
@@ -111,5 +118,54 @@ public class EndPositionSeekingBehavior : FlockBehavior
         
         //not quite sure what to do here, maybe simply no movement?
         return new Vector2(center.x, center.y);
+    }
+
+    // Check if the path from the agent until the desired position is clear (doesn't have any buldings between)
+    RaycastHit2D CheckPath(Vector2 start, Vector2 end) {
+        return Physics2D.Raycast(start, end - start, Vector2.Distance(start, end), LayerMask.GetMask("map"));
+    }
+
+    Vector2 AdjustDesiredPosition(Vector2 start, Vector2 target, Vector2 agentPosition, RaycastHit2D initialHit) {
+        // Start by checking perpendicular directions
+        Vector2 perpMove = GetPerpendicularMove(agentPosition, initialHit);
+
+        // Try to move perpendicularly for a certain distance or until a clear path to the target is found
+        float sideStepDistance = 5f; // Distance to step to the side
+        Vector2 newTarget = agentPosition + perpMove * sideStepDistance;
+        RaycastHit2D hit = Physics2D.Raycast(newTarget, target - newTarget, Vector2.Distance(newTarget, target), LayerMask.GetMask("map"));
+
+        int maxAttempts = 10;
+        while (hit.collider != null && maxAttempts > 0) {
+            // Continue moving perpendicularly if the direct path remains blocked
+            newTarget += perpMove * sideStepDistance;
+            hit = Physics2D.Raycast(newTarget, target - newTarget, Vector2.Distance(newTarget, target), LayerMask.GetMask("map"));
+            maxAttempts--;
+        }
+
+        if (maxAttempts == 0) {
+            // If all attempts fail, return a position close to the last checked position but ensure it's not inside a building
+            return newTarget - perpMove * sideStepDistance; // Step back to ensure it's not inside an obstacle
+        }
+
+        // If a clear path is found, move slightly towards the target to help align back on course
+        return newTarget + (target - newTarget).normalized * sideStepDistance * 0.5f;
+    }
+
+    Vector2 GetPerpendicularMove(Vector2 agentPosition, RaycastHit2D hit) {
+        // Determine the perpendicular direction (either left or right)
+        Vector2 perpDirection = Vector2.Perpendicular(hit.normal).normalized;
+
+        // Check which perpendicular direction is more open
+        RaycastHit2D hitLeft = Physics2D.Raycast(agentPosition, perpDirection, 5f, LayerMask.GetMask("map"));
+        RaycastHit2D hitRight = Physics2D.Raycast(agentPosition, -perpDirection, 5f, LayerMask.GetMask("map"));
+
+        if (hitLeft.collider != null && hitRight.collider == null) {
+            return -perpDirection;  // Move right
+        } else if (hitRight.collider != null && hitLeft.collider == null) {
+            return perpDirection;  // Move left
+        } else {
+            // If both directions are blocked or open, choose a default direction or use another logic to decide
+            return Random.value > 0.5f ? perpDirection : -perpDirection;
+        }
     }
 }

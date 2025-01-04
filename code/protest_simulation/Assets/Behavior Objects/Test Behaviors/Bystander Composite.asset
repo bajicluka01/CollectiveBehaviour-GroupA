@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Bystander Composite
   m_EditorClassIdentifier: 
   behaviors:
-  - {fileID: 11400000, guid: 34612594ca23a094d94d1c9ba70db4d6, type: 2}
   - {fileID: 11400000, guid: 8340b777732d67a46a0590e1a664b865, type: 2}
+  - {fileID: 11400000, guid: 8d42844f0fd44431ca7cda010942c494, type: 2}
   weights:
-  - 0.1
+  - 50
   - 1
   smoothing: 0.01
