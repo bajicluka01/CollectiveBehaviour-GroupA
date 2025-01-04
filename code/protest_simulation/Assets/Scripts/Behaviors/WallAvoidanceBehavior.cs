@@ -15,10 +15,14 @@ public class WallAvoidanceBehavior : FlockBehavior
 
         Debug.Log("Wall avoid timer: "+ agent.WallAvoidTimer);
 
-        if(agent.WallAvoidTimer > 1.0f){
+        if(agent.WallAvoidTimer > 0.5f){
             agent.WallAvoidTimer = 0.0f;
             agent.IncreaseWallTimer = false;
-            //agent.WallAvoidDirection = Vector2.zero;
+
+            //TODO
+            //not sure which of these next 2 lines are needed
+            agent.WallAvoidDirection = Vector2.zero;
+            agent.State = AgentState.Stationary;
         }
 
         if(agent.IncreaseWallTimer){
