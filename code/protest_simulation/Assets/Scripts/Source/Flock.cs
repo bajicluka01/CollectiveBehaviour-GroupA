@@ -1,9 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class Flock : MonoBehaviour {
+
+    // this timer decreases till it reached zero
+    // once the timer reaches zero the leader is choosen
+    // this process is then repeated
+    float timeToLeaderIdentification;
+
 
     public FlockAgent agentPrefab;
     readonly List<FlockAgent> agents = new();
@@ -34,13 +41,23 @@ public class Flock : MonoBehaviour {
     public FlockBehavior leaderBehavior;
     public FlockBehavior stationaryProtesterBehavior;
     public FlockBehavior inMotionProtesterBehavior;
+    public FlockBehavior herdProtesterBehavior;
+    
     public FlockBehavior stationaryBystanderBehavior;
     public FlockBehavior inMotionBystanderBehavior;
+    public FlockBehavior herdBystanderBehavior;
 
     public bool manualLeaderMovement = false;
+    [Range(0,3)]
+    public float leaderIdentificationTimeInterval = 10f;
+
+    public bool showUI;
 
     void Start() 
     {
+        // leader identificaiton initialization
+        timeToLeaderIdentification = leaderIdentificationTimeInterval; 
+
         // to avoid calculating squares every time 
         squareMaxSpeed = maxSpeed * maxSpeed;
         squareNeighborRadius = neighborRadius * neighborRadius;
@@ -50,11 +67,6 @@ public class Flock : MonoBehaviour {
         {
             CreateNewAgent(agentPrefab, agents, protestorStartingCount, "Agent " + i);
         }
-        // TODO: remove this. this if only for the leader testing purposes -Nik
-        //keep it, but add logic based on manualLeaderMovement -Luka
-        FlockAgent lastAgent = agents.Last();
-        lastAgent.Role = AgentRole.Leader;
-        lastAgent.manualMovement = manualLeaderMovement;
 
         TextFieldManager.Initialize();
     }
@@ -89,12 +101,48 @@ public class Flock : MonoBehaviour {
         );
     }
 
+    void HandleLeaderSelection()
+    {
+        if (timeToLeaderIdentification > 0)
+        {
+            timeToLeaderIdentification -= 0.1f * Time.deltaTime;
+            
+            // this inner if is called only once when the time to leader identification reaches zero 
+            if (timeToLeaderIdentification <= 0)
+            {
+                List<FlockAgent> protesters = agents.Where(agent => agent.Role == AgentRole.Protester).ToList();
+                FlockAgent selectedLeader = SelectRandomAgent(protesters);  
+                selectedLeader.Role = AgentRole.Leader;
+                selectedLeader.manualMovement = manualLeaderMovement;
+            }
+        }
+    }
+
+    // resets the leader identification timer to a random float between timeInterval/2 and timeinterval
+    // this method is called by the behaviour script or the agent in order to reset the leader selection process
+    public void ResetLeaderIdentificationTimer()
+    {
+        timeToLeaderIdentification = UnityEngine.Random.Range(leaderIdentificationTimeInterval/2, leaderIdentificationTimeInterval);
+    }
+
+    FlockAgent SelectRandomAgent(List<FlockAgent> agentGroup)
+    {
+        return agentGroup.ElementAt(UnityEngine.Random.Range(0,agentGroup.Count()));
+    }
+
     void Update() 
     {
+        // Handle the leader selection process
+        HandleLeaderSelection();
+        
+        // Move all agents
         MoveAllAgents(agents);
 
         // Change UI legend based on the number of agents
-        ChangeUILegend();
+        if(showUI)
+        {
+            ChangeUILegend();
+        }
     }
 
     void MoveAllAgents(List<FlockAgent> agents)
@@ -126,6 +174,8 @@ public class Flock : MonoBehaviour {
         {
             case (AgentRole.Leader, _):
                 move = leaderBehavior.CalculateMove(agent, this); 
+                // TODO: Luka explain this 
+                // how should this work i am confused
                 agent.manualMovement = manualLeaderMovement; //maybe not the most elegant place for this, but I didn't wanna put an unnecessary if in MoveAllAgents
                 break;
             case (AgentRole.Protester, AgentState.inMotion):
@@ -134,11 +184,18 @@ public class Flock : MonoBehaviour {
             case (AgentRole.Protester, AgentState.Stationary):
                 move = stationaryProtesterBehavior.CalculateMove(agent, this); 
                 break;
+            case (AgentRole.Protester, AgentState.HerdMode):
+                move = herdProtesterBehavior.CalculateMove(agent, this); 
+                break;
+
             case (AgentRole.Bystander, AgentState.inMotion):
                 move = inMotionBystanderBehavior.CalculateMove(agent, this); 
                 break;
             case (AgentRole.Bystander, AgentState.Stationary):
                 move = stationaryBystanderBehavior.CalculateMove(agent, this); 
+                break;
+            case (AgentRole.Bystander, AgentState.HerdMode):
+                move = herdBystanderBehavior.CalculateMove(agent, this); 
                 break;
         }
         move*=driveFactor;
