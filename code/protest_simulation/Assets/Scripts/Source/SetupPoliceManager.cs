@@ -61,7 +61,7 @@ public class SetupPhaseManager : MonoBehaviour
         // I want the number of agents to depend on the distance between the initial and final positions
         int numberOfAgents = Mathf.CeilToInt(Vector2.Distance(initialPosition, finalPosition) / 2);
 
-        Debug.Log("[SetupPoliceManager] numberOfAgents: " + numberOfAgents);
+        //Debug.Log("[SetupPoliceManager] numberOfAgents: " + numberOfAgents);
 
         // Calculate the direction vector between the initial and final positions
         Vector2 direction = (finalPosition - initialPosition).normalized;

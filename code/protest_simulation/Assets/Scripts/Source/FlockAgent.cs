@@ -34,6 +34,30 @@ public class FlockAgent : MonoBehaviour
 
     float recruitmentProb = 0f;
 
+    // wall avoidance
+    float wallAvoidTimer = 0.0f;
+    bool increaseWallTimer = false;
+    Vector2 wallAvoidDirection;
+
+    public float WallAvoidTimer
+    {
+        get { return wallAvoidTimer; }
+        set { wallAvoidTimer = value; }
+    }
+
+    public bool IncreaseWallTimer
+    {
+        get { return increaseWallTimer; }
+        set { increaseWallTimer = value; }
+    }
+
+    public Vector2 WallAvoidDirection
+    {
+        get { return wallAvoidDirection; }
+        set { wallAvoidDirection = value; }
+    }
+    //end of wall avoidance
+
     public float Restlessness
     {
         get { return restlessness; }
