@@ -24,6 +24,8 @@ public class FlockAgent : MonoBehaviour
 
     // agent characteristics
     float restlessness = 0f;
+    float leaderIdentificationParameter = 0.01f;
+    float leaderContagion = 0f;
 
     float recruitmentTimer = 0f;
     float defectionTimer = 0f;
@@ -211,7 +213,26 @@ public class FlockAgent : MonoBehaviour
             }
         }
 
-        //TODO add contagion for leader self-identification
+        //leader contagion (self-identification)
+        if (role == AgentRole.Protester)
+        {
+            if (UnityEngine.Random.Range(0, 1f) < leaderIdentificationParameter) 
+            {
+                SetAgentRole(AgentRole.Leader);
+            }
+        }
+        //TODO add some kind of a timer to this and determine criteria for success/failure (e.g. number of followers gathered)
+        //which probably means we need to add a probability for protesters following leader as well, because they shouldn't just all do it blindly whenever they see one
+
+
+        //self-deidentification
+        //in my opinion this should happen when the leader has very few followers over a period of time (i.e. he gives up after a while if he doesn't accomplish much)
+        if (role == AgentRole.Leader)
+        {
+            LookAround(150); //maybe do this periodically, not every time
+            float followers = visibleProtesters.Count;
+            //somehow keep track of this number over a period of time
+        }
 
     }
 
