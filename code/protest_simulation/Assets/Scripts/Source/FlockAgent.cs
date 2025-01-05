@@ -188,6 +188,8 @@ public class FlockAgent : MonoBehaviour
 
     int GetLowestIndexOfVisibleAgents(List<FlockAgent> agentGroup)
     {
+        if (agentGroup.Count() == 0)
+            return -1;
         return agentGroup.Select(obj => obj.leaderIndex).Min();
     }
     List<FlockAgent> GetListOfAgentsWithIndex(int index, List<FlockAgent> agentGroup)
