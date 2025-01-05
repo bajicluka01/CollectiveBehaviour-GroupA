@@ -185,6 +185,7 @@ public class SetupPhaseManager : MonoBehaviour
         var agents = new List<GameObject>();
         float lineLength = Vector2.Distance(initial, final);
         int agentCount = Mathf.Clamp(Mathf.CeilToInt(lineLength / 2), 0, maxPoliceCount - activePoliceAgents.Count);
+        
         Vector2 direction = (final - initial).normalized;
         float spacing = lineLength / Mathf.Max(agentCount, 1);
 
@@ -213,7 +214,7 @@ public class SetupPhaseManager : MonoBehaviour
     {
         Vector2 initial = line.initialPosition;
         Vector2 final = line.finalPosition;
-        List<GameObject> lineAgents = line.policeAgents;
+        List<GameObject> lineAgents = line.policeAgents ?? new List<GameObject>();
 
         // Define the resolution and thickness of the checks
         float resolution = 0.1f; // Spacing between checks
@@ -238,16 +239,19 @@ public class SetupPhaseManager : MonoBehaviour
             {
                 if (collider == null) continue;
 
-                // Exclude police agents belonging to the current line
                 GameObject obj = collider.gameObject;
+
+                // Exclude police agents belonging to the current line
                 if (lineAgents.Contains(obj)) continue;
 
-                // Detect other objects
-                if (!(obj.GetComponent<FlockAgent>().Role == AgentRole.Police)) // Ignore police agents from other lines
-                {
-                    Debug.Log($"Collision detected with object: {obj.name} at {checkPosition}");
-                    return true;
-                }
+                // Check if the object has a FlockAgent component
+                FlockAgent flockAgent = obj.GetComponent<FlockAgent>();
+
+                if (flockAgent != null && flockAgent.Role == AgentRole.Police) continue;
+
+                // If it's not a police agent, treat it as a collision
+                Debug.Log($"Collision detected with object: {obj.name} at {checkPosition}");
+                return true;
             }
         }
 
