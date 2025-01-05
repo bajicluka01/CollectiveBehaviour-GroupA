@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 5987027978688631966, guid: 46497012f7227440ba8872b06e381462, type: 3}
-  protestorStartingCount: 200
+  protestorStartingCount: 1
   driveFactor: 10
   maxSpeed: 3
   neighborRadius: 0.2
@@ -327,6 +327,7 @@ MonoBehaviour:
   inMotionProtesterBehavior: {fileID: 11400000, guid: 8d42844f0fd44431ca7cda010942c494, type: 2}
   stationaryBystanderBehavior: {fileID: 11400000, guid: 4bad7142c65be4b14897c11ca07d67ac, type: 2}
   inMotionBystanderBehavior: {fileID: 11400000, guid: 8d42844f0fd44431ca7cda010942c494, type: 2}
+  manualLeaderMovement: 0
 --- !u!1 &1203668228
 GameObject:
   m_ObjectHideFlags: 0
