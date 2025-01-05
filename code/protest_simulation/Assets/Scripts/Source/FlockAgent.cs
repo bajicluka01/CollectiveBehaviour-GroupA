@@ -15,7 +15,8 @@ public enum AgentRole
 public enum AgentState
 {
     inMotion,
-    Stationary
+    Stationary,
+    HerdMode
 }
 
 [RequireComponent(typeof(Collider2D))]
@@ -24,8 +25,15 @@ public class FlockAgent : MonoBehaviour
 
     // agent characteristics
     float restlessness = 0f;
-    float leaderIdentificationParameter = 0.01f;
-    float leaderContagion = 0f;
+
+    // MEANING OF INDEX:
+    // -1 -> no leader visible
+    // 0 -> leader is visible to the agent
+    // 1 -> there is one agent between the leader and the agent
+    // 2 -> there are two agents between the leader and the agent
+    // ...
+    // this creates a hierarchical structure between the agents
+    int leaderIndex = -1;
 
     float recruitmentTimer = 0f;
     float defectionTimer = 0f;
@@ -58,7 +66,6 @@ public class FlockAgent : MonoBehaviour
             state = value;
         }
     }
-
 
     Flock agentFlock;
     public Flock AgentFlock { get { return agentFlock; } }
@@ -132,10 +139,17 @@ public class FlockAgent : MonoBehaviour
     Rigidbody2D agentRigidBody;
 
     public List<GameObject> allVisibleThings;
-    public List<FlockAgent> visibleAgents; 
+    public List<FlockAgent> visibleAgents;
     public List<FlockAgent> visibleBystanders;
     public List<FlockAgent> visibleProtesters;
-    public List<FlockAgent> visibleLeaders; 
+    public List<FlockAgent> visibleLeaders;
+
+    float leaderAttentionTimer;
+
+    void ResetLeaderAttentionTimer()
+    {
+        leaderAttentionTimer = 0.5f;
+    }
 
     void Start()
     {
@@ -152,32 +166,106 @@ public class FlockAgent : MonoBehaviour
 
     public void CustomUpdate()
     {
-        
+
         allVisibleThings = GroupContext.GetDistinctGameObjectFromHits(GroupContext.GetHits(GetVisibleAgents()));
         visibleAgents = GroupContext.GetFlockAgents(allVisibleThings);
         visibleBystanders = GroupContext.GetBystanders(visibleAgents);
         visibleProtesters = GroupContext.GetProtesters(visibleAgents);
         visibleLeaders = GroupContext.GetLeaders(visibleAgents);
-        CalculateAgentState();
-        // CalculateContagion();
+
+        // leader agent logic here
+        if (role == AgentRole.Leader)
+            CalculateLeaderState();
+
+        // methods specially for protesters and bystanders
+        if (role == AgentRole.Protester || role == AgentRole.Bystander)
+        {
+            CalculateAgentState();
+            // CalculateContagion();
+        }
+    }
+
+
+    int GetLowestIndexOfVisibleAgents(List<FlockAgent> agentGroup)
+    {
+        return agentGroup.Select(obj => obj.leaderIndex).Min();
+    }
+    List<FlockAgent> GetListOfAgentsWithIndex(int index, List<FlockAgent> agentGroup)
+    {
+        return agentGroup.Where(obj => obj.leaderIndex == index).ToList();
+    }
+
+    // calculates how the leader decides if he wants to be the leader
+    void CalculateLeaderState()
+    {
+        // number of agents that have eye contact with leader
+        int num = GetNumberOfAgentsWhoSeeMe();
+
+        // if there are more than 7 people watching the leader the leader is highly motivated
+        if (num > 7)
+            ResetLeaderAttentionTimer();
+        
+        // if there are less than 5 people watching the leader the leader is losing his motivation
+        if (num < 5)
+            leaderAttentionTimer -= 0.04f * Time.deltaTime;
+        
+        // if there are less than 1 peopel watching hte leader the leader is losing motivation even faster
+        if (num < 2)
+            leaderAttentionTimer -= 0.07f * Time.deltaTime;
+
+        // if the attention timer is less than zero the leader stops acting as a leader and becomes a protestor
+        if (leaderAttentionTimer < 0)
+        {
+            // he fees up his spot to let somebody else take over
+            agentFlock.ResetLeaderIdentificationTimer();
+            Role = AgentRole.Protester;
+            manualMovement = false;
+        }
+
     }
 
     void CalculateAgentState()
     {
-        
+
+        // handle stationary
         if (state == AgentState.Stationary)
         {
             restlessness += 0.04f * Time.deltaTime;
             if (restlessness > 1.0f)
             {
+
+                DebugLogAgent0(restlessness);
                 state = AgentState.inMotion;
+                desiredPosition = GenerateNewDesiredPosition();
                 ResetRestlessness();
             }
         }
 
-        if (previousMove != Vector2.zero)
+        // handle in motion
+        if (state == AgentState.inMotion && OnDesiredPosition())
         {
-            state = AgentState.inMotion;
+            desiredPosition = Vector3.zero;
+            state = AgentState.Stationary;
+        }
+
+        // TODO: Nik test this
+        // handle herd mode
+        int lowestVisibleLeaderIndex = GetLowestIndexOfVisibleAgents(visibleAgents);
+        if (visibleLeaders.Count() > 0)
+        {
+            State = AgentState.HerdMode;
+            leaderIndex = 0;
+        }
+        else if (lowestVisibleLeaderIndex != -1)
+        {
+            State = AgentState.HerdMode;
+            leaderIndex = lowestVisibleLeaderIndex + 1;
+        }
+        else
+        {
+            ResetRestlessness();
+            state = AgentState.Stationary;
+            desiredPosition = Vector3.zero;
         }
     }
 
@@ -198,7 +286,7 @@ public class FlockAgent : MonoBehaviour
         {
             defectionTimer = UnityEngine.Random.Range(0, 0.5f);
             defectionProb = DefectionProbability(visibleProtesters.Count(), visibleBystanders.Count(), visibleLeaders.Count());
-            if (UnityEngine.Random.Range(0,100f) < defectionProb * 100)
+            if (UnityEngine.Random.Range(0, 100f) < defectionProb * 100)
             {
                 SetAgentRole(AgentRole.Bystander);
             }
@@ -207,33 +295,11 @@ public class FlockAgent : MonoBehaviour
         {
             recruitmentTimer = UnityEngine.Random.Range(0, 0.5f);
             recruitmentProb = RecruitmentProbability(visibleProtesters.Count(), visibleBystanders.Count(), visibleLeaders.Count());
-            if (UnityEngine.Random.Range(0,100f) < recruitmentProb * 100)
+            if (UnityEngine.Random.Range(0, 100f) < recruitmentProb * 100)
             {
                 SetAgentRole(AgentRole.Protester);
             }
         }
-
-        //leader contagion (self-identification)
-        if (role == AgentRole.Protester)
-        {
-            if (UnityEngine.Random.Range(0, 1f) < leaderIdentificationParameter) 
-            {
-                SetAgentRole(AgentRole.Leader);
-            }
-        }
-        //TODO add some kind of a timer to this and determine criteria for success/failure (e.g. number of followers gathered)
-        //which probably means we need to add a probability for protesters following leader as well, because they shouldn't just all do it blindly whenever they see one
-
-
-        //self-deidentification
-        //in my opinion this should happen when the leader has very few followers over a period of time (i.e. he gives up after a while if he doesn't accomplish much)
-        if (role == AgentRole.Leader)
-        {
-            LookAround(150); //maybe do this periodically, not every time
-            float followers = visibleProtesters.Count;
-            //somehow keep track of this number over a period of time
-        }
-
     }
 
     float DefectionProbability(int protesterCount, int bystanderCount, int leaderCount)
@@ -346,7 +412,7 @@ public class FlockAgent : MonoBehaviour
             }
             angle += visualAngleChange;
         }
-        visibleAgents =  GroupContext.GetFlockAgents(GroupContext.GetDistinctGameObjectFromHits(hits));
+        visibleAgents = GroupContext.GetFlockAgents(GroupContext.GetDistinctGameObjectFromHits(hits));
         visibleProtesters = GroupContext.GetProtesters(visibleAgents);
         visibleBystanders = GroupContext.GetBystanders(visibleAgents);
         visibleLeaders = GroupContext.GetLeaders(visibleAgents);
@@ -358,6 +424,7 @@ public class FlockAgent : MonoBehaviour
         switch (newRole)
         {
             case AgentRole.Leader:
+                ResetLeaderAttentionTimer();
                 ChangeBodyColor(Color.green);
                 break;
             case AgentRole.Protester:
@@ -393,8 +460,108 @@ public class FlockAgent : MonoBehaviour
                     Debug.DrawRay(transform.position, direction, Color.yellow);
                 }
             }
-
         }
+    }
+
+    public int GetNumberOfAgentsWhoSeeMe()
+    {
+        int count = 0;
+        LookAround(180);
+        foreach (FlockAgent protester in visibleProtesters)
+        {
+            if (protester.visibleLeaders.Exists(agent => agent == this))
+                count++;
+        }
+        return count;
+    }
+    
+    // IDEA: here we can take the center (same calculation and everything)
+    // of the flock protestors. So take in the entire flock 
+    //
+    //    (agents.Count(agent => agent.Role == AgentRole.Protester));
+    //    (agents.Count(agent => agent.Role == AgentRole.Bystander));
+    //    (agents.Count(agent => agent.Role == AgentRole.Police));
+    //
+    // the current implementation only takes into consideration the visible agents
+    // on the positive side this is more realistic vision vise
+    // on the other hand this is not more realistic if we take into consideration hearing
+    // given the fact that the protestors are lourder we can easily pinpoint where the sound is coming from
+    Vector3 GenerateNewDesiredPosition()
+    {
+        LookAround(150);
+        List<Vector3> agentPositions = visibleProtesters.Select(protester => protester.transform.position).ToList(); 
+        if (agentPositions.Count() < 1)
+        {
+            float minDistance = UnityEngine.Random.Range(5,10);
+            float maxDistance = UnityEngine.Random.Range(minDistance,20);
+            return GenerateRandomPositionInsideRing(minDistance, maxDistance, transform.position);
+        }
+
+        Vector3 center = agentPositions.Aggregate(Vector3.zero, (curr, vec) => curr + vec) / agentPositions.Count();
+        float distance = agentPositions.OrderByDescending(v => Vector3.Distance(v, center)).First().magnitude;
+        if (Role == AgentRole.Protester)
+        {
+            return GenerateRandomPositionInsideRing(0f, distance, center);
+        }
+        else
+        {
+            float someConst = distance/2;
+            return GenerateRandomPositionInsideRing(distance, distance+someConst, center);
+        }
+    }
+
+    // returns true if point (x,y) lies inside a building, false otherwise
+    bool IsInsideBuilding(float x, float y) 
+    {
+        // TODO: try to make these methods work
+        // these two methods should be more efficient than the loop, but for some reason I can' get them to work)
+
+        // this is the code that should work but is not working
+        //
+        //Collider[] intersecting = Physics.OverlapSphere(new Vector3(x,y,0), 0.01f);
+        //if (intersecting.Length != 0)
+        //    Debug.Log(intersecting.Length);
+        //return intersecting.Length != 0;
+
+        //if (Physics.CheckSphere(new Vector3 (x,y,0), 0.01f))
+        //    Debug.Log(x+" "+ y);
+        //
+
+        // TODO: Luka remove this comment
+        // WHATT!!! for each game object on map -- this loop is insane 
+        // lucky for us it gets checked only once when agent's potisio being generated
+        List<GameObject> walls = GameObject.FindGameObjectsWithTag("map").ToList();
+        foreach (GameObject wall in walls)
+        {
+            if (Vector3.Distance(new Vector3(x,y,0), wall.transform.position) <= 0.1f)
+                return true;
+        }
+        return false;
+    }
+
+    // TODO: Luka remove this comment
+    // Remember what you did with the 1000 loop -> checkout this elegant solution
+    //
+    // so in an alternative universe where we win every lottery in a sequence
+    // this will continue indefinitely
+    // however in that univers that will not matter since we win every lottery :)  
+    Vector3 GenerateRandomPositionInsideRing(float minDistance, float maxDistance, Vector3 center)
+    {
+        float angle = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
+        float randomDistance = UnityEngine.Random.Range(minDistance, maxDistance);
+        float x = center.x + randomDistance * Mathf.Cos(angle);
+        float y = center.y + randomDistance * Mathf.Sin(angle);
+        if (!IsInsideBuilding(x,y))
+            return new (x,y,0);
+        else
+            return GenerateRandomPositionInsideRing(minDistance, maxDistance, center);
+    }
+
+    // this method is for debuggin a single agent
+    void DebugLogAgent0(object text)
+    {
+        if (name == "Agent 0")
+            Debug.Log(text);
     }
 }
 

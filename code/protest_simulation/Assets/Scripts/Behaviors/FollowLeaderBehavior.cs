@@ -8,8 +8,7 @@ public class FollowLeaderBehavior : FlockBehavior
     
     public override Vector2 CalculateMove(FlockAgent agent, Flock flock) 
     {
-        Vector2 result = new();
-        return result;
+        return Vector2.zero;
     }
 
     // this returns the
@@ -18,7 +17,6 @@ public class FollowLeaderBehavior : FlockBehavior
         Vector2 directionVector = leaderAgent.transform.position - protester.transform.position ;
         directionVector.Normalize();
 
-        Debug.Log(directionVector);
         return directionVector;
     }
 }
