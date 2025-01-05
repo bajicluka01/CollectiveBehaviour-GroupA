@@ -10,6 +10,10 @@ public class Flock : MonoBehaviour {
     // once the timer reaches zero the leader is choosen
     // this process is then repeated
     float timeToLeaderIdentification;
+    public float TimeToLeaderIdentification
+    {
+        get {return timeToLeaderIdentification;}
+    }
 
 
     public FlockAgent agentPrefab;
@@ -52,6 +56,8 @@ public class Flock : MonoBehaviour {
     public float leaderIdentificationTimeInterval = 10f;
 
     public bool showUI;
+
+    public bool disableLeader = false;
 
     void Start() 
     {
@@ -101,7 +107,7 @@ public class Flock : MonoBehaviour {
 
     void HandleLeaderSelection()
     {
-        if (timeToLeaderIdentification > 0)
+        if (timeToLeaderIdentification > 0 && !disableLeader)
         {
             timeToLeaderIdentification -= 0.1f * Time.deltaTime;
             
@@ -172,8 +178,6 @@ public class Flock : MonoBehaviour {
         {
             case (AgentRole.Leader, _):
                 move = leaderBehavior.CalculateMove(agent, this); 
-                // TODO: Luka explain this 
-                // how should this work i am confused
                 agent.manualMovement = manualLeaderMovement; //maybe not the most elegant place for this, but I didn't wanna put an unnecessary if in MoveAllAgents
                 break;
             case (AgentRole.Protester, AgentState.inMotion):

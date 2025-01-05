@@ -28,8 +28,11 @@ public class LeaderManualControlMovementBehavior : FlockBehavior
             result.Normalize();
             return result;
         }
-
-        //not quite sure if this is OK
-        return Vector2.zero;
+        else
+        {
+            if (agent.DesiredPosition == Vector3.zero || agent.OnDesiredPosition())
+                agent.DesiredPosition = agent.GenerateNewDesiredPosition();
+            return EndPositionSeekingBehavior.CalculateDesiredPositionWithDesiredSpeedVector(agent);
+        }
     }
 }
