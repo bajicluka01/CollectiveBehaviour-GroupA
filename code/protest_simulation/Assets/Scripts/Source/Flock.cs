@@ -220,13 +220,7 @@ public class Flock : MonoBehaviour {
 
     void ChangeUILegend()
     {
-        Debug.Log("Changing UI Legend");
-        Debug.Log("Protestors: " + agents.Count(agent => agent.Role == AgentRole.Protester));
-        Debug.Log("Bystanders: " + agents.Count(agent => agent.Role == AgentRole.Bystander));
-        Debug.Log("Police: " + agents.Count(agent => agent.Role == AgentRole.Police));
-
         TextFieldManager.setProtestors(agents.Count(agent => agent.Role == AgentRole.Protester));
         TextFieldManager.setBystanders(agents.Count(agent => agent.Role == AgentRole.Bystander));
-        // TextFieldManager.setPolice(agents.Count(agent => agent.Role == AgentRole.Police));
     }
 }

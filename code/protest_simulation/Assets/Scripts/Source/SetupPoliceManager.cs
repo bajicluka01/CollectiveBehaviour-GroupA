@@ -251,7 +251,6 @@ public class SetupPhaseManager : MonoBehaviour
                 if (flockAgent != null && flockAgent.Role == AgentRole.Police) continue;
 
                 // If it's not a police agent, treat it as a collision
-                Debug.Log($"Collision detected with object: {obj.name} at {checkPosition}");
                 return true;
             }
         }
