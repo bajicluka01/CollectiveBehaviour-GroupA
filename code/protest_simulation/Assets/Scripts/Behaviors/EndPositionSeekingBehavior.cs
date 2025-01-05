@@ -23,8 +23,18 @@ public class EndPositionSeekingBehavior : FlockBehavior
         {
             return Vector2.zero;
         }
+        return CalculateDesiredPositionWithDesiredSpeedVector(agent);
+    }
+
+    public static Vector2 CalculateDesiredPositionWithDesiredSpeedVector(FlockAgent agent)
+    {
         Vector2 desiredPositionVector = agent.DesiredPosition - agent.transform.position;
         desiredPositionVector.Normalize();
+        RaycastHit2D hit = Physics2D.Raycast(agent.transform.position, desiredPositionVector, agent.EyesightDistance/4);
+        if (hit && hit.collider.CompareTag("map"))
+        {
+            agent.DesiredPosition = agent.GenerateNewDesiredPosition();
+        }
         return agent.DesiredSpeed*desiredPositionVector - agent.PreviousMove;
     }
 

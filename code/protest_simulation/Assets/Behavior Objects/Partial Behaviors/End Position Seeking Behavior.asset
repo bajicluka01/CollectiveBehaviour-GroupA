@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 380bfb63a1104463bbc55f45d2f19297, type: 3}
-  m_Name: New Leader Manual Control Movement Behavior
+  m_Script: {fileID: 11500000, guid: 4c586a3053ea24e79a5724e2ae3ebb5b, type: 3}
+  m_Name: End Position Seeking Behavior
   m_EditorClassIdentifier: 

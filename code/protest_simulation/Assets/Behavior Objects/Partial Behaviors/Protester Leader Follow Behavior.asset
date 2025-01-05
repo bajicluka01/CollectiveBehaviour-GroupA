@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e5ec5dd456a5492ebac3940d579c5eb, type: 3}
-  m_Name: New Collision Avoidance Behavior
+  m_Script: {fileID: 11500000, guid: 7de582f7d125b4d95bdb94a01eadddb2, type: 3}
+  m_Name: Protester Leader Follow Behavior
   m_EditorClassIdentifier: 
+  isDesiredPositionLeaderDesiredPosition: 0
