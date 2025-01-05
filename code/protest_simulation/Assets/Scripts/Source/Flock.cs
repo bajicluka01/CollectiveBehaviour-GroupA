@@ -67,8 +67,6 @@ public class Flock : MonoBehaviour {
         {
             CreateNewAgent(agentPrefab, agents, protestorStartingCount, "Agent " + i);
         }
-
-        TextFieldManager.Initialize();
     }
 
     void CreateNewAgent(FlockAgent prefab, List<FlockAgent> group, int startingCount, string name)
@@ -229,6 +227,6 @@ public class Flock : MonoBehaviour {
 
         TextFieldManager.setProtestors(agents.Count(agent => agent.Role == AgentRole.Protester));
         TextFieldManager.setBystanders(agents.Count(agent => agent.Role == AgentRole.Bystander));
-        TextFieldManager.setPolice(agents.Count(agent => agent.Role == AgentRole.Police));
+        // TextFieldManager.setPolice(agents.Count(agent => agent.Role == AgentRole.Police));
     }
 }
