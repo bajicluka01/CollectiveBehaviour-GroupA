@@ -20,7 +20,7 @@ public class WallAvoidanceBehavior : FlockBehavior
             agent.IncreaseWallTimer = false;
 
             //TODO
-            //not sure which of these next 2 lines are needed
+            //not sure if this is needed
             agent.WallAvoidDirection = Vector2.zero;
         }
 
