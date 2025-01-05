@@ -34,7 +34,6 @@ public class SetupPhaseManager : MonoBehaviour
         HandleMouseInput();
         HandleDragging();
         HandleRotation();
-        TextFieldManager.setPolice(activePoliceAgents.Count);
     }
 
     private void HandleMouseInput()
@@ -198,7 +197,9 @@ public class SetupPhaseManager : MonoBehaviour
             agent.GetComponent<FlockAgent>().SetAgentRole(AgentRole.Police);
             agents.Add(agent);
             activePoliceAgents.Add(agent);
+            TextFieldManager.setPolice(activePoliceAgents.Count);
         }
+
         return agents;
     }
 
