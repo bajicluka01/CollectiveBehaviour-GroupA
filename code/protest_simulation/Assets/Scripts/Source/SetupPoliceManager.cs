@@ -243,7 +243,7 @@ public class SetupPhaseManager : MonoBehaviour
                 if (lineAgents.Contains(obj)) continue;
 
                 // Detect other objects
-                if (!obj.CompareTag("Police")) // Ignore police agents from other lines
+                if (!(obj.GetComponent<FlockAgent>().Role == AgentRole.Police)) // Ignore police agents from other lines
                 {
                     Debug.Log($"Collision detected with object: {obj.name} at {checkPosition}");
                     return true;
