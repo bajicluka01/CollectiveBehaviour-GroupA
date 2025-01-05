@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 [CreateAssetMenu(menuName = "Flock/Behavior/End position seeking")]
 public class EndPositionSeekingBehavior : FlockBehavior
@@ -47,26 +48,26 @@ public class EndPositionSeekingBehavior : FlockBehavior
         List<Vector3> agentPositions = agent.visibleProtesters.Select(protester => protester.transform.position).ToList(); 
         if (agentPositions.Count() < 1)
         {
-            float minDistance = Random.Range(5,10);
-            float maxDistance = Random.Range(minDistance,20);
-            return GenerateRandomPositionInsideRing(minDistance, maxDistance, agent.transform.position);
+            float minDistance = UnityEngine.Random.Range(5,10);
+            float maxDistance = UnityEngine.Random.Range(minDistance,20);
+            return GenerateRandomPositionInsideRing(minDistance, maxDistance, agent.transform.position, agent.transform.position);
         }
 
         Vector3 center = agentPositions.Aggregate(Vector3.zero, (curr, vec) => curr + vec) / agentPositions.Count();
         float distance = agentPositions.OrderByDescending(v => Vector3.Distance(v, center)).First().magnitude;
         if (agent.Role == AgentRole.Protester)
         {
-            return GenerateRandomPositionInsideRing(0f, distance, center);
+            return GenerateRandomPositionInsideRing(0f, distance, center, agent.transform.position);
         }
         else
         {
             float someConst = distance/2;
-            return GenerateRandomPositionInsideRing(distance, distance+someConst, center);
+            return GenerateRandomPositionInsideRing(distance, distance+someConst, center, agent.transform.position);
         }
     }
 
     //returns true if point (x,y) lies inside a building, false otherwise
-    bool isInsideBuilding(float x, float y) 
+    bool behindOrInBuilding(Vector3 agent_position, float x, float y, float maxDistance) 
     {
         //these two methods should be more efficient than the loop, but for some reason I can' get them to work)
 
@@ -78,35 +79,55 @@ public class EndPositionSeekingBehavior : FlockBehavior
         //if (Physics.CheckSphere(new Vector3 (x,y,0), 0.01f))
         //    Debug.Log(x+" "+ y);
 
+        Vector3 end_point = new();
+        end_point.x = x;
+        end_point.y = y;
+
         List<GameObject> walls = GameObject.FindGameObjectsWithTag("map").ToList();
         foreach (GameObject wall in walls)
         {
             if (Vector3.Distance(new Vector3(x,y,0), wall.transform.position) <= 0.1f)
                 return true;
+
+            Vector3 agentToWallVec = wall.transform.position - agent_position;
+            Vector3 agentToEndPointVec = end_point - agent_position;
+
+            Vector3 agentToProjVec = Vector3.Project(agentToWallVec, agentToEndPointVec);
+            Vector3 projPoint = agent_position + agentToProjVec;
+
+            float agentMaxDistanceFromWall = 10.0f;
+            //calculate distance between the centre of the wall and the line between agent and end position
+            if (Vector3.Distance(projPoint, wall.transform.position) <= agentMaxDistanceFromWall && Vector3.Distance(projPoint, agent_position) <= maxDistance)
+                return true;
+
         }
 
         return false;
     }
 
-    Vector2 GenerateRandomPositionInsideRing(float minDistance, float maxDistance, Vector3 center)
+    Vector2 GenerateRandomPositionInsideRing(float minDistance, float maxDistance, Vector3 center, Vector3 agent_position)
     {
         //just in case we have the worst luck imaginable (with the Random generator)
-        float maxIter = 1000;
+        float maxIter = 10;
         
         for (float i = 0f; i < maxIter; i++) 
         {
             // Generate a random angle
-            float angle = Random.Range(0f, 2f * Mathf.PI);
+            float angle = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
             // Generate a random distance from 0 to maxDistance
-            float randomDistance = Random.Range(minDistance, maxDistance);
+            float randomDistance = UnityEngine.Random.Range(minDistance, maxDistance);
             
             // Calculate the random position using polar coordinates
             float x = center.x + randomDistance * Mathf.Cos(angle);
             float y = center.y + randomDistance * Mathf.Sin(angle);
 
             //check if the position is acceptable
-            if (!isInsideBuilding(x,y))
+            if (!behindOrInBuilding(agent_position,x,y,maxDistance))
                 return new Vector2(x,y);
+
+            //check if a wall is between the agent and the end position
+            //if (!wallInTheWay(x,y))
+            //    return new Vector2(x,y);
         }
         
         //not quite sure what to do here, maybe simply no movement?

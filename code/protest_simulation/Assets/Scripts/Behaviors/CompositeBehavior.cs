@@ -30,7 +30,7 @@ public class CompositeBehavior : FlockBehavior
         {
             Vector2 partialMove = behaviors[i].CalculateMove(agent, flock) * weights[i];
 
-            Debug.Log(i + " "  + partialMove);
+//            Debug.Log(i + " "  + partialMove);
 
             //move+=partialMove;
             //current+= partialMove+" ";
