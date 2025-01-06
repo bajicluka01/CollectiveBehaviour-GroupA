@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7de582f7d125b4d95bdb94a01eadddb2, type: 3}
   m_Name: Protester Leader Follow Behavior
   m_EditorClassIdentifier: 
-  isDesiredPositionLeaderDesiredPosition: 0
+  isDesiredPositionLeaderDesiredPosition: 1
