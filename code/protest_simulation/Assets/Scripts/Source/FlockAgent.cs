@@ -190,7 +190,7 @@ public class FlockAgent : MonoBehaviour
         if (role == AgentRole.Protester || role == AgentRole.Bystander)
         {
             CalculateAgentState();
-            // CalculateContagion();
+            CalculateContagion();
         }
     }
 
@@ -352,16 +352,38 @@ public class FlockAgent : MonoBehaviour
         }
     }
 
-    float DefectionProbability(int protesterCount, int bystanderCount, int leaderCount)
+    float DefectionProbability(float protesterCount, float bystanderCount, float leaderCount)
     {
-        //TODO: add fuction that calculates defection probability based on num_protesters and num_bystanders
-        return 0.8f;
+        //in case we see nothing
+        if (protesterCount == 0 || bystanderCount == 0)
+            return 0f;
+
+        float u1 = 0.5f; //TODO make this a global value (I think)
+        //float u2 = 0.5f;
+        float finalProbability = 0f;
+        float someConst = 0.5f;
+
+        finalProbability = u1 * (protesterCount / (protesterCount+bystanderCount)) * someConst;
+        //if (finalProbability > 1)
+           //Debug.Log(finalProbability);
+        return finalProbability;
     }
 
-    float RecruitmentProbability(int protesterCount, int bystanderCount, int leaderCount)
+    float RecruitmentProbability(float protesterCount, float bystanderCount, float leaderCount)
     {
-        //TODO: add fuction that calculates defection probability based on num_protesters and num_bystanders
-        return 0.2f;
+        //in case we see nothing
+        if (protesterCount == 0 || bystanderCount == 0)
+            return 0f;
+
+        //float u1 = 0.5f; //TODO make this a global value (I think)
+        float u2 = 0.5f;
+        float finalProbability = 0f;
+        float someConst = 2f;
+
+        finalProbability = u2 * (protesterCount / (protesterCount+bystanderCount)) * someConst;
+        //if (finalProbability > 1)
+        //    Debug.Log(finalProbability);
+        return finalProbability;
     }
 
     public void ResetRestlessness()
