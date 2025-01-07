@@ -24,6 +24,7 @@
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{gensymb}
+\usepackage{hyperref}
 \newcommand{\num}[1]{#1}
 
 \graphicspath{{./fig/}}
@@ -93,7 +94,7 @@ Although there are many existing attempts to model protest behaviour, in terms o
 \end{itemize}
 
 \bigskip
-Clements and Fadai \cite{sportsriots} have developed a model that attempts to simulate emotional contagion in the context of a sports riot. Although our problem is slightly different in nature, we do use the same principles of defection and recruitment in order to create approximately realistic transitions from active protesters to bystanders and vice versa, depending on what group the majority of agents in the current field of view of an individual belong to. 
+Clements and Fadai \cite{sportsriots} have developed a model that attempts to simulate emotional contagion in the context of a sports riot. Although our problem is slightly different in nature, we do apply the same principles of defection and recruitment in order to create approximately realistic transitions from active protesters to bystanders and vice versa, depending on what group the majority of agents in the current field of view of an individual belong to. 
 
 \bigskip
 To make simulations appear as realistic as possible, it is necessary to give all agents movement parameters that aim to mimic human behaviour in crowded environments. The forces that impact each agent are described, for instance by Itatani and Pelechano \cite{socialcrowdsimulation} and are divided into: collision avoidance force, wall repulsion force, end-position seeking force, group dynamics force and anticipatory collision avoidance force. 
@@ -112,8 +113,8 @@ In addition to Lemos' subgroups \cite{protests}, we also implemented the concept
 \subsection*{Vision}
 To give our agents awareness of their surroundings, we also need to model vision (example of a visualization is shown in figure \ref{vision}). This consists of two parts: 
 \begin{itemize}
-    \item field of view to model a human's eyesight. Default value is \begin{math}60\degree\end{math}, with a distance of 20 Unity units.
-    \item peripersonal space to model a human's ability to feel a presence outside of their field of view, if the distance is small enough. Default value is \begin{math}300\degree\end{math}, with a distance of 1.7 Unity units.
+    \item field of view to model a human's eyesight. Default angle value is \begin{math}60\degree\end{math}, with a distance of 20 Unity units.
+    \item peripersonal space to model a human's ability to feel a presence outside of their field of view, if the distance is small enough. Default angle value is \begin{math}360\degree\end{math}, with a distance of 1.7 Unity units.
 \end{itemize}
 
 \begin{figure}[H]
@@ -123,35 +124,20 @@ To give our agents awareness of their surroundings, we also need to model vision
 \label{vision}
 \end{figure}
 
+Additionally, we created a function for agents to look around without changing their position (an equivalent of a human turning their head around to observe their surroundings), with a default value of \begin{math}300\degree\end{math} and a distance of 20 Unity units. This function is used in various scenarios, for instance when deciding on a suitable move position, or for a leader to determine how many active protesters surround it at a given moment. 
+
 \subsection*{Movement}
 
-Agents switch between two main states during the course of the simulation: standing still and in-motion. For this purpose we have come up with a restlessness parameter that gradually increases in agents that are standing still and once it reaches a certain threshold, the agent begins to move. To ensure that not all agents start and stop moving at the same time, it is paramount that the restlessness parameter is increased randomly (which based on our observations of various protest footage is the case for humans as well). 
+Agents switch between two main states during the course of the simulation: standing still and in-motion. For this purpose we have come up with a restlessness parameter that gradually increases in agents that are standing still and once it reaches a certain threshold, the agent begins to move. To ensure that not all agents start and stop moving at the same time, it is paramount that the restlessness parameter is increased randomly (which based on our observations of various protest footage is the case for humans as well - perfectly synchronized behaviour is exceedingly rare). 
 
 \bigskip
-We deviate from Itatani \cite{socialcrowdsimulation} when it comes to End-Position-Seeking-Force, because the nature of our problem is considerably different. Our agents do not have an end position per se, therefore we have to set this value either to the position of the leader (in case a particular agent is currently following the leader), or an arbitrary nearby point in space (if an agent is not attached to the leader). The point in space is calulated differently for bystenders and protesters, since their movements typically have inherently different purposes: bystanders tend to move away from the heated crowd, while the active protesters usually attempt to join in. 
+We deviate from Itatani \cite{socialcrowdsimulation} when it comes to End-Position-Seeking-Force, because the nature of our problem is considerably different. Our agents do not have an end position per se, therefore we have to set this value either to the position of the leader (in case a particular agent is currently following the leader), or an arbitrary nearby point in space (if an agent is not attached to the leader). The point in space is calculated differently for bystanders and protesters, since their movements typically have inherently different purposes: bystanders tend to move away from the heated crowd, while the active protesters usually attempt to join in. 
 
+\subsection*{Leader Following Behaviour and hierarchy} 
+
+There are two possible approaches for selecting the leader: a simulation can already start with a pre-defined leader, or leaders can emerge spontaneously at runtime. In both cases, protester agents that see a leader in their field of view start to follow it, thus creating an equivalent of herd mentality. Importantly, even protesters who do not directly see the leader, but merely see other protesters following, can join in as well, which effectively forms a leader hierarchy. When a leader disappears (either de-identifies itself or exits the field of view of closest followers), the rest of the herd will eventually stop following as well. 
 
 \section*{Results}
-
-So far we have implemented a simulation that incorporates four groups of agents in the same scene and we have defined different movement and interaction parameters for each of them. The agents are shown in figure, placed in an environment that is essentially a Unity representation of topological map of a portion of Ljubljana (shown in figure \ref{fig2}). We have decided to focus on an area with two main squares and a few narrow streets in-between and around them, in order to observe crowd behavior in different sized environments. We have also calculated an approximate amount of agents that could realistically fit into a square of this size. 
-
-\begin{figure}[H]
-\centering
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.95\columnwidth]{finalmap_rotated.png}
-  \caption{Google map image without labels}
-  \label{fig:sub3}
-\end{subfigure}%
-\begin{subfigure}{.5\textwidth}
-  \centering
-  \includegraphics[width=0.95\columnwidth]{fullmap.png}
-  \caption{Generated map in Unity}
-  \label{fig:sub4}
-\end{subfigure}
-\caption{Example of a transformation of a Google map image into a Unity map. The rotation was added to make the simulation more easy to observe.}
-\label{fig2}
-\end{figure}
 
 The simulation is designed to start with a fixed number of agents (default value is 200), one being the leader, the rest being randomly distributed between protesters and bystanders, as well as randomly positioned on the map. Additionally, the user can manually place a certain amount of police agents into the scene (upper bound is set to 50 by default) in straight lines to simulate barricades. 
 
@@ -169,16 +155,14 @@ One of the principal observations is that the end-position-seeking-behaviour cor
 \begin{subfigure}{.5\textwidth}
   \centering
   \includegraphics[width=0.95\columnwidth]{after.png}
-  \caption{State after several end-position-seeking-behaviour iterations}
+  \caption{State after end-position-seeking-behaviour}
   \label{fig:sub2}
 \end{subfigure}
 \caption{Example of the effects of end-position-seeking-behaviour.}
 \label{fig3}
 \end{figure}
 
-\bigskip
-A hierarchy of leaders emerges spontaneously. Active protesters identify themselves as leaders with a very low probability and keep the role only a big enough number of surrounding agents begins to follow them. We use emotional contagion for deidentification in a similar manner as well. 
-
+A hierarchy of leaders emerges spontaneously. Active protesters identify themselves as leaders with a very low probability and keep the role only a big enough number of surrounding agents begins to follow them. We use emotional contagion for de-identification in a similar manner as well. 
 
 \section*{Discussion}
 
@@ -190,6 +174,7 @@ Most of the goals of the project were accomplished successfully, however we prop
 \item introducing some uncertainty into vision might further improve the realism of the simulation - an agent should occasionally incorrectly recognize a protester as a bystander or vice versa, with a low, but non-zero probability. 
 \end{itemize}
 
+The entire code and other materials related to the project are publicly available at \url{https://github.com/bajicluka01/CollectiveBehaviour-GroupA}.
 
 \acknow{NČ implemented agent movement, vision and interaction between different groups, PNM created the map and implemented the police agents, PM implemented transitions between groups (emotional contagion) and improved the visualization, LB did image processing for the map, implemented the baseline model and wrote the reports}
 \showacknow % Display the acknowledgments section
