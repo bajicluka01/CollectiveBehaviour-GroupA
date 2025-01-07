@@ -26,8 +26,8 @@ The purpose of our project is to model the behaviour of a crowd during a protest
 
 - End-Position-Seeking-Behaviour forms a concentrated mass of agents in the center of a protest, while the bystanders tend to move towards the perimeter.
 - Active protesters follow the leader as it appears in their field of view.
-- Emotional contagion causes agents to switch their state depending on their surroundings. 
-- A hierarchy of leaders forms when a leader is identified and disperses when the leader either de-identifies itself or exits other protesters' fields of view.
+- Emotional contagion causes agents to occasionally switch their state depending on their surroundings. 
+- A hierarchy of leaders forms when a leader is identified and disperses when the leader either unidentifies itself (i.e. loses motivation) or exits other protesters' fields of view.
 
 ### References
 
