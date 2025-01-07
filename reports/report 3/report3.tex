@@ -101,7 +101,7 @@ To make simulations appear as realistic as possible, it is necessary to give all
 
 \section*{Methods}
 
-Implementation of the model was done in Unity, in a 2-dimensional space observed from bird's-eye perspective. While creating the topological map of Ljubljana into which the agents will later be placed, we had to ensure the correct scale and proportions. We used Google Maps for this step and we took into account the estimated maximum numbers of people that can fit into spaces of particular dimensions. In other words, we attempted to create an environment that's as realistic as possible, so that the obtained results will potentially be useful in various practical applications. 
+In this section we discuss our implementation of the crucial subproblems required to make the simulation appear as realistic as possible. 
 
 \subsection*{Subgroups}
 In addition to Lemos' subgroups \cite{protests}, we also implemented the concept of a leader and for this purpose we divided the simulation into two modes:
@@ -136,6 +136,10 @@ We deviate from Itatani \cite{socialcrowdsimulation} when it comes to End-Positi
 \subsection*{Leader Following Behaviour and hierarchy} 
 
 There are two possible approaches for selecting the leader: a simulation can already start with a pre-defined leader, or leaders can emerge spontaneously at runtime. In both cases, protester agents that see a leader in their field of view start to follow it, thus creating an equivalent of herd mentality. Importantly, even protesters who do not directly see the leader, but merely see other protesters following, can join in as well, which effectively forms a leader hierarchy. When a leader disappears (either de-identifies itself or exits the field of view of closest followers), the rest of the herd will eventually stop following as well. 
+
+\subsection*{Emotional contagion}
+
+For the purpose of transitioning between protesters and bystanders (both ways) we modify Clements' formula to fit our perception model. 
 
 \section*{Results}
 
