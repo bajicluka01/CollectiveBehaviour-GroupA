@@ -355,35 +355,35 @@ public class FlockAgent : MonoBehaviour
     float DefectionProbability(float protesterCount, float bystanderCount, float leaderCount)
     {
         //in case we see nothing
-        if (protesterCount == 0 || bystanderCount == 0)
+        if (bystanderCount == 0)
             return 0f;
 
-        float u1 = 0.5f; //TODO make this a global value (I think)
-        //float u2 = 0.5f;
-        float finalProbability = 0f;
-        float someConst = 0.5f;
-
-        finalProbability = u1 * (protesterCount / (protesterCount+bystanderCount)) * someConst;
-        //if (finalProbability > 1)
-           //Debug.Log(finalProbability);
-        return finalProbability;
+        float motility = 100f; //mild unrest according to Clements
+        float u2 = 0.5f; 
+        float someConst = 0.53f;
+        //Debug.Log(motility/(motility+bystanderCount) * someConst);
+        if (u2 >= motility/(motility+bystanderCount) * someConst)
+        {
+            return 0.2f; //to make defection build up with slowly with time, return less than 1
+        }
+        return 0f;
     }
 
     float RecruitmentProbability(float protesterCount, float bystanderCount, float leaderCount)
     {
         //in case we see nothing
-        if (protesterCount == 0 || bystanderCount == 0)
+        if (protesterCount == 0)
             return 0f;
 
-        //float u1 = 0.5f; //TODO make this a global value (I think)
-        float u2 = 0.5f;
-        float finalProbability = 0f;
-        float someConst = 2f;
-
-        finalProbability = u2 * (protesterCount / (protesterCount+bystanderCount)) * someConst;
-        //if (finalProbability > 1)
-        //    Debug.Log(finalProbability);
-        return finalProbability;
+        float motility = 100f; //mild unrest according to Clements
+        float u1 = 0.5f; 
+        float someConst = 0.53f;
+        Debug.Log(motility/(motility+protesterCount) * someConst);
+        if (u1 >= motility/(motility+protesterCount) * someConst)
+        {
+            return 0.2f; //to make recruitment build up with slowly with time, return less than 1
+        }
+        return 0f;
     }
 
     public void ResetRestlessness()
