@@ -128,41 +128,6 @@ public class FlockAgent : MonoBehaviour
 
     float coliderRadius;
     public float ColiderRadius { get { return coliderRadius; } }
-    float eyesightDistance = 24.0f;
-    public float EyesightDistance
-    {
-        get { return eyesightDistance; }
-        set
-        {
-            visualAngleChange = CalculateRayCastAngleChange(coliderRadius, value);
-            eyesightDistance = value;
-        }
-    }
-
-    float peripersonalDistance = 1.7f;
-    public float PeripsersonalDistance
-    {
-        get { return peripersonalDistance; }
-        set
-        {
-            personalSpaceAngleChange = CalculateRayCastAngleChange(coliderRadius, value);
-            peripersonalDistance = value;
-        }
-    }
-
-    float fov = 60f;
-    public float Fov
-    {
-        get { return fov; }
-        set
-        {
-            fov = value;
-        }
-    }
-
-    float visualAngleChange;
-    float personalSpaceAngleChange;
-
     Vector2 previousMove;
     public Vector2 PreviousMove { get { return previousMove; } }
 
@@ -190,8 +155,6 @@ public class FlockAgent : MonoBehaviour
         desiredSpeed = 0f;
         CircleCollider2D colider = GetComponent<CircleCollider2D>();
         coliderRadius = colider.radius;
-        visualAngleChange = CalculateRayCastAngleChange(coliderRadius, eyesightDistance);
-        personalSpaceAngleChange = CalculateRayCastAngleChange(coliderRadius, peripersonalDistance);
         SetAgentRole(role);
         agentRigidBody = GetComponent<Rigidbody2D>();
         restlessness = UnityEngine.Random.Range(0f, 1f);
@@ -456,43 +419,36 @@ public class FlockAgent : MonoBehaviour
         previousMove = newVelocity;
     }
 
-    float CalculateRayCastAngleChange(float humanRadius, float desiredDistance)
-    {
-        float desiredDistanceSquared = Mathf.Pow(desiredDistance, 2);
-        float cosTheta = (2 * desiredDistanceSquared - Mathf.Pow(humanRadius * 2, 2)) / (2 * desiredDistanceSquared);
-        float angle = Mathf.Acos(cosTheta) * Mathf.Rad2Deg;
-        return angle / 4;
-    }
-
+    
     public List<(RaycastHit2D, Vector2)> GetVisibleAgents()
     {
         List<(RaycastHit2D, Vector2)> visibleObjects = new();
-        Vector2 direction = transform.rotation * Vector2.up * eyesightDistance;
+        Vector2 direction = transform.rotation * Vector2.up * agentFlock.eyesightDistance;
         float angle = 0f;
-        while (angle < fov)
+        while (angle < agentFlock.flockFOV)
         {
             if (angle == 0f)
             {
-                visibleObjects.Add((Physics2D.Raycast(transform.position, direction, eyesightDistance), direction));
+                visibleObjects.Add((Physics2D.Raycast(transform.position, direction, agentFlock.eyesightDistance), direction));
             }
             else
             {
                 Vector2 positiveVector = Numbers.Rotate2D(direction, angle);
                 Vector2 negativeVector = Numbers.Rotate2D(direction, -angle);
-                visibleObjects.Add((Physics2D.Raycast(transform.position, positiveVector, eyesightDistance), positiveVector));
-                visibleObjects.Add((Physics2D.Raycast(transform.position, negativeVector, eyesightDistance), negativeVector));
+                visibleObjects.Add((Physics2D.Raycast(transform.position, positiveVector, agentFlock.eyesightDistance), positiveVector));
+                visibleObjects.Add((Physics2D.Raycast(transform.position, negativeVector, agentFlock.eyesightDistance), negativeVector));
             }
-            angle += visualAngleChange;
+            angle += agentFlock.visualAngleChange;
         }
         direction.Normalize();
-        direction *= peripersonalDistance;
+        direction *= agentFlock.personalSpaceDistance;
         while (angle < 180)
         {
             Vector2 positiveVector = Numbers.Rotate2D(direction, angle);
             Vector2 negativeVector = Numbers.Rotate2D(direction, -angle);
-            visibleObjects.Add((Physics2D.Raycast(transform.position, positiveVector, peripersonalDistance), positiveVector));
-            visibleObjects.Add((Physics2D.Raycast(transform.position, negativeVector, peripersonalDistance), negativeVector));
-            angle += personalSpaceAngleChange / 4;
+            visibleObjects.Add((Physics2D.Raycast(transform.position, positiveVector, agentFlock.personalSpaceDistance), positiveVector));
+            visibleObjects.Add((Physics2D.Raycast(transform.position, negativeVector, agentFlock.personalSpaceDistance), negativeVector));
+            angle += agentFlock.personalSpaceAngleChange / 4;
         }
         return visibleObjects;
     }
@@ -503,19 +459,19 @@ public class FlockAgent : MonoBehaviour
     public void LookAround(float lookAroundAngle)
     {
         List<RaycastHit2D> hits = new();
-        Vector2 direction = transform.rotation * Vector2.up * eyesightDistance;
+        Vector2 direction = transform.rotation * Vector2.up * agentFlock.eyesightDistance;
         float angle = 0f;
         while (angle < lookAroundAngle)
         {
-            if (angle == 0f) { hits.Add(Physics2D.Raycast(transform.position, direction, eyesightDistance)); }
+            if (angle == 0f) { hits.Add(Physics2D.Raycast(transform.position, direction, agentFlock.eyesightDistance)); }
             else
             {
                 Vector2 positiveVector = Numbers.Rotate2D(direction, angle);
                 Vector2 negativeVector = Numbers.Rotate2D(direction, -angle);
-                hits.Add(Physics2D.Raycast(transform.position, positiveVector, eyesightDistance));
-                hits.Add(Physics2D.Raycast(transform.position, negativeVector, eyesightDistance));
+                hits.Add(Physics2D.Raycast(transform.position, positiveVector, agentFlock.eyesightDistance));
+                hits.Add(Physics2D.Raycast(transform.position, negativeVector, agentFlock.eyesightDistance));
             }
-            angle += visualAngleChange;
+            angle += agentFlock.visualAngleChange;
         }
         visibleAgents = GroupContext.GetFlockAgents(GroupContext.GetDistinctGameObjectFromHits(hits));
         visibleProtesters = GroupContext.GetProtesters(visibleAgents);
@@ -559,7 +515,7 @@ public class FlockAgent : MonoBehaviour
             }
             else
             {
-                if (direction.magnitude > peripersonalDistance + 0.1f)
+                if (direction.magnitude > agentFlock.personalSpaceDistance + 0.1f)
                 {
                     Debug.DrawRay(transform.position, direction, Color.red);
                 }

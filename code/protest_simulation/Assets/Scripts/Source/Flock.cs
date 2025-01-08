@@ -15,7 +15,6 @@ public class Flock : MonoBehaviour {
         get {return timeToLeaderIdentification;}
     }
 
-
     public FlockAgent agentPrefab;
     readonly List<FlockAgent> agents = new();
 
@@ -38,10 +37,6 @@ public class Flock : MonoBehaviour {
     float squareAvoidanceRadius;
     public float SquareAvoidanceRadius { get { return squareAvoidanceRadius; } }
 
-    public float flockFOV = 60f;
-    public float eyesightDistance = 20f;
-    public float personalSpaceDistance = 1.7f;
-
     public FlockBehavior leaderBehavior;
     public FlockBehavior stationaryProtesterBehavior;
     public FlockBehavior inMotionProtesterBehavior;
@@ -62,6 +57,13 @@ public class Flock : MonoBehaviour {
     [Range(0,100)]
     public float smoothMoveFactor = 20;
 
+    public float flockFOV = 60f;
+    public float eyesightDistance = 20f;
+    public float personalSpaceDistance = 1.7f;
+
+    public float personalSpaceAngleChange;
+    public float visualAngleChange;
+     
     void Start() 
     {
         // leader identificaiton initialization
@@ -71,6 +73,11 @@ public class Flock : MonoBehaviour {
         squareMaxSpeed = maxSpeed * maxSpeed;
         squareNeighborRadius = neighborRadius * neighborRadius;
         squareAvoidanceRadius = squareNeighborRadius * avoidanceRadiusMultiplier * avoidanceRadiusMultiplier;
+
+        // calculate the angles
+        personalSpaceAngleChange = CalculateRayCastAngleChange(agentPrefab.GetComponent<CircleCollider2D>().radius,personalSpaceDistance);
+        Debug.Log(personalSpaceDistance);
+        visualAngleChange = CalculateRayCastAngleChange(agentPrefab.GetComponent<CircleCollider2D>().radius,eyesightDistance);
 
         for (int i = 0; i < protestorStartingCount; i++) 
         {
@@ -83,9 +90,6 @@ public class Flock : MonoBehaviour {
         FlockAgent newAgent = InstantiateAgent(prefab, startingCount);
         newAgent.name = name;
         newAgent.tag = "agent";
-        newAgent.Fov = flockFOV;
-        newAgent.EyesightDistance = eyesightDistance;
-        newAgent.PeripsersonalDistance = personalSpaceDistance;
         newAgent.manualMovement = false; // this is only true for leader
 
         // an agent is randomly chosen to be either protester or bystander
@@ -156,11 +160,6 @@ public class Flock : MonoBehaviour {
     {
         foreach(FlockAgent agent in agents)
         {
-            // TODO: once we are done testing we can remove this interchangeable fov and set it
-            // to initiate only on start -- we will debate if this will bring in enough of a speed up
-            agent.Fov = flockFOV;
-            agent.EyesightDistance = eyesightDistance;
-            agent.PeripsersonalDistance = personalSpaceDistance;
             MoveAgent(agent);
         }
     }
@@ -230,4 +229,12 @@ public class Flock : MonoBehaviour {
         TextFieldManager.setProtestors(agents.Count(agent => agent.Role == AgentRole.Protester));
         TextFieldManager.setBystanders(agents.Count(agent => agent.Role == AgentRole.Bystander));
     }
+    float CalculateRayCastAngleChange(float humanRadius, float desiredDistance)
+    {
+        float desiredDistanceSquared = Mathf.Pow(desiredDistance, 2);
+        float cosTheta = (2 * desiredDistanceSquared - Mathf.Pow(humanRadius * 2, 2)) / (2 * desiredDistanceSquared);
+        float angle = Mathf.Acos(cosTheta) * Mathf.Rad2Deg;
+        return angle / 4;
+    }
+
 }

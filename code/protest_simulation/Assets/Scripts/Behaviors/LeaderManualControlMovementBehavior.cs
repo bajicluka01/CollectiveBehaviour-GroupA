@@ -32,7 +32,7 @@ public class LeaderManualControlMovementBehavior : FlockBehavior
         {
             if (agent.DesiredPosition == Vector3.zero || agent.OnDesiredPosition())
                 agent.DesiredPosition = agent.GenerateNewDesiredPosition();
-            return EndPositionSeekingBehavior.CalculateDesiredPositionWithDesiredSpeedVector(agent);
+            return EndPositionSeekingBehavior.CalculateDesiredPositionWithDesiredSpeedVector(agent, flock);
         }
     }
 }

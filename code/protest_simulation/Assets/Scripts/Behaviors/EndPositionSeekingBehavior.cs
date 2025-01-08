@@ -23,26 +23,18 @@ public class EndPositionSeekingBehavior : FlockBehavior
         {
             return Vector2.zero;
         }
-        return CalculateDesiredPositionWithDesiredSpeedVector(agent);
+        return CalculateDesiredPositionWithDesiredSpeedVector(agent, flock);
     }
 
-    public static Vector2 CalculateDesiredPositionWithDesiredSpeedVector(FlockAgent agent)
+    public static Vector2 CalculateDesiredPositionWithDesiredSpeedVector(FlockAgent agent, Flock flock)
     {
         Vector2 desiredPositionVector = agent.DesiredPosition - agent.transform.position;
         desiredPositionVector.Normalize();
-        RaycastHit2D hit = Physics2D.Raycast(agent.transform.position, desiredPositionVector, agent.EyesightDistance/4);
+        RaycastHit2D hit = Physics2D.Raycast(agent.transform.position, desiredPositionVector, flock.eyesightDistance/4);
         if (hit && hit.collider.CompareTag("map"))
         {
             agent.DesiredPosition = agent.GenerateNewDesiredPosition();
         }
         return agent.DesiredSpeed*desiredPositionVector - agent.PreviousMove;
     }
-
-    // TODO: Luka remove this comment
-    // NIK: Don't worry i just moved the methods to the flock agent class
-    // this is because the methods will be used to handle agent state
-    // the implementation before this commit where i moved everything there was kina janky
-    // this is because even a small move caused the agent to pick a nother random position and start moving
-    // resulting in what looked like a mass migration
-    // now we can simply apply more behaviours to even stationary behaviour
 }

@@ -10,9 +10,9 @@ public class KeepPersonalSpaceBehavior : FilteredFlockBehavior
         foreach(FlockAgent neighbor in agent.visibleAgents)
         {
             Vector2 neighborToAgentVector = agent.transform.position - neighbor.transform.position ;
-            if (neighborToAgentVector.magnitude <= agent.PeripsersonalDistance)
+            if (neighborToAgentVector.magnitude <= flock.personalSpaceDistance)
             {
-                Vector2 avoidNeighbor = neighborToAgentVector.normalized / (neighborToAgentVector.magnitude/agent.PeripsersonalDistance);
+                Vector2 avoidNeighbor = neighborToAgentVector.normalized / (neighborToAgentVector.magnitude/flock.personalSpaceDistance);
                 comulativeAvoidance += avoidNeighbor;
             }
         }

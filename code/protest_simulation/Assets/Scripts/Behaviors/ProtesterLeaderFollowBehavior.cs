@@ -39,7 +39,8 @@ public class ProtesterLeaderFollowBehavior : FlockBehavior
             agent.DesiredPosition = Vector2.zero;
         if(agent.DesiredPosition == Vector3.zero)
             return Vector2.zero;
-        return EndPositionSeekingBehavior.CalculateDesiredPositionWithDesiredSpeedVector(agent);
+        Vector2 res = agent.DesiredPosition - agent.transform.position;
+        return res.normalized;
         
     }
 }
