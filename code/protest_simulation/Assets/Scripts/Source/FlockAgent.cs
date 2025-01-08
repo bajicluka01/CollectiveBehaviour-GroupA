@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum AgentRole
@@ -197,6 +198,12 @@ public class FlockAgent : MonoBehaviour
         return agentGroup.Where(obj => obj.leaderIndex == index).ToList();
     }
 
+    public List<FlockAgent> GetListOfAgentsWithIndexHigherOrEqualThan(
+        int index, List<FlockAgent> agentGroup)
+    {
+        return agentGroup.Where(agent => agent.leaderIndex >= index).ToList();
+    }
+
     // calculates how the leader decides if he wants to be the leader
     void CalculateLeaderState()
     {
@@ -262,23 +269,21 @@ public class FlockAgent : MonoBehaviour
         // this means that a leader is present
         if (agentFlock.TimeToLeaderIdentification <= 0)
         {
-            int lowestVisibleLeaderIndex = GetLowestIndexOfVisibleAgents(visibleAgents);
-            if (visibleLeaders.Count() > 0)
+            List<FlockAgent> leaderFollowers = GetListOfAgentsWithIndexHigherOrEqualThan(0, visibleAgents); 
+            if (visibleLeaders.Count() > 0 && Role == AgentRole.Protester)
             {
                 State = AgentState.HerdMode;
                 ChangeHeadColor(Color.yellow);
                 leaderIndex = 0;
             }
-            else if (lowestVisibleLeaderIndex != -1)
+            else if (leaderFollowers.Count() > (visibleAgents.Count()-leaderFollowers.Count()) && leaderIndex == -1)
             {
+                int lowestVisibleLeaderIndex = GetLowestIndexOfVisibleAgents(visibleAgents);
                 State = AgentState.HerdMode;
                 ChangeHeadColor(Color.yellow);
-                leaderIndex = lowestVisibleLeaderIndex + 1;
+                leaderIndex = lowestVisibleLeaderIndex;
             }
-            else if (State == AgentState.HerdMode)
-            {
-                ResetState();
-            }
+            // TODO: MAYBE ADD A STOP CONDITION
         }
         else if (State == AgentState.HerdMode)
         {
@@ -496,7 +501,7 @@ public class FlockAgent : MonoBehaviour
         switch (newRole)
         {
             case AgentRole.Leader:
-                DesiredSpeed = Numbers.NextGaussian(9, 0);
+                DesiredSpeed = Numbers.NextGaussian(6, 2);
                 ResetLeaderAttentionTimer();
                 ChangeBodyColor(Color.green);
                 break;

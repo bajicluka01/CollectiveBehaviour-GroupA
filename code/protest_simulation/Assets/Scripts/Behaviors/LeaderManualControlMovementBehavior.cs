@@ -1,6 +1,6 @@
 using UnityEngine;
-using System.Collections.Generic;
 
+// DO NOT USE THIS BEHAVIOUR IN A COMPOSITE
 [CreateAssetMenu(menuName = "Flock/Behavior/Leader Manual Control")]
 public class LeaderManualControlMovementBehavior : FlockBehavior
 {
@@ -26,13 +26,13 @@ public class LeaderManualControlMovementBehavior : FlockBehavior
                 result += Vector2.left;
             }
             result.Normalize();
-            return result;
+            return result*agent.DesiredSpeed;
         }
         else
         {
             if (agent.DesiredPosition == Vector3.zero || agent.OnDesiredPosition())
                 agent.DesiredPosition = agent.GenerateNewDesiredPosition();
-            return EndPositionSeekingBehavior.CalculateDesiredPositionWithDesiredSpeedVector(agent, flock);
+            return EndPositionSeekingBehavior.CalculateDesiredPositionWithDesiredSpeedVector(agent, flock)*agent.DesiredSpeed;
         }
     }
 }
