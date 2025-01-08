@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  7 JAN 2025 10:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  8 JAN 2025 14:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1624,11 +1624,17 @@ ous protest footage is the
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 139.
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 135.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.64998pt on input line 139.
+(Font)              scaled to size 6.64998pt on input line 135.
 [2{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc} <
 ./vision.png>]
+Overfull \hbox (0.1148pt too wide) in paragraph at lines 138--139
+\T1/lmr/m/n/9 (+19) fol-low-ers), the rest of the herd will even-tu-ally stop f
+ol-low-ing as well, with re-spect to a 
+ []
+
+
 Overfull \hbox (0.1041pt too wide) in paragraph at lines 146--147
 \T1/lmr/m/n/9 (+6) and bystanders, as well as randomly positioned on the map. A
 dditionally, the user can 
@@ -1646,6 +1652,7 @@ File: after.png Graphic file (type png)
 <use after.png>
 Package pdftex.def Info: after.png  used on input line 161.
 (pdftex.def)             Requested size: 167.86462pt x 94.26984pt.
+[3 <./before.png> <./after.png>]
 LaTeX Font Info:    Font shape `T1/phv/b/sc' will be
 (Font)              scaled to size 8.54997pt on input line 184.
 
@@ -1655,7 +1662,7 @@ Overfull \hbox (0.17165pt too wide) in paragraph at lines 184--185
 if-fer-ent 
  []
 
-[3 <./before.png> <./after.png>] (report3.bbl
+(report3.bbl
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
 (Font)              scaled to size 5.69998pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <6> not available
@@ -1684,14 +1691,14 @@ Here is how much of TeX's memory you used:
  51666 multiletter control sequences out of 15000+600000
  641301 words of font info for 216 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 117i,11n,121p,1006b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,11n,121p,1098b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb>
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C
 :/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
 pfb><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr
 o8a.pfb>
-Output written on report3.pdf (4 pages, 969644 bytes).
+Output written on report3.pdf (4 pages, 970395 bytes).
 PDF statistics:
  126 PDF objects out of 1000 (max. 8388607)
  11 named destinations out of 1000 (max. 500000)
