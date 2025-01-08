@@ -39,7 +39,7 @@ public class FlockAgent : MonoBehaviour
     float herdCooldown = 0;
     public float HerdCooldown
     {
-        get {return herdCooldown;}
+        get { return herdCooldown; }
     }
 
     float recruitmentTimer = 0f;
@@ -187,7 +187,7 @@ public class FlockAgent : MonoBehaviour
     void Start()
     {
         agentCollider = GetComponent<Collider2D>();
-        desiredSpeed = 19.3f;
+        desiredSpeed = 0f;
         CircleCollider2D colider = GetComponent<CircleCollider2D>();
         coliderRadius = colider.radius;
         visualAngleChange = CalculateRayCastAngleChange(coliderRadius, eyesightDistance);
@@ -242,15 +242,15 @@ public class FlockAgent : MonoBehaviour
             int num = GetNumberOfAgentsWhoSeeMe();
 
             // if there are more than 7 people watching the leader the leader is highly motivated
-            if (num > 7)
+            if (num > 4)
                 ResetLeaderAttentionTimer();
 
             // if there are less than 5 people watching the leader the leader is losing his motivation
-            if (num < 5)
+            if (num < 2)
                 leaderAttentionTimer -= 0.04f * Time.deltaTime;
 
             // if there are less than 1 peopel watching hte leader the leader is losing motivation even faster
-            if (num < 2)
+            if (num < 1)
                 leaderAttentionTimer -= 0.07f * Time.deltaTime;
 
             // if the attention timer is less than zero the leader stops acting as a leader and becomes a protestor
@@ -320,27 +320,27 @@ public class FlockAgent : MonoBehaviour
         {
             if (leaderIndex >= 0)
             {
-                herdCooldown = leaderIndex + Random.Range(0f,1f); 
+                herdCooldown = leaderIndex + Random.Range(0f, 1f);
                 leaderIndex = -1;
             }
             if (herdCooldown <= 0)
             {
                 ResetState();
             }
-            else 
+            else
             {
-                herdCooldown -= 0.1f*Time.deltaTime;
+                herdCooldown -= 0.1f * Time.deltaTime;
             }
         }
     }
 
     void ResetState()
     {
-                ResetRestlessness();
-                Role = Role;
-                state = AgentState.Stationary;
-                desiredPosition = Vector3.zero;
- 
+        ResetRestlessness();
+        Role = Role;
+        state = AgentState.Stationary;
+        desiredPosition = Vector3.zero;
+
     }
 
     void CalculateContagion()
@@ -448,13 +448,13 @@ public class FlockAgent : MonoBehaviour
         {
             float moveFactor = agentFlock.smoothMoveFactor * Time.deltaTime;
             Vector2 desiredDirectionChange = velocity - previousMove;
-            Vector2 directionChange = desiredDirectionChange.normalized * moveFactor; 
+            Vector2 directionChange = desiredDirectionChange.normalized * moveFactor;
             if (desiredDirectionChange.magnitude > moveFactor)
                 newVelocity = previousMove + directionChange;
         }
-        agentRigidBody.linearVelocity =  newVelocity;
+        agentRigidBody.linearVelocity = newVelocity;
         previousMove = newVelocity;
-   }
+    }
 
     float CalculateRayCastAngleChange(float humanRadius, float desiredDistance)
     {
@@ -529,13 +529,16 @@ public class FlockAgent : MonoBehaviour
         switch (newRole)
         {
             case AgentRole.Leader:
+                DesiredSpeed = Numbers.NextGaussian(20, 5);
                 ResetLeaderAttentionTimer();
                 ChangeBodyColor(Color.green);
                 break;
             case AgentRole.Protester:
+                DesiredSpeed = Numbers.NextGaussian(10, 5);
                 ChangeBodyColor(Color.red);
                 break;
             case AgentRole.Bystander:
+                DesiredSpeed = Numbers.NextGaussian(1, 0.5f);
                 ChangeBodyColor(Color.white);
                 break;
             case AgentRole.Police:
