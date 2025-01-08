@@ -35,6 +35,6 @@ public class EndPositionSeekingBehavior : FlockBehavior
         {
             agent.DesiredPosition = agent.GenerateNewDesiredPosition();
         }
-        return agent.DesiredSpeed*desiredPositionVector - agent.PreviousMove;
+        return desiredPositionVector;
     }
 }

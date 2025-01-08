@@ -24,8 +24,6 @@ public class Flock : MonoBehaviour {
     const float AgentDensity = 0.08f;
 
     [Range(1f, 100f)]
-    public float driveFactor = 10f;
-    [Range(1f, 100f)]
     public float maxSpeed = 5f;
     [Range(0.001f, 10f)]
     public float neighborRadius = 0.2f;
@@ -202,7 +200,6 @@ public class Flock : MonoBehaviour {
                 move = herdBystanderBehavior.CalculateMove(agent, this); 
                 break;
         }
-        move*=driveFactor;
         if (move.sqrMagnitude > squareMaxSpeed) 
         {
             move = move.normalized * maxSpeed;

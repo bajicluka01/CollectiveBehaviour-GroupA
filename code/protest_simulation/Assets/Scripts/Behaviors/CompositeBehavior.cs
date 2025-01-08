@@ -32,7 +32,6 @@ public class CompositeBehavior : FlockBehavior
                 move += partialMove;
             }
         }
-
-        return move.normalized;
+        return move.normalized*agent.DesiredSpeed;
     }
 }

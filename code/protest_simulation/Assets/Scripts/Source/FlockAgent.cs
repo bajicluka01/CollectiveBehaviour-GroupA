@@ -151,6 +151,7 @@ public class FlockAgent : MonoBehaviour
 
     void Start()
     {
+        ChangeHeadColor(Color.black);
         agentCollider = GetComponent<Collider2D>();
         desiredSpeed = 0f;
         CircleCollider2D colider = GetComponent<CircleCollider2D>();
@@ -265,13 +266,13 @@ public class FlockAgent : MonoBehaviour
             if (visibleLeaders.Count() > 0)
             {
                 State = AgentState.HerdMode;
-                ChangeBodyColor(Color.yellow);
+                ChangeHeadColor(Color.yellow);
                 leaderIndex = 0;
             }
             else if (lowestVisibleLeaderIndex != -1)
             {
                 State = AgentState.HerdMode;
-                ChangeBodyColor(Color.yellow);
+                ChangeHeadColor(Color.yellow);
                 leaderIndex = lowestVisibleLeaderIndex + 1;
             }
             else if (State == AgentState.HerdMode)
@@ -300,7 +301,7 @@ public class FlockAgent : MonoBehaviour
     void ResetState()
     {
         ResetRestlessness();
-        Role = Role;
+        ChangeHeadColor(Color.black);
         state = AgentState.Stationary;
         desiredPosition = Vector3.zero;
 
@@ -380,7 +381,17 @@ public class FlockAgent : MonoBehaviour
 
     public void ChangeBodyColor(Color color)
     {
-        Transform body = transform.Find("Capsule");
+        ChangeSpiteColor(color, "Capsule");
+    }
+
+    public void ChangeHeadColor(Color color)
+    {
+        ChangeSpiteColor(color, "Circle");
+    }
+
+    private void ChangeSpiteColor(Color color, string name)
+    {
+        Transform body = transform.Find(name);
         SpriteRenderer sr = body.GetComponent<SpriteRenderer>();
         sr.color = color;
     }
@@ -485,16 +496,16 @@ public class FlockAgent : MonoBehaviour
         switch (newRole)
         {
             case AgentRole.Leader:
-                DesiredSpeed = Numbers.NextGaussian(20, 5);
+                DesiredSpeed = Numbers.NextGaussian(9, 0);
                 ResetLeaderAttentionTimer();
                 ChangeBodyColor(Color.green);
                 break;
             case AgentRole.Protester:
-                DesiredSpeed = Numbers.NextGaussian(10, 5);
+                DesiredSpeed = Numbers.NextGaussian(6, 2);
                 ChangeBodyColor(Color.red);
                 break;
             case AgentRole.Bystander:
-                DesiredSpeed = Numbers.NextGaussian(1, 0.5f);
+                DesiredSpeed = Numbers.NextGaussian(3, 1f);
                 ChangeBodyColor(Color.white);
                 break;
             case AgentRole.Police:
