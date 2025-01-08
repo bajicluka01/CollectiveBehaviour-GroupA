@@ -378,7 +378,7 @@ public class FlockAgent : MonoBehaviour
         float motility = 100f; //mild unrest according to Clements
         float u1 = 0.5f; 
         float someConst = 0.53f;
-        Debug.Log(motility/(motility+protesterCount) * someConst);
+        //Debug.Log(motility/(motility+protesterCount) * someConst);
         if (u1 >= motility/(motility+protesterCount) * someConst)
         {
             return 0.2f; //to make recruitment build up with slowly with time, return less than 1

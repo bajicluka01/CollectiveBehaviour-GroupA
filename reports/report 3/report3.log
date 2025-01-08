@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  8 JAN 2025 14:44
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  8 JAN 2025 18:12
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1635,28 +1635,30 @@ ol-low-ing as well, with re-spect to a
  []
 
 
-Overfull \hbox (0.1041pt too wide) in paragraph at lines 146--147
+Overfull \hbox (0.1041pt too wide) in paragraph at lines 158--159
 \T1/lmr/m/n/9 (+6) and bystanders, as well as randomly positioned on the map. A
 dditionally, the user can 
  []
 
-<before.png, id=77, 1196.21906pt x 671.50874pt>
+<before.png, id=79, 1196.21906pt x 671.50874pt>
 File: before.png Graphic file (type png)
 <use before.png>
-Package pdftex.def Info: before.png  used on input line 155.
+Package pdftex.def Info: before.png  used on input line 167.
 (pdftex.def)             Requested size: 167.86462pt x 94.22575pt.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.59998pt on input line 156.
-<after.png, id=78, 1196.97188pt x 672.26157pt>
+(Font)              scaled to size 7.59998pt on input line 168.
+<after.png, id=80, 1196.97188pt x 672.26157pt>
 File: after.png Graphic file (type png)
 <use after.png>
-Package pdftex.def Info: after.png  used on input line 161.
+Package pdftex.def Info: after.png  used on input line 173.
 (pdftex.def)             Requested size: 167.86462pt x 94.26984pt.
-[3 <./before.png> <./after.png>]
+[3{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
+c}{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.en
+c} <./before.png> <./after.png>]
 LaTeX Font Info:    Font shape `T1/phv/b/sc' will be
-(Font)              scaled to size 8.54997pt on input line 184.
+(Font)              scaled to size 8.54997pt on input line 196.
 
-Overfull \hbox (0.17165pt too wide) in paragraph at lines 184--185
+Overfull \hbox (0.17165pt too wide) in paragraph at lines 196--197
 [] []|\T1/phv/b/sc/9 (+14) con-tri-bu-tions\T1/phv/b/n/9 (+14) .[] \T1/lmr/m/n/
 8 (+14) Nƒ im-ple-mented agent move-ment, vi-sion and in-ter-ac-tion be-tween d
 if-fer-ent 
@@ -1685,22 +1687,25 @@ Package rerunfilecheck Info: File `report3.out' has not changed.
 (rerunfilecheck)             Checksum: 79D0649803C51E4678AD2F2B3EB78ECD;115.
  ) 
 Here is how much of TeX's memory you used:
- 30227 strings out of 474486
- 561224 string characters out of 5743755
+ 30235 strings out of 474486
+ 561354 string characters out of 5743755
  1949542 words of memory out of 5000000
- 51666 multiletter control sequences out of 15000+600000
+ 51670 multiletter control sequences out of 15000+600000
  641301 words of font info for 216 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 117i,11n,121p,1098b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb>
-<C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C
-:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb
-><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.
-pfb><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr
-o8a.pfb>
-Output written on report3.pdf (4 pages, 970395 bytes).
+ 117i,11n,121p,1101b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb
+><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb>
+<C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C
+:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr9.pfb><C:/
+Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmsy9.pfb><C:/U
+sers/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C
+:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb
+><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a
+.pfb>
+Output written on report3.pdf (4 pages, 986592 bytes).
 PDF statistics:
- 126 PDF objects out of 1000 (max. 8388607)
- 11 named destinations out of 1000 (max. 500000)
+ 148 PDF objects out of 1000 (max. 8388607)
+ 13 named destinations out of 1000 (max. 500000)
  81961 words of extra memory for PDF output out of 89155 (max. 10000000)
 

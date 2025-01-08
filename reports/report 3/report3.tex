@@ -131,15 +131,27 @@ Additionally, we created a function for agents to look around without changing t
 Agents switch between two main states during the course of the simulation: standing still and in-motion. For this purpose we have come up with a restlessness parameter that gradually increases in agents that are standing still and once it reaches a certain threshold, the agent begins to move. To ensure that not all agents start and stop moving at the same time, it is paramount that the restlessness parameter is increased randomly (which based on our observations of various protest footage is the case for humans as well - perfectly synchronized behaviour is exceedingly rare). 
 
 \bigskip
-We deviate from Itatani \cite{socialcrowdsimulation} when it comes to End-Position-Seeking-Force, because the nature of our problem is considerably different. Our agents do not have an end position per se, therefore we have to set this value either to the position of the leader (in case a particular agent is currently following the leader), or an arbitrary nearby point in space (if an agent is not attached to the leader). The point in space is calculated differently for bystanders and protesters, since their movements typically have inherently different purposes: bystanders tend to move away from the heated crowd, while the active protesters usually attempt to join in. Therefore the point for protesters is calculated within a circle with a radius equal to the distance of the farthest protester in the field of view, while the point for bystanders is calculated within an annulus spanned by two constants - minDistance and maxDistance (default value for minDistance is between 5 and 10, default value for maxDistance is between minDistance and 20). 
+We deviate from Itatani \cite{socialcrowdsimulation} when it comes to End-Position-Seeking-Force, because the nature of our problem is considerably different. Our agents do not have an end position per se, therefore we have to set this value either to the position of the leader (in case a particular agent is currently following the leader), or an arbitrary nearby point in space (if an agent is not attached to the leader). The point in space is calculated differently for bystanders and protesters, since their movements typically have inherently different purposes: bystanders tend to move away from the heated crowd, while the active protesters usually attempt to join in. Therefore the point for protesters should be placed within a circle with a radius equal to the distance of the farthest protester in the field of view, while the point for bystanders is positioned within an annulus spanned by two constants - minDistance and maxDistance (default value for minDistance is between 5 and 10, default value for maxDistance is between minDistance and 20). 
 
 \subsection*{Leader Following Behaviour and hierarchy} 
 
-There are two possible approaches for selecting the leader: a simulation can already start with a pre-defined leader, or leaders can emerge spontaneously at runtime. In both cases, protester agents that see a leader in their field of view start to follow it, thus creating an equivalent of herd mentality. Importantly, even protesters who do not directly see the leader, but merely see other protesters following, can join in as well, which effectively forms a leader hierarchy. When a leader disappears (either de-identifies itself or exits the field of view of closest followers), the rest of the herd will eventually stop following as well, with respect to a cooldown timer. 
+There are two possible approaches for selecting the leader: a simulation can already start with a pre-defined leader, or leaders can emerge spontaneously at runtime. In both cases, protester agents that see a leader in their field of view start to follow it, thus creating an equivalent of herd mentality. Importantly, even protesters who do not directly see the leader, but merely see other protesters following, can join in as well, which effectively forms a leader hierarchy. When a leader disappears (either unidentifies itself or exits the field of view of closest followers), the rest of the herd will eventually stop following as well, with respect to a cooldown timer. 
 
 \subsection*{Emotional contagion}
 
-For the purpose of transitioning between protesters and bystanders (both ways) we modify Clements' formula to fit our perception model. The probability for the change of states depends on the number of protesters, bystanders and leaders in the field of view. 
+For the purpose of transitioning between protesters and bystanders (both ways) we modify Clements' formulas to fit our perception model: instead of their predefined grid, we use agents' vision to determine neighborhoods for each individual. We also add a constant $c=0.53$ to compensate for the speed of our simulation (i.e. to make the changes observable in real time) into the recruitment condition \ref{formula1} and defection condition \ref{formula2}:
+
+\begin{equation}
+\frac{m}{m+n_p} *c < 0.5
+\label{formula1}
+\end{equation}
+
+\begin{equation}
+\frac{m}{m+n_b}
+\label{formula2}*c < 0.5
+\end{equation}
+
+Value $m$ represents motility rate, which per Clements' mild unrest definition should be set to 100, while values $n_p$ and $n_b$ are defined by the number of nearby protesters and bystanders respectively. 
 
 \section*{Results}
 
@@ -174,7 +186,7 @@ Most of the goals of the project were accomplished successfully, however we prop
 \begin{itemize}
 \item current implementation of the map assumes buildings are the only structure that acts as a repulsive force on the agents. To increase realism, it would be necessary to also include other objects, such as trees, statues, etc.
 \item solving the problem of displaying the agents' dimensions relative to building's dimensions (i.e. how to simultaneously show a big portion of the map while maintaining a clear vision of the agents).
-\item developing an approach for police agents to find more optimal formations (e.g. by using genetic algorithms). 
+\item developing an approach for police agents to find more optimal formations other than static barricade-like structures (e.g. by using genetic algorithms). 
 \item introducing some uncertainty into vision might further improve the realism of the simulation - an agent should occasionally incorrectly recognize a protester as a bystander or vice versa, with a low, but non-zero probability. 
 \end{itemize}
 
