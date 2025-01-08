@@ -7,13 +7,31 @@ using System.Linq;
 public class WallAvoidanceBehavior : FlockBehavior
 {
     readonly float theta = 0.9748f;
+
     public override Vector2 CalculateMove(FlockAgent agent, Flock flock)
     {
         List<GameObject> walls = agent.allVisibleThings.Where(e => e.tag.Equals("map")).ToList();
         GameObject lowestTTCWall = GetLowestTTCWall(agent, walls);
 
-        if (lowestTTCWall != null)
+        Debug.Log("Wall avoid timer: "+ agent.WallAvoidTimer);
+
+        if(agent.WallAvoidTimer > 0.5f){
+            agent.WallAvoidTimer = 0.0f;
+            agent.IncreaseWallTimer = false;
+
+            //TODO
+            //not sure if this is needed
+            agent.WallAvoidDirection = Vector2.zero;
+        }
+
+        if(agent.IncreaseWallTimer){
+            agent.WallAvoidTimer += Time.deltaTime;
+        }
+
+        // not sure if 2nd condition is necessary
+        if (lowestTTCWall != null && agent.State != AgentState.Stationary)
         {
+
             Vector3 wij = lowestTTCWall.transform.position - agent.transform.position;
             Vector3 wu = CalculateWu(wij, agent);
 
@@ -42,7 +60,7 @@ public class WallAvoidanceBehavior : FlockBehavior
             // for now i will just leave this as it is and implement other behaviours first
             // the s parameter needst to be calcluated for groups
             float S = 1.0f;
-            float R = 5.0f;
+            float R = 10.0f;
             //Vector2 fc = S * (1-wij2.sqrMagnitude/R) * wc2final;
             //Vector2 fc = S * Mathf.Abs((1-wij.sqrMagnitude/R)) * wc;
             Vector2 fc = S * (1-wij.sqrMagnitude/R) * wc;
@@ -55,8 +73,28 @@ public class WallAvoidanceBehavior : FlockBehavior
 
             //normalization doesn't seem to change anything
             //fc.Normalize();
+
+            if(agent.WallAvoidTimer == 0.0f){
+                agent.IncreaseWallTimer = true;
+            }
+
+            if(fc != Vector2.zero){
+                agent.WallAvoidDirection = fc;
+                //agent.WallAvoidTimer = 0.0f;
+            }
+
+            if(agent.IncreaseWallTimer){
+                fc = agent.WallAvoidDirection;
+            }
+
             return fc;
             //return Vector2.Perpendicular(wij2);
+        }// else{
+           // agent.WallAvoidDirection = Vector2.zero;
+        //}
+
+        if(agent.IncreaseWallTimer){
+            return agent.WallAvoidDirection;
         }
 
         return Vector2.zero;
