@@ -24,6 +24,7 @@ public class FlockAgent : MonoBehaviour
 
     // agent characteristics
     float restlessness = 0f;
+    float restlessnessUpperbound = 1f;
 
     // MEANING OF INDEX:
     // -1 -> no leader visible
@@ -159,7 +160,7 @@ public class FlockAgent : MonoBehaviour
         coliderRadius = colider.radius;
         SetAgentRole(role);
         agentRigidBody = GetComponent<Rigidbody2D>();
-        restlessness = UnityEngine.Random.Range(0f, 1f);
+        restlessness = Random.Range(0f, restlessnessUpperbound);
     }
 
     public void CustomUpdate()
@@ -250,7 +251,7 @@ public class FlockAgent : MonoBehaviour
         if (state == AgentState.Stationary)
         {
             restlessness += 0.04f * Time.deltaTime;
-            if (restlessness > 1.0f)
+            if (restlessness > restlessnessUpperbound)
             {
 
                 state = AgentState.inMotion;
@@ -262,6 +263,8 @@ public class FlockAgent : MonoBehaviour
         // handle in motion
         if (state == AgentState.inMotion && OnDesiredPosition())
         {
+            if (Role == AgentRole.Bystander)
+                SetCustomBystanderRestlessnessUpperbound();
             desiredPosition = Vector3.zero;
             state = AgentState.Stationary;
         }
@@ -269,14 +272,14 @@ public class FlockAgent : MonoBehaviour
         // this means that a leader is present
         if (agentFlock.TimeToLeaderIdentification <= 0)
         {
-            List<FlockAgent> leaderFollowers = GetListOfAgentsWithIndexHigherOrEqualThan(0, visibleAgents); 
+            List<FlockAgent> leaderFollowers = GetListOfAgentsWithIndexHigherOrEqualThan(0, visibleAgents);
             if (visibleLeaders.Count() > 0 && Role == AgentRole.Protester)
             {
                 State = AgentState.HerdMode;
                 ChangeHeadColor(Color.yellow);
                 leaderIndex = 0;
             }
-            else if (leaderFollowers.Count() > (visibleAgents.Count()-leaderFollowers.Count()) && leaderIndex == -1)
+            else if (leaderFollowers.Count() > (visibleAgents.Count() - leaderFollowers.Count()) && leaderIndex == -1)
             {
                 int lowestVisibleLeaderIndex = GetLowestIndexOfVisibleAgents(visibleAgents);
                 State = AgentState.HerdMode;
@@ -305,11 +308,10 @@ public class FlockAgent : MonoBehaviour
 
     void ResetState()
     {
-        ResetRestlessness();
+        restlessness = Random.Range(0.5f, restlessnessUpperbound);
         ChangeHeadColor(Color.black);
         state = AgentState.Stationary;
         desiredPosition = Vector3.zero;
-
     }
 
     void CalculateContagion()
@@ -327,18 +329,18 @@ public class FlockAgent : MonoBehaviour
         // change state with a certain probability
         if (defectionTimer > 1.0f)
         {
-            defectionTimer = UnityEngine.Random.Range(0, 0.5f);
+            defectionTimer = Random.Range(0, 0.5f);
             defectionProb = DefectionProbability(visibleProtesters.Count(), visibleBystanders.Count(), visibleLeaders.Count());
-            if (UnityEngine.Random.Range(0, 100f) < defectionProb * 100)
+            if (Random.Range(0, 100f) < defectionProb * 100)
             {
                 SetAgentRole(AgentRole.Bystander);
             }
         }
         if (recruitmentTimer > 1.0f)
         {
-            recruitmentTimer = UnityEngine.Random.Range(0, 0.5f);
+            recruitmentTimer = Random.Range(0, 0.5f);
             recruitmentProb = RecruitmentProbability(visibleProtesters.Count(), visibleBystanders.Count(), visibleLeaders.Count());
-            if (UnityEngine.Random.Range(0, 100f) < recruitmentProb * 100)
+            if (Random.Range(0, 100f) < recruitmentProb * 100)
             {
                 SetAgentRole(AgentRole.Protester);
             }
@@ -352,10 +354,10 @@ public class FlockAgent : MonoBehaviour
             return 0f;
 
         float motility = 100f; //mild unrest according to Clements
-        float u2 = 0.5f; 
+        float u2 = 0.5f;
         float someConst = 0.53f;
         //Debug.Log(motility/(motility+bystanderCount) * someConst);
-        if (u2 >= motility/(motility+bystanderCount) * someConst)
+        if (u2 >= motility / (motility + bystanderCount) * someConst)
         {
             return 0.2f; //to make defection build up with slowly with time, return less than 1
         }
@@ -369,10 +371,10 @@ public class FlockAgent : MonoBehaviour
             return 0f;
 
         float motility = 100f; //mild unrest according to Clements
-        float u1 = 0.5f; 
+        float u1 = 0.5f;
         float someConst = 0.53f;
         //Debug.Log(motility/(motility+protesterCount) * someConst);
-        if (u1 >= motility/(motility+protesterCount) * someConst)
+        if (u1 >= motility / (motility + protesterCount) * someConst)
         {
             return 0.2f; //to make recruitment build up with slowly with time, return less than 1
         }
@@ -381,7 +383,7 @@ public class FlockAgent : MonoBehaviour
 
     public void ResetRestlessness()
     {
-        restlessness = UnityEngine.Random.Range(0, 0.5f);
+        restlessness = Random.Range(0, 0.5f);
     }
 
     public void ChangeBodyColor(Color color)
@@ -435,7 +437,6 @@ public class FlockAgent : MonoBehaviour
         previousMove = newVelocity;
     }
 
-    
     public List<(RaycastHit2D, Vector2)> GetVisibleAgents()
     {
         List<(RaycastHit2D, Vector2)> visibleObjects = new();
@@ -507,10 +508,12 @@ public class FlockAgent : MonoBehaviour
                 break;
             case AgentRole.Protester:
                 DesiredSpeed = Numbers.NextGaussian(6, 2);
+                restlessnessUpperbound = Random.Range(0.8f, 1f);
                 ChangeBodyColor(Color.red);
                 break;
             case AgentRole.Bystander:
                 DesiredSpeed = Numbers.NextGaussian(3, 1f);
+                SetCustomBystanderRestlessnessUpperbound();
                 ChangeBodyColor(Color.white);
                 break;
             case AgentRole.Police:
@@ -519,6 +522,13 @@ public class FlockAgent : MonoBehaviour
             default:
                 throw new System.Exception("Agent does not have a role");
         }
+    }
+
+    private void SetCustomBystanderRestlessnessUpperbound()
+    {
+        LookAround(180);
+        var calculatedRestlessness = 2 / (visibleProtesters.Count() + 1);
+        restlessnessUpperbound = Random.Range(calculatedRestlessness, calculatedRestlessness + 0.2f);
     }
 
     public void DrawHits(List<(RaycastHit2D, Vector2)> directionsAndHits)
@@ -572,8 +582,8 @@ public class FlockAgent : MonoBehaviour
         List<Vector3> agentPositions = visibleProtesters.Select(protester => protester.transform.position).ToList();
         if (agentPositions.Count() < 1)
         {
-            float minDistance = UnityEngine.Random.Range(5, 10f);
-            float maxDistance = UnityEngine.Random.Range(minDistance, 20f);
+            float minDistance = Random.Range(5, 10f);
+            float maxDistance = Random.Range(minDistance, 20f);
             return GenerateRandomPositionInsideRing(minDistance, maxDistance, transform.position);
         }
 
@@ -633,8 +643,8 @@ public class FlockAgent : MonoBehaviour
     // however in that univers that will not matter since we win every lottery :)  
     Vector3 GenerateRandomPositionInsideRing(float minDistance, float maxDistance, Vector3 center)
     {
-        float angle = UnityEngine.Random.Range(0f, 2f * Mathf.PI);
-        float randomDistance = UnityEngine.Random.Range(minDistance, maxDistance);
+        float angle = Random.Range(0f, 2f * Mathf.PI);
+        float randomDistance = Random.Range(minDistance, maxDistance);
         float x = center.x + randomDistance * Mathf.Cos(angle);
         float y = center.y + randomDistance * Mathf.Sin(angle);
         if (!IsInsideBuilding(x, y))
@@ -644,7 +654,7 @@ public class FlockAgent : MonoBehaviour
     }
 
     // this method is for debuggin a single agent
-    void DebugLogAgent0(object text)
+    public void DebugLogAgent0(object text)
     {
         if (name == "Agent 0")
             Debug.Log(text);

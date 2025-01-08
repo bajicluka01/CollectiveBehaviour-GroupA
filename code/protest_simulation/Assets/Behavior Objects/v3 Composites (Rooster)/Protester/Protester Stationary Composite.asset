@@ -10,11 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2313069a271374499fe060710a7e3d9, type: 3}
-  m_Name: Moving Composite
+  m_Name: Protester Stationary Composite
   m_EditorClassIdentifier: 
-  behaviors:
-  - {fileID: 11400000, guid: 8abdf837c071f8e45a21d4ee21bf9228, type: 2}
-  - {fileID: 11400000, guid: 56c9f6b13368e4cb2b6f7cae2fdc179c, type: 2}
-  weights:
-  - 1
-  - 1
+  behaviors: []
+  weights: []

@@ -74,7 +74,6 @@ public class Flock : MonoBehaviour {
 
         // calculate the angles
         personalSpaceAngleChange = CalculateRayCastAngleChange(agentPrefab.GetComponent<CircleCollider2D>().radius,personalSpaceDistance);
-        Debug.Log(personalSpaceDistance);
         visualAngleChange = CalculateRayCastAngleChange(agentPrefab.GetComponent<CircleCollider2D>().radius,eyesightDistance);
 
         for (int i = 0; i < protestorStartingCount; i++) 
@@ -89,6 +88,7 @@ public class Flock : MonoBehaviour {
         newAgent.name = name;
         newAgent.tag = "agent";
         newAgent.manualMovement = false; // this is only true for leader
+        newAgent.Initialize(this);
 
         // an agent is randomly chosen to be either protester or bystander
         System.Random r = new System.Random();
@@ -96,7 +96,6 @@ public class Flock : MonoBehaviour {
             newAgent.Role = AgentRole.Protester;
         else
             newAgent.Role = AgentRole.Bystander;
-        newAgent.Initialize(this);
         group.Add(newAgent);
     }
 

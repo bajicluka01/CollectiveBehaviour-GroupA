@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: Stationary Composite
   m_EditorClassIdentifier: 
   behaviors:
-  - {fileID: 11400000, guid: 346d351f619d744d18e8bd9fb81cfc54, type: 2}
+  - {fileID: 11400000, guid: a7d0d324e033d9549a92b58a0d395c3b, type: 2}
   weights:
   - 1
-  smoothing: 0.01
