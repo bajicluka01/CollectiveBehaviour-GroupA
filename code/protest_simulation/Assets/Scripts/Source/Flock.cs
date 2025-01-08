@@ -58,6 +58,9 @@ public class Flock : MonoBehaviour {
     public bool showUI;
 
     public bool disableLeader = false;
+    public bool smoothMove = false;
+    [Range(0,100)]
+    public float smoothMoveFactor = 20;
 
     void Start() 
     {
@@ -83,7 +86,7 @@ public class Flock : MonoBehaviour {
         newAgent.Fov = flockFOV;
         newAgent.EyesightDistance = eyesightDistance;
         newAgent.PeripsersonalDistance = personalSpaceDistance;
-        newAgent.manualMovement = false; //this is only true for leader
+        newAgent.manualMovement = false; // this is only true for leader
 
         // an agent is randomly chosen to be either protester or bystander
         System.Random r = new System.Random();

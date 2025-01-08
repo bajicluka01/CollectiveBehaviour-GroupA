@@ -443,9 +443,18 @@ public class FlockAgent : MonoBehaviour
         {
             agentRigidBody.constraints = RigidbodyConstraints2D.FreezeRotation;
         }
-        agentRigidBody.linearVelocity = velocity;
-        previousMove = velocity;
-    }
+        Vector2 newVelocity = velocity;
+        if (agentFlock.smoothMove)
+        {
+            float moveFactor = agentFlock.smoothMoveFactor * Time.deltaTime;
+            Vector2 desiredDirectionChange = velocity - previousMove;
+            Vector2 directionChange = desiredDirectionChange.normalized * moveFactor; 
+            if (desiredDirectionChange.magnitude > moveFactor)
+                newVelocity = previousMove + directionChange;
+        }
+        agentRigidBody.linearVelocity =  newVelocity;
+        previousMove = newVelocity;
+   }
 
     float CalculateRayCastAngleChange(float humanRadius, float desiredDistance)
     {
