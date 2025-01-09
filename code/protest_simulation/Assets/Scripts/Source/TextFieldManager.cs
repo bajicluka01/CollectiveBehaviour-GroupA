@@ -8,9 +8,11 @@ public static class TextFieldManager
     public static int protestors = 0;
     public static int bystanders = 0;
     public static int police = 0;
+    public static bool initialized = false;
 
     public static void Initialize()
     {
+        TextFieldManager.initialized = true;
         // Check if a Canvas already exists in the scene
         Canvas canvas = Object.FindFirstObjectByType<Canvas>();
         if (canvas == null)
@@ -58,18 +60,38 @@ public static class TextFieldManager
     public static void setProtestors(int num)
     {
         protestors = num;
-        UpdateTextField();
+        if (TextFieldManager.initialized) {
+            UpdateTextField();
+        }
     }
 
     public static void setBystanders(int num)
     {
         bystanders = num;
-        UpdateTextField();
+        if (TextFieldManager.initialized) {
+            UpdateTextField();
+        }
     }
 
     public static void setPolice(int num)
     {
         police = num;
-        UpdateTextField();
+        if (TextFieldManager.initialized) {
+            UpdateTextField();
+        }
+    }
+
+    public static void DestroyLegend()
+    {
+        if (myTextField != null)
+        {
+            TextFieldManager.initialized = false;
+            // Destroy the GameObject that contains the Text component
+            GameObject textObject = myTextField.gameObject;
+            Object.Destroy(textObject);
+            
+            // Reset the reference to null to avoid potential errors
+            myTextField = null;
+        }
     }
 }

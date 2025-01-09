@@ -328,7 +328,7 @@ MonoBehaviour:
   boidsSpecial: {fileID: 11400000, guid: 1db1d390b5f974d96859e3b3fb36833f, type: 2}
   manualLeaderMovement: 0
   leaderIdentificationTimeInterval: 1.5
-  showUI: 0
+  showUI: 1
   disableLeader: 0
   smoothMove: 0
   smoothMoveFactor: 20

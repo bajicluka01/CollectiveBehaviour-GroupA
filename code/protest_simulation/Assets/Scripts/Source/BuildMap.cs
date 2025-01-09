@@ -9,9 +9,6 @@ public class BuildMap : MonoBehaviour
     void Start()
     {
         CreateBuildingsFromMap();
-
-        // Create a new TextFieldManager that shows the number of agents in the scene (protestors, bystanders and police)
-        TextFieldManager.Initialize();
     }
 
     void CreateBuildingsFromMap()

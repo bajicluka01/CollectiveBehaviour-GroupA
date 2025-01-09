@@ -66,6 +66,11 @@ public class Flock : MonoBehaviour {
      
     void Start() 
     {
+        if (showUI) {
+            // Create a new TextFieldManager that shows the number of agents in the scene (protestors, bystanders and police)
+            TextFieldManager.Initialize();
+        }
+
         // leader identificaiton initialization
         timeToLeaderIdentification = leaderIdentificationTimeInterval; 
 
@@ -142,6 +147,18 @@ public class Flock : MonoBehaviour {
 
     void Update() 
     {
+        if (showUI) {
+            if (!TextFieldManager.initialized) {
+                TextFieldManager.Initialize();
+            }
+
+            TextFieldManager.UpdateTextField();
+        } else {
+            if (TextFieldManager.initialized) {
+                TextFieldManager.DestroyLegend();
+            }
+        }
+
         // Handle the leader selection process
         HandleLeaderSelection();
         
@@ -151,6 +168,10 @@ public class Flock : MonoBehaviour {
         // Change UI legend based on the number of agents
         if(showUI)
         {
+            if (!TextFieldManager.initialized) {
+                TextFieldManager.Initialize();
+            }
+
             ChangeUILegend();
         }
     }
