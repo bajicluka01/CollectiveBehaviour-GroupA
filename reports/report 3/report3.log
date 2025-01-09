@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  8 JAN 2025 18:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  9 JAN 2025 21:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1629,9 +1629,9 @@ LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 6.64998pt on input line 135.
 [2{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc} <
 ./vision.png>]
-Overfull \hbox (0.1148pt too wide) in paragraph at lines 138--139
-\T1/lmr/m/n/9 (+19) fol-low-ers), the rest of the herd will even-tu-ally stop f
-ol-low-ing as well, with re-spect to a 
+Overfull \hbox (0.14441pt too wide) in paragraph at lines 138--139
+\T1/lmr/m/n/9 (+4) pears (ei-ther uniden-ti-fies it-self or ex-its the field of
+ view of clos-est fol-low-ers), the rest of 
  []
 
 
@@ -1652,13 +1652,23 @@ File: after.png Graphic file (type png)
 <use after.png>
 Package pdftex.def Info: after.png  used on input line 173.
 (pdftex.def)             Requested size: 167.86462pt x 94.26984pt.
+<followleader.png, id=82, 651.43375pt x 567.11874pt>
+File: followleader.png Graphic file (type png)
+<use followleader.png>
+Package pdftex.def Info: followleader.png  used on input line 185.
+(pdftex.def)             Requested size: 335.72926pt x 292.28142pt.
 [3{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathit.en
 c}{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-mathsy.en
 c} <./before.png> <./after.png>]
-LaTeX Font Info:    Font shape `T1/phv/b/sc' will be
-(Font)              scaled to size 8.54997pt on input line 196.
+Overfull \hbox (0.12508pt too wide) in paragraph at lines 191--192
+[]\T1/lmr/m/n/9 (+20) We also observed various situations in which the leader u
+nidentifies itself when the 
+ []
 
-Overfull \hbox (0.17165pt too wide) in paragraph at lines 196--197
+LaTeX Font Info:    Font shape `T1/phv/b/sc' will be
+(Font)              scaled to size 8.54997pt on input line 206.
+
+Overfull \hbox (0.17165pt too wide) in paragraph at lines 206--207
 [] []|\T1/phv/b/sc/9 (+14) con-tri-bu-tions\T1/phv/b/n/9 (+14) .[] \T1/lmr/m/n/
 8 (+14) Nƒ im-ple-mented agent move-ment, vi-sion and in-ter-ac-tion be-tween d
 if-fer-ent 
@@ -1672,11 +1682,18 @@ LaTeX Font Info:    Font shape `T1/phv/m/it' in size <6> not available
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 5.69998pt on input line 10.
 )
+Overfull \vbox (4.02046pt too high) has occurred while \output is active []
+
+
+Overfull \vbox (9.02046pt too high) has occurred while \output is active []
+
+
+[4 <./followleader.png>]
 
 Package caption Warning: Unused \captionsetup[table] on input line 173.
 See the caption package documentation for explanation.
 
-[4] 
+
 enddocument/afterlastpage: lastpage setting LastPage.
 (report3.aux)
  ***********
@@ -1687,11 +1704,11 @@ Package rerunfilecheck Info: File `report3.out' has not changed.
 (rerunfilecheck)             Checksum: 79D0649803C51E4678AD2F2B3EB78ECD;115.
  ) 
 Here is how much of TeX's memory you used:
- 30235 strings out of 474486
- 561354 string characters out of 5743755
+ 30252 strings out of 474486
+ 561606 string characters out of 5743755
  1949542 words of memory out of 5000000
- 51670 multiletter control sequences out of 15000+600000
- 641301 words of font info for 216 fonts, out of 8000000 for 9000
+ 51678 multiletter control sequences out of 15000+600000
+ 641612 words of font info for 221 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,11n,121p,1101b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb
@@ -1703,9 +1720,9 @@ sers/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C
 :/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a
 .pfb>
-Output written on report3.pdf (4 pages, 986592 bytes).
+Output written on report3.pdf (4 pages, 1051688 bytes).
 PDF statistics:
- 148 PDF objects out of 1000 (max. 8388607)
- 13 named destinations out of 1000 (max. 500000)
- 81961 words of extra memory for PDF output out of 89155 (max. 10000000)
+ 152 PDF objects out of 1000 (max. 8388607)
+ 14 named destinations out of 1000 (max. 500000)
+ 81966 words of extra memory for PDF output out of 89155 (max. 10000000)
 
