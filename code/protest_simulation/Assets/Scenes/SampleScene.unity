@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 5987027978688631966, guid: 46497012f7227440ba8872b06e381462, type: 3}
-  protestorStartingCount: 334
+  protestorStartingCount: 207
   maxSpeed: 5
   neighborRadius: 2
   avoidanceRadiusMultiplier: 0.5
@@ -326,9 +326,9 @@ MonoBehaviour:
   inMotionBystanderBehavior: {fileID: 11400000, guid: ab59a857631c844158baea24add77611, type: 2}
   herdBystanderBehavior: {fileID: 11400000, guid: 5491b51ed6abd457995afa1d749c1791, type: 2}
   manualLeaderMovement: 0
-  leaderIdentificationTimeInterval: 1.37
+  leaderIdentificationTimeInterval: 1.5
   showUI: 0
-  disableLeader: 1
+  disableLeader: 0
   smoothMove: 0
   smoothMoveFactor: 20
   flockFOV: 60

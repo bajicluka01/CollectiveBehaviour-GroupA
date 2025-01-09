@@ -16,14 +16,14 @@ public class CollisionAvoidanceBehavior : FlockBehavior
             Vector3 wij = lowestTTCAgent.transform.position - agent.transform.position;
             Vector3 wu = CalculateWu(wij, agent);
             Vector3 wc = Vector3.Cross(wu, wij);
-            Vector2 wc2 = new Vector2(wc.x, wc.y);
+            Vector2 wc2 = new (wc.x, wc.y);
             wc2.Normalize();
             Vector2 wc2final = Vector2.Perpendicular(wc2);
             wc2final.Normalize();
 
             //Debug.Log(wij+ " " + wu);
 
-            Vector2 wij2 = new Vector2(wij.x, wij.y);
+            Vector2 wij2 = new (wij.x, wij.y);
 
             // TODO: check if this is good
             // for the R parameter that is defined as the maximum possible distance between the 
@@ -36,7 +36,7 @@ public class CollisionAvoidanceBehavior : FlockBehavior
             Vector2 fc = S * (1-wij2.sqrMagnitude/R) * wc2final;
             //Debug.Log(wij2.magnitude+" "+ fc+" "+ wc2final);
 
-            return Vector2.Perpendicular(wij2);
+            return Vector2.Perpendicular(fc);
             //return fc;
         }
         return Vector2.zero;

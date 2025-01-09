@@ -31,7 +31,7 @@ public class EndPositionSeekingBehavior : FlockBehavior
         Vector2 desiredPositionVector = agent.DesiredPosition - agent.transform.position;
         desiredPositionVector.Normalize();
         RaycastHit2D hit = Physics2D.Raycast(agent.transform.position, desiredPositionVector, flock.eyesightDistance/4);
-        if (hit && hit.collider.CompareTag("map"))
+        if (hit && (hit.collider.CompareTag("map") || hit.collider.CompareTag("Police")))
         {
             agent.DesiredPosition = agent.GenerateNewDesiredPosition();
         }

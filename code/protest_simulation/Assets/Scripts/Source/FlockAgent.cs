@@ -34,6 +34,7 @@ public class FlockAgent : MonoBehaviour
     // ...
     // this creates a hierarchical structure between the agents
     int leaderIndex = -1;
+    public FlockAgent leader;
     public int LeaderIndex
     {
         get { return leaderIndex; }
@@ -185,7 +186,7 @@ public class FlockAgent : MonoBehaviour
     }
 
 
-    int GetLowestIndexOfVisibleAgents(List<FlockAgent> agentGroup)
+    public int GetLowestIndexOfVisibleAgents(List<FlockAgent> agentGroup)
     {
         if (agentGroup.Count() == 0)
             return -1;
@@ -278,13 +279,15 @@ public class FlockAgent : MonoBehaviour
                 State = AgentState.HerdMode;
                 ChangeHeadColor(Color.yellow);
                 leaderIndex = 0;
+                leader = visibleLeaders.First();
             }
             else if (leaderFollowers.Count() > (visibleAgents.Count() - leaderFollowers.Count()) && leaderIndex == -1)
             {
                 int lowestVisibleLeaderIndex = GetLowestIndexOfVisibleAgents(visibleAgents);
                 State = AgentState.HerdMode;
                 ChangeHeadColor(Color.yellow);
-                leaderIndex = lowestVisibleLeaderIndex;
+                leaderIndex = lowestVisibleLeaderIndex + 1;
+                leader = GetListOfAgentsWithIndex(lowestVisibleLeaderIndex, visibleAgents).First().leader;
             }
             // TODO: MAYBE ADD A STOP CONDITION
         }
@@ -292,6 +295,7 @@ public class FlockAgent : MonoBehaviour
         {
             if (leaderIndex >= 0)
             {
+                leader = null;
                 herdCooldown = leaderIndex + Random.Range(0f, 1f);
                 leaderIndex = -1;
             }
@@ -301,7 +305,7 @@ public class FlockAgent : MonoBehaviour
             }
             else
             {
-                herdCooldown -= 0.1f * Time.deltaTime;
+                herdCooldown -= 0.4f * Time.deltaTime;
             }
         }
     }

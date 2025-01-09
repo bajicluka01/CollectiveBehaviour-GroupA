@@ -13,34 +13,41 @@ public class ProtesterLeaderFollowBehavior : FlockBehavior
         {
             FlockAgent leader = agent.visibleLeaders.First();
             if (isDesiredPositionLeaderDesiredPosition)
-                agent.DesiredPosition = leader.DesiredPosition;
+                return leader.DesiredPosition;
             else
-                agent.DesiredPosition = leader.transform.position;
+                return CalculateDesiredPosition(leader.transform.position, leader.PreviousMove, agent);
         }
         else if (agent.LeaderIndex > 0)
         {
-            List<FlockAgent> visibleLeadingProtesters = agent.GetListOfAgentsWithIndex(agent.LeaderIndex - 1, agent.visibleProtesters);
+            int lowestVisibleIndex = agent.GetLowestIndexOfVisibleAgents(agent.visibleProtesters);
+            if (lowestVisibleIndex == -1)
+                return Vector2.zero;
+            List<FlockAgent> visibleLeadingProtesters = agent.GetListOfAgentsWithIndex(lowestVisibleIndex, agent.visibleProtesters);
             if (visibleLeadingProtesters.Count == 0)
                 return Vector2.zero;
             if (isDesiredPositionLeaderDesiredPosition)
-                agent.DesiredPosition = visibleLeadingProtesters.First().DesiredPosition;
+                return visibleLeadingProtesters.First().DesiredPosition;
             else
             {
                 Vector3 center = visibleLeadingProtesters.Select(agent => agent.transform.position).Aggregate((agg, pos) => agg + pos) / visibleLeadingProtesters.Count;
-                // TODO: this needs to be tested more
                 Vector2 averageHeading = visibleLeadingProtesters.Select(agent => agent.PreviousMove).Aggregate((agg, pos) => agg + pos)*20 / visibleLeadingProtesters.Count;
-                agent.DesiredPosition = center + new Vector3(averageHeading.x, averageHeading.y, 0);
+                return CalculateDesiredPosition(center, averageHeading, agent);
             }
-            
         }
         else
             return Vector2.zero;
-        if(agent.OnDesiredPosition())
-            agent.DesiredPosition = Vector2.zero;
-        if(agent.DesiredPosition == Vector3.zero)
+    }
+
+    public static Vector2 CalculateDesiredPosition(Vector3 center, Vector2 heading, FlockAgent agent)
+    {
+        Vector2 centerToAgnet = agent.transform.position - center;
+        float dotProd = Vector2.Dot(centerToAgnet, heading);
+        if (heading == Vector2.zero)
             return Vector2.zero;
-        Vector2 res = agent.DesiredPosition - agent.transform.position;
-        return res.normalized;
-        
+        if (dotProd < 0)
+            // leader is not coming tward you
+            return (center - agent.transform.position).normalized * agent.DesiredSpeed;
+        else
+            return (center - agent.transform.position).normalized * 0.01f;
     }
 }

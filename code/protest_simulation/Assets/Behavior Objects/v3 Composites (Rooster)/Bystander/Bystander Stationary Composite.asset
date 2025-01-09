@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2313069a271374499fe060710a7e3d9, type: 3}
   m_Name: Bystander Stationary Composite
   m_EditorClassIdentifier: 
-  behaviors: []
-  weights: []
+  behaviors:
+  - {fileID: 11400000, guid: 346d351f619d744d18e8bd9fb81cfc54, type: 2}
+  weights:
+  - 100
