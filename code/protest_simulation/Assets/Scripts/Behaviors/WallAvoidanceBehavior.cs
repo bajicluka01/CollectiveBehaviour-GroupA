@@ -13,8 +13,6 @@ public class WallAvoidanceBehavior : FlockBehavior
         List<GameObject> walls = agent.allVisibleThings.Where(e => e.tag.Equals("map")).ToList();
         GameObject lowestTTCWall = GetLowestTTCWall(agent, walls);
 
-        Debug.Log("Wall avoid timer: "+ agent.WallAvoidTimer);
-
         if(agent.WallAvoidTimer > 0.5f){
             agent.WallAvoidTimer = 0.0f;
             agent.IncreaseWallTimer = false;
@@ -65,8 +63,6 @@ public class WallAvoidanceBehavior : FlockBehavior
             //Vector2 fc = S * Mathf.Abs((1-wij.sqrMagnitude/R)) * wc;
             Vector2 fc = S * (1-wij.sqrMagnitude/R) * wc;
             //Debug.Log(wij2.magnitude+" "+ fc+" "+ wc2final);
-
-            Debug.DrawRay(agent.transform.position, fc, Color.red);
 
             //Debug.Log(wu+" "+ wc+ " "+wij+ " "+ Vector2.Perpendicular(wij)+" " +fc);
 

@@ -325,6 +325,7 @@ MonoBehaviour:
   stationaryBystanderBehavior: {fileID: 11400000, guid: 9eb6beba979c047778c37314d4c7cbef, type: 2}
   inMotionBystanderBehavior: {fileID: 11400000, guid: ab59a857631c844158baea24add77611, type: 2}
   herdBystanderBehavior: {fileID: 11400000, guid: 5491b51ed6abd457995afa1d749c1791, type: 2}
+  boidsSpecial: {fileID: 11400000, guid: 1db1d390b5f974d96859e3b3fb36833f, type: 2}
   manualLeaderMovement: 0
   leaderIdentificationTimeInterval: 1.5
   showUI: 0

@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public enum AgentRole
@@ -15,7 +14,8 @@ public enum AgentState
 {
     inMotion,
     Stationary,
-    HerdMode
+    HerdMode,
+    Flocking
 }
 
 [RequireComponent(typeof(Collider2D))]
@@ -25,6 +25,9 @@ public class FlockAgent : MonoBehaviour
     // agent characteristics
     float restlessness = 0f;
     float restlessnessUpperbound = 1f;
+    
+    // righthanded 
+    public int directionalPreference;
 
     // MEANING OF INDEX:
     // -1 -> no leader visible
@@ -154,6 +157,7 @@ public class FlockAgent : MonoBehaviour
 
     void Start()
     {
+        directionalPreference = (2*Random.Range(0,2)) - 1;
         ChangeHeadColor(Color.black);
         agentCollider = GetComponent<Collider2D>();
         desiredSpeed = 0f;
@@ -274,7 +278,7 @@ public class FlockAgent : MonoBehaviour
         if (agentFlock.TimeToLeaderIdentification <= 0)
         {
             List<FlockAgent> leaderFollowers = GetListOfAgentsWithIndexHigherOrEqualThan(0, visibleAgents);
-            if (visibleLeaders.Count() > 0 && Role == AgentRole.Protester)
+            if (visibleLeaders.Count() > 0)
             {
                 State = AgentState.HerdMode;
                 ChangeHeadColor(Color.yellow);
@@ -291,11 +295,12 @@ public class FlockAgent : MonoBehaviour
             }
             // TODO: MAYBE ADD A STOP CONDITION
         }
-        else if (State == AgentState.HerdMode)
+        else if (State == AgentState.HerdMode || State == AgentState.Flocking)
         {
             if (leaderIndex >= 0)
             {
                 leader = null;
+                State = AgentState.Flocking;
                 herdCooldown = leaderIndex + Random.Range(0f, 1f);
                 leaderIndex = -1;
             }
@@ -627,9 +632,6 @@ public class FlockAgent : MonoBehaviour
         //    Debug.Log(x+" "+ y);
         //
 
-        // TODO: Luka remove this comment
-        // WHATT!!! for each game object on map -- this loop is insane 
-        // lucky for us it gets checked only once when agent's potisio being generated
         List<GameObject> walls = GameObject.FindGameObjectsWithTag("map").ToList();
         foreach (GameObject wall in walls)
         {
@@ -639,12 +641,6 @@ public class FlockAgent : MonoBehaviour
         return false;
     }
 
-    // TODO: Luka remove this comment
-    // Remember what you did with the 1000 loop -> checkout this elegant solution
-    //
-    // so in an alternative universe where we win every lottery in a sequence
-    // this will continue indefinitely
-    // however in that univers that will not matter since we win every lottery :)  
     Vector3 GenerateRandomPositionInsideRing(float minDistance, float maxDistance, Vector3 center)
     {
         float angle = Random.Range(0f, 2f * Mathf.PI);
@@ -657,7 +653,6 @@ public class FlockAgent : MonoBehaviour
             return GenerateRandomPositionInsideRing(minDistance, maxDistance, center);
     }
 
-    // this method is for debuggin a single agent
     public void DebugLogAgent0(object text)
     {
         if (name == "Agent 0")

@@ -61,7 +61,6 @@ public class SetupPhaseManager : MonoBehaviour
                 draggingPolice = true;
                 draggingPoliceIndex = i;
                 previousPoliceLine = activePoliceLines[i];
-                Debug.Log("Started dragging police line.");
                 break;
             }
         }
@@ -74,7 +73,6 @@ public class SetupPhaseManager : MonoBehaviour
             var line = activePoliceLines[draggingPoliceIndex];
             if (IsLineOccupied(line))
             {
-                Debug.Log("Cannot release line here: Another object is in the way!");
                 RevertToPreviousLine();
             }
             else
@@ -156,7 +154,6 @@ public class SetupPhaseManager : MonoBehaviour
 
         if (IsLineOccupied(line))
         {
-            Debug.Log("Cannot place line here: Another object is in the way!");
             return;
         }
 
