@@ -314,25 +314,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agentPrefab: {fileID: 5987027978688631966, guid: 46497012f7227440ba8872b06e381462, type: 3}
-  protestorStartingCount: 173
-  driveFactor: 10
+  protestorStartingCount: 207
   maxSpeed: 5
-  neighborRadius: 0.2
+  neighborRadius: 2
   avoidanceRadiusMultiplier: 0.5
+  leaderBehavior: {fileID: 11400000, guid: f69b54f5a37594e13a0444a605cb9499, type: 2}
+  stationaryProtesterBehavior: {fileID: 11400000, guid: 05918ff9f10424887a8f486be5fc898d, type: 2}
+  inMotionProtesterBehavior: {fileID: 11400000, guid: a94066ca1a3b949e48eeaba390bea5e7, type: 2}
+  herdProtesterBehavior: {fileID: 11400000, guid: 4a108a812fc9e4d2c8c459270d1fa342, type: 2}
+  stationaryBystanderBehavior: {fileID: 11400000, guid: 9eb6beba979c047778c37314d4c7cbef, type: 2}
+  inMotionBystanderBehavior: {fileID: 11400000, guid: ab59a857631c844158baea24add77611, type: 2}
+  herdBystanderBehavior: {fileID: 11400000, guid: 5491b51ed6abd457995afa1d749c1791, type: 2}
+  manualLeaderMovement: 0
+  leaderIdentificationTimeInterval: 1.5
+  showUI: 0
+  disableLeader: 0
+  smoothMove: 0
+  smoothMoveFactor: 20
   flockFOV: 60
   eyesightDistance: 20
   personalSpaceDistance: 1.7
-  leaderBehavior: {fileID: 11400000, guid: f69b54f5a37594e13a0444a605cb9499, type: 2}
-  stationaryProtesterBehavior: {fileID: 11400000, guid: c4e413406368a4e0480fc733e08defac, type: 2}
-  inMotionProtesterBehavior: {fileID: 11400000, guid: 614f0480bd7904f479ac48f2ca10644c, type: 2}
-  herdProtesterBehavior: {fileID: 11400000, guid: 3d1d50bc61e1f4c868ca6cf4d5ae19c3, type: 2}
-  stationaryBystanderBehavior: {fileID: 11400000, guid: c4e413406368a4e0480fc733e08defac, type: 2}
-  inMotionBystanderBehavior: {fileID: 11400000, guid: 614f0480bd7904f479ac48f2ca10644c, type: 2}
-  herdBystanderBehavior: {fileID: 11400000, guid: 3d1d50bc61e1f4c868ca6cf4d5ae19c3, type: 2}
-  manualLeaderMovement: 0
-  leaderIdentificationTimeInterval: 3
-  showUI: 0
-  disableLeader: 0
+  personalSpaceAngleChange: 0
+  visualAngleChange: 0
 --- !u!1 &1203668228
 GameObject:
   m_ObjectHideFlags: 0

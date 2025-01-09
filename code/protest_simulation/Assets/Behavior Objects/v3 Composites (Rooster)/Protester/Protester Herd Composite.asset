@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a2313069a271374499fe060710a7e3d9, type: 3}
-  m_Name: Moving Composite
+  m_Name: Protester Herd Composite
   m_EditorClassIdentifier: 
   behaviors:
-  - {fileID: 11400000, guid: 8abdf837c071f8e45a21d4ee21bf9228, type: 2}
-  - {fileID: 11400000, guid: 56c9f6b13368e4cb2b6f7cae2fdc179c, type: 2}
+  - {fileID: 11400000, guid: 3a63cd5f077d646098b07f11afeecf4e, type: 2}
+  - {fileID: 11400000, guid: 12fa1d7ccc61d46fba92528b39f71b2d, type: 2}
+  - {fileID: 11400000, guid: 346d351f619d744d18e8bd9fb81cfc54, type: 2}
+  - {fileID: 11400000, guid: 8340b777732d67a46a0590e1a664b865, type: 2}
   weights:
+  - 5
+  - 0.1
   - 1
   - 1
