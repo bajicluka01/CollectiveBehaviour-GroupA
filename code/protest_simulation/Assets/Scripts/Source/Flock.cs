@@ -44,6 +44,8 @@ public class Flock : MonoBehaviour {
     public FlockBehavior inMotionBystanderBehavior;
     public FlockBehavior herdBystanderBehavior;
 
+    public FlockBehavior boidsSpecial;
+
     public bool manualLeaderMovement = false;
     [Range(0,3)]
     public float leaderIdentificationTimeInterval = 10f;
@@ -197,6 +199,9 @@ public class Flock : MonoBehaviour {
                 break;
             case (AgentRole.Bystander, AgentState.HerdMode):
                 move = herdBystanderBehavior.CalculateMove(agent, this); 
+                break;
+            case (_, AgentState.Flocking):
+                move = boidsSpecial.CalculateMove(agent, this);
                 break;
         }
         if (move.sqrMagnitude > squareMaxSpeed) 
