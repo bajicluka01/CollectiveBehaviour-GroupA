@@ -293,7 +293,6 @@ public class FlockAgent : MonoBehaviour
                 leaderIndex = lowestVisibleLeaderIndex + 1;
                 leader = GetListOfAgentsWithIndex(lowestVisibleLeaderIndex, visibleAgents).First().leader;
             }
-            // TODO: MAYBE ADD A STOP CONDITION
         }
         else if (State == AgentState.HerdMode || State == AgentState.Flocking)
         {
