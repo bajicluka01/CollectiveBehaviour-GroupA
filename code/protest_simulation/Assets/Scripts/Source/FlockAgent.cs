@@ -618,20 +618,6 @@ public class FlockAgent : MonoBehaviour
     // returns true if point (x,y) lies inside a building, false otherwise
     bool IsInsideBuilding(float x, float y)
     {
-        // TODO: try to make these methods work
-        // these two methods should be more efficient than the loop, but for some reason I can' get them to work)
-
-        // this is the code that should work but is not working
-        //
-        //Collider[] intersecting = Physics.OverlapSphere(new Vector3(x,y,0), 0.01f);
-        //if (intersecting.Length != 0)
-        //    Debug.Log(intersecting.Length);
-        //return intersecting.Length != 0;
-
-        //if (Physics.CheckSphere(new Vector3 (x,y,0), 0.01f))
-        //    Debug.Log(x+" "+ y);
-        //
-
         List<GameObject> walls = GameObject.FindGameObjectsWithTag("map").ToList();
         foreach (GameObject wall in walls)
         {

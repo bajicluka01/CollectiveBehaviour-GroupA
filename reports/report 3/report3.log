@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  10 JAN 2025 11:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  10 JAN 2025 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1497,6 +1497,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 77--77
 \T1/phv/b/n/7 (+20) that might make them lo-gis-ti-cally eas-ier to
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 77--77
+[]\T1/phv/m/n/7 (+20) Protest sim-u-la-tion | group be-haviour | leader
+ []
+
 <FRIteza_logo.pdf, id=10, 73.97717pt x 36.98859pt>
 File: FRIteza_logo.pdf Graphic file (type pdf)
 <use FRIteza_logo.pdf>
@@ -1692,11 +1697,11 @@ Package rerunfilecheck Info: File `report3.out' has not changed.
 (rerunfilecheck)             Checksum: 79D0649803C51E4678AD2F2B3EB78ECD;115.
  ) 
 Here is how much of TeX's memory you used:
- 30254 strings out of 474486
- 561630 string characters out of 5743755
+ 30255 strings out of 474486
+ 561639 string characters out of 5743755
  1949542 words of memory out of 5000000
  51678 multiletter control sequences out of 15000+600000
- 641701 words of font info for 222 fonts, out of 8000000 for 9000
+ 641764 words of font info for 223 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,11n,121p,1006b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb
@@ -1708,7 +1713,7 @@ sers/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C
 :/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a
 .pfb>
-Output written on report3.pdf (4 pages, 1051684 bytes).
+Output written on report3.pdf (4 pages, 1051717 bytes).
 PDF statistics:
  152 PDF objects out of 1000 (max. 8388607)
  14 named destinations out of 1000 (max. 500000)
