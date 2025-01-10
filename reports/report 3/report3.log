@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  10 JAN 2025 10:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  10 JAN 2025 11:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1617,9 +1617,9 @@ LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 6.64998pt on input line 135.
 [2{C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/lm/lm-rm.enc} <
 ./vision.png>]
-Overfull \hbox (0.14441pt too wide) in paragraph at lines 138--139
-\T1/lmr/m/n/9 (+4) pears (ei-ther uniden-ti-fies it-self or ex-its the field of
- view of clos-est fol-low-ers), the rest of 
+Overfull \hbox (0.1602pt too wide) in paragraph at lines 138--139
+\T1/lmr/m/n/9 (+5) just their in-ter-nal state to start fol-low-ing the leader.
+ Their in-ter-nal state is also vis-i-ble 
  []
 
 
@@ -1692,11 +1692,11 @@ Package rerunfilecheck Info: File `report3.out' has not changed.
 (rerunfilecheck)             Checksum: 79D0649803C51E4678AD2F2B3EB78ECD;115.
  ) 
 Here is how much of TeX's memory you used:
- 30252 strings out of 474486
- 561612 string characters out of 5743755
+ 30254 strings out of 474486
+ 561630 string characters out of 5743755
  1949542 words of memory out of 5000000
  51678 multiletter control sequences out of 15000+600000
- 641612 words of font info for 221 fonts, out of 8000000 for 9000
+ 641701 words of font info for 222 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  117i,11n,121p,1006b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb
@@ -1708,7 +1708,7 @@ sers/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C
 :/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a
 .pfb>
-Output written on report3.pdf (4 pages, 1051813 bytes).
+Output written on report3.pdf (4 pages, 1051684 bytes).
 PDF statistics:
  152 PDF objects out of 1000 (max. 8388607)
  14 named destinations out of 1000 (max. 500000)
