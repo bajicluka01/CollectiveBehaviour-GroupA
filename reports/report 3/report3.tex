@@ -59,7 +59,7 @@
 \keywords{Simulation | group behaviour | group dynamics} 
 
 \begin{abstract}
-The purpose of our project is to model the behaviour of a crowd during a protest as accurately as possible and attempt to observe the emerging behavioural patterns. At the start of a simulation we populate the scene with agents that belong in different subgroups (leader, protester, bystander), but eventually they can fluidly change between the groups based on various parameters, such as proneness to defection and recruitment. These parameters depend upon the distribution (in the sense of groups) of agents in an individual's field of view. The movement of the leader can either be manually controlled by the user, or determined by arbitrary goals within the topological map, while the other agents follow the leader when it appears in their field of vision, depending also on their aggression parameters. To give the simulation a practical use, we additionally allow the user to manually place police agents into the scene and observe how they impact the behaviour of the crowd. 
+The purpose of our project is to model the behaviour of a crowd during a protest as accurately as possible and attempt to observe the emerging behavioural patterns. At the start of a simulation we populate the scene with agents belonging to different subgroups: leader, protester, bystander. Eventually they can fluidly change between groups based on various parameters, such as proneness to defection and recruitment. These parameters depend upon the distribution (in the sense of groups) of agents in an individual's field of view. The movement of the leader is determined by arbitrary goals within the topological map, while the other agents follow the leader when it appears in their field of vision. To give the simulation a practical use, we additionally allow the user to manually place police agents into the scene and observe how they impact the behaviour of the crowd. 
 \end{abstract}
 
 \dates{\textbf{\today}}
@@ -107,13 +107,13 @@ In this section we discuss our implementation of the crucial subproblems require
 In addition to Lemos' subgroups \cite{protests}, we also implemented the concept of a leader and for this purpose we divided the simulation into two modes:
 \begin{itemize}
     \item user manually controls the movement of a single leader: this can be used for instance to recreate very specific movement from real-life situations.
-    \item multiple local leaders emerge spontaneously within the group and form a hierarchy of leaders.
+    \item a leader emerges from the group and causes nearby protesters to form a chain of followers.
 \end{itemize}
 
 \subsection*{Vision}
 To give our agents awareness of their surroundings, we also need to model vision (example of a visualization is shown in figure \ref{vision}). This consists of two parts: 
 \begin{itemize}
-    \item field of view to model a human's eyesight. Default angle value is \begin{math}60\degree\end{math}, with a distance of 20 Unity units.
+    \item field of view to model a human's eyesight. Default angle value is \begin{math}120\degree\end{math} (adapted from Itatani), with a distance of 20 Unity units.
     \item peripersonal space to model a human's ability to feel a presence outside of their field of view, if the distance is small enough. Default angle value is \begin{math}360\degree\end{math}, with a distance of 1.7 Unity units.
 \end{itemize}
 
@@ -128,10 +128,10 @@ Additionally, we created a function for agents to look around without changing t
 
 \subsection*{Movement}
 
-Agents switch between two main states during the course of the simulation: standing still and in-motion. For this purpose we have come up with a restlessness parameter that gradually increases in agents that are standing still and once it reaches a certain threshold, the agent begins to move. To ensure that not all agents start and stop moving at the same time, it is paramount that the restlessness parameter is increased randomly (which based on our observations of various protest footage is the case for humans as well - perfectly synchronized behaviour is exceedingly rare). 
+Agents switch between four states during the course of the simulation: stationary, in-motion, herd and disperse. The latter two come into effect when follow leader behaviour starts and stops. For this purpose we have come up with a restlessness parameter that gradually increases in agents that are standing still and once it reaches a certain threshold, the agent begins to move. To ensure that not all agents start and stop moving at the same time, it is paramount that the restlessness parameter is increased randomly and that different groups also have a different threshold in different scenarios. Generally protesters should have a lower restlessness threshold, however bystanders surrounded by protesters can become even more restless (to model anxiety to leave a heated area). 
 
 \bigskip
-We deviate from Itatani \cite{socialcrowdsimulation} when it comes to End-Position-Seeking-Force, because the nature of our problem is considerably different. Our agents do not have an end position per se, therefore we have to set this value either to the position of the leader (in case a particular agent is currently following the leader), or an arbitrary nearby point in space (if an agent is not attached to the leader). The point in space is calculated differently for bystanders and protesters, since their movements typically have inherently different purposes: bystanders tend to move away from the heated crowd, while the active protesters usually attempt to join in. Therefore the point for protesters should be placed within a circle with a radius equal to the distance of the farthest protester in the field of view, while the point for bystanders is positioned within an annulus spanned by two constants - minDistance and maxDistance (default value for minDistance is between 5 and 10, default value for maxDistance is between minDistance and 20). 
+We deviate from Itatani \cite{socialcrowdsimulation} when it comes to End-Position-Seeking-Force, because the nature of our problem is considerably different. Our agents do not have an end position per se, therefore we have to set this value either to the position of the leader (in case a particular agent is currently following the leader), or an arbitrary nearby point in space (if an agent is not attached to the leader). The point in space is calculated differently for bystanders and protesters, since their movements typically have inherently different purposes: bystanders tend to move away from the heated crowd, while the active protesters usually attempt to join in. Therefore the point for protesters should be placed within a circle with a radius equal to the distance of the farthest protester in the field of view, while the point for bystanders is positioned within an annulus spanned by distance of the furthest protester and an arbitrary constant. 
 
 \subsection*{Leader Following Behaviour and hierarchy} 
 

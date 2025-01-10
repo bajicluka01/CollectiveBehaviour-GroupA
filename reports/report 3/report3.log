@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  9 JAN 2025 21:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.5.21)  10 JAN 2025 10:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1518,44 +1518,32 @@ ral pat-terns. At the start of a sim-u-la-tion
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 79--79
-\T1/phv/b/n/8 (+20) we pop-u-late the scene with agents that be-long in dif-fer
--ent sub-groups (leader, protester, by-
+\T1/phv/b/n/8 (+19) ness to de-fec-tion and re-cruit-ment. These pa-ram-e-ters 
+de-pend upon the dis-tri-bu-tion (in the sense
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 79--79
-\T1/phv/b/n/8 (+10) such as prone-ness to de-fec-tion and re-cruit-ment. These 
-pa-ram-e-ters de-pend upon the dis-tri-bu-tion
+\T1/phv/b/n/8 (+20) of groups) of agents in an in-di-vid-ual's field of view. T
+he move-ment of the leader is de-ter-mined
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 79--79
-\T1/phv/b/n/8 (+8) (in the sense of groups) of agents in an in-di-vid-ual's fie
-ld of view. The move-ment of the leader can
+\T1/phv/b/n/8 (+20) by ar-bi-trary goals within the topo-log-i-cal map, while t
+he other agents fol-low the leader when it
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 79--79
-\T1/phv/b/n/8 (+16) ei-ther be man-u-ally con-trolled by the user, or de-ter-mi
-ned by ar-bi-trary goals within the topo-log-i-cal
+\T1/phv/b/n/8 (+20) ap-pears in their field of vi-sion. To give the sim-u-la-ti
+on a prac-ti-cal use, we ad-di-tion-ally al-low the
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 79--79
-\T1/phv/b/n/8 (+20) map, while the other agents fol-low the leader when it ap-p
-ears in their field of vi-sion, de-pend-ing
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--79
-\T1/phv/b/n/8 (+20) also on their ag-gres-sion pa-ram-e-ters. To give the sim-u
--la-tion a prac-ti-cal use, we ad-di-tion-ally
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 79--79
-\T1/phv/b/n/8 (+20) al-low the user to man-u-ally place po-lice agents into the
- scene and ob-serve how they im-pact the
+\T1/phv/b/n/8 (+20) user to man-u-ally place po-lice agents into the scene and 
+ob-serve how they im-pact the be-haviour
  []
 
 Package microtype Info: Character `029' is missing
@@ -1618,9 +1606,9 @@ File: vision.png Graphic file (type png)
 Package pdftex.def Info: vision.png  used on input line 122.
 (pdftex.def)             Requested size: 335.72926pt x 229.73726pt.
 
-Overfull \hbox (0.16135pt too wide) in paragraph at lines 131--132
-\T1/lmr/m/n/9 (+19) increased randomly (which based on our observations of vari
-ous protest footage is the 
+Overfull \hbox (0.12221pt too wide) in paragraph at lines 131--132
+\T1/lmr/m/n/9 (+6) how-ever by-standers sur-rounded by protesters can be-come e
+ven more rest-less (to model 
  []
 
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
@@ -1705,12 +1693,12 @@ Package rerunfilecheck Info: File `report3.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  30252 strings out of 474486
- 561606 string characters out of 5743755
+ 561612 string characters out of 5743755
  1949542 words of memory out of 5000000
  51678 multiletter control sequences out of 15000+600000
  641612 words of font info for 221 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 117i,11n,121p,1101b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 117i,11n,121p,1006b,747s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi6.pfb
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmmi9.pfb>
 <C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/public/lm/lmr8.pfb><C
@@ -1720,7 +1708,7 @@ sers/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pfb><C
 :/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb
 ><C:/Users/bajic/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvro8a
 .pfb>
-Output written on report3.pdf (4 pages, 1051688 bytes).
+Output written on report3.pdf (4 pages, 1051813 bytes).
 PDF statistics:
  152 PDF objects out of 1000 (max. 8388607)
  14 named destinations out of 1000 (max. 500000)
